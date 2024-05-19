@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane prefHeight="55.0" prefWidth="600.0" styleClass="header"
+      stylesheets="@../styles/Header.css" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1">
+   <HBox layoutX="801.0" layoutY="1.0" prefHeight="38.0" prefWidth="142.0" styleClass="header__user">
+      <FontAwesomeIcon fill="#a8a6a6" glyphName="USER" size="1.6em" text="">
+         <font>
+            <Font size="36.0"/>
+         </font>
+      </FontAwesomeIcon>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header__user" text="luandinh03">
+         <font>
+            <Font name="System Bold" size="18.0"/>
+         </font>
+      </Text>
+   </HBox>
+</Pane>

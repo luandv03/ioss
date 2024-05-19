@@ -1,0 +1,4 @@
+.main__layout {
+    -fx-min-width: 1200px;
+    -fx-pref-height: 600px;
+}

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="btn__navigate__signup" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="535.0" styleClass="login__main__layout" stylesheets="@../styles/Login.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.controller.LoginController">
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <children>
+      <Text fill="#ee8e8e" layoutX="112.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chào mừng bạn đến với ISSO">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Text>
+      <TextField fx:id="email__input" layoutX="38.0" layoutY="166.0" prefHeight="39.0" prefWidth="439.0" promptText="nguyen.van.a@gmail.com" />
+      <TextField fx:id="password__input" layoutX="38.0" layoutY="257.0" prefHeight="39.0" prefWidth="439.0" promptText="Aabc@123" />
+      <Label layoutX="38.0" layoutY="125.0" text="Email">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="38.0" layoutY="217.0" text="Mật khẩu">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="93.0" layoutY="125.0" text="*" textFill="#e21b1b" />
+      <Label layoutX="125.0" layoutY="217.0" text="*" textFill="#e21b1b" />
+      <HBox layoutX="38.0" layoutY="332.0" prefHeight="39.0" prefWidth="256.0">
+         <Text fill="#c0baba" strokeType="OUTSIDE" strokeWidth="0.0" text="Bạn có tài khoản chưa?">
+            <font>
+               <Font size="20.0"/>
+            </font>
+         </Text>
+         <Text fill="#c0baba" strokeType="OUTSIDE" strokeWidth="0.0" text="Đăng ký">
+            <font>
+               <Font size="20.0"/>
+            </font>
+         </Text>
+      </HBox>
+      <Button fx:id="btn__login" layoutX="354.0" layoutY="332.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="126.0" styleClass="btn--login" text="Đăng nhập" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

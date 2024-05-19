@@ -1,0 +1,11 @@
+.login__main__layout {
+    -fx-background-color: #ffff;
+}
+
+.btn--login {
+    -fx-background-color: #2264E5;
+}
+
+.btn--login:hover {
+    -fx-cursor: hand;
+}

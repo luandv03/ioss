@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane styleClass="main__layout" stylesheets="@../styles/MainLayout.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.controller.MainLayoutController">
+    <left>
+        <fx:include source="Navbar.fxml" />
+    </left>
+
+    <center>
+        <VBox prefHeight="707.0" prefWidth="635.0">
+            <fx:include source="Header.fxml"/>
+            <BorderPane fx:id="content__parent" />
+        </VBox>
+    </center>
+
+</BorderPane>

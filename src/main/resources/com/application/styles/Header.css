@@ -1,0 +1,20 @@
+.header {
+    -fx-pref-height: 60px;
+    -fx-pref-width: 950px;
+    -fx-background-color: #FFFF;
+    -fx-border-color: #E8D9D9;
+    -fx-border-width: 1px 1px 1px 0;
+    -fx-border-style: solid;
+    -fx-margin-left: auto;
+    -fx-alignment: center-right;
+}
+
+.header__user {
+    -fx-alignment: center-right;
+    -fx-spacing: 10;
+}
+
+.header__user Text {
+    -fx-font-weight: 600;
+    -fx-fill: black;
+}

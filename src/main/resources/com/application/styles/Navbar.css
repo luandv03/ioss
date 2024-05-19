@@ -1,0 +1,68 @@
+.navbar__container {
+    -fx-pref-width: 250px;
+    -fx-pref-height: 60px;
+}
+
+.navbar__header {
+    -fx-background-color: #ffff;
+    -fx-pref-width: 250px;
+    -fx-pref-height: 60px;
+    -fx-display: flex;
+    -fx-alignment: center;
+    -fx-border-color: #E8D9D9;
+    -fx-border-width: 1px 1px 0 1px;
+    -fx-border-style: solid;
+}
+
+.navbar__header__logo {
+    -fx-pref-width: 250px;
+    -fx-pref-height: 60px;
+    -fx-alignment: center;
+}
+
+.navbar__body {
+    -fx-pref-width: 250px;
+    -fx-pref-height: 640px;
+    -fx-background-color: #4B545C;
+}
+
+.navbar__menu__item {
+    -fx-pref-height: 50px;
+    -fx-pref-width: 250px;
+
+    -fx-text-fill: #ffff;
+    -fx-text-alignment: left;
+    -fx-border-color: #FFFF;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-style: solid;
+    -fx-font-weight: 700;
+
+    -fx-spacing: 20;
+    -fx-alignment: center_left;
+
+    /*-fx-normal-background: #4B545C;*/
+    -fx-normal-background: #4B545C;
+    -fx-hovered-background: #343A40;
+    -fx-selected-background: #343A40;
+
+    -fx-background-color: -fx-normal-background;
+
+}
+
+.navbar__menu__item:hover {
+    -fx-background-color: -fx-hovered-background;
+    -fx-cursor: hand;
+}
+
+.navbar__menu__item:selected {
+    -fx-background-color: -fx-selected-background;
+}
+
+.navbar__menu__item Button Text {
+    -fx-font-size: 2.4rem;
+}
+
+.navbar__menu__item FontAwesomeIcon {
+    -fx-fill: #FFFF;
+    -fx-font-size: 2.4rem;
+}
