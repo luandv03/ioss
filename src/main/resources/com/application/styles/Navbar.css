@@ -1,6 +1,6 @@
 .navbar__container {
     -fx-pref-width: 250px;
-    -fx-pref-height: 60px;
+    -fx-pref-height: 100%;
 }
 
 .navbar__header {
@@ -22,7 +22,7 @@
 
 .navbar__body {
     -fx-pref-width: 250px;
-    -fx-pref-height: 640px;
+    -fx-min-height: 640px;
     -fx-background-color: #4B545C;
 }
 

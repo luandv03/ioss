@@ -15,7 +15,6 @@ public class OrderItem extends Item {
     }
 
     public  OrderItem() {
-
     }
 
     public int getQuantityOrdered() {

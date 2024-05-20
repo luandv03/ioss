@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="590.0" prefWidth="762.0" styleClass="findsite__main" stylesheets="@../styles/FindSite.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.controller.FindSiteController">
+   <children>
+      <Pane layoutX="22.0" layoutY="46.0" prefHeight="523.0" prefWidth="894.0" styleClass="findsite__main__container">
+         <children>
+            <HBox layoutX="22.0" layoutY="48.0" prefHeight="100.0" prefWidth="593.0" styleClass="findsite__main__box__top">
+               <children>
+                  <VBox prefHeight="83.0" prefWidth="190.0">
+                     <children>
+                        <HBox prefHeight="29.0" prefWidth="190.0" styleClass="findsite__main__box__top__item">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="findsite__main__box__top__item" text="Mã mặt hàng:" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MH001" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="29.0" prefWidth="190.0" styleClass="findsite__main__box__top__item">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tên mặt hàng:" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Máy hút bụi daikin" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="29.0" prefWidth="190.0" styleClass="findsite__main__box__top__item">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Đơn vị:" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Máy" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="190.0">
+                     <children>
+                        <HBox prefHeight="29.0" prefWidth="190.0" styleClass="findsite__main__box__top__item">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Số lượng:" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="45" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="29.0" prefWidth="190.0" styleClass="findsite__main__box__top__item">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày nhận mong muốn:" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="20/4/2024" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="29.0" prefWidth="190.0" styleClass="findsite__main__box__top__item">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Đã chọn:" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="40" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox layoutX="22.0" layoutY="14.0" prefHeight="29.0" prefWidth="200.0" styleClass="findsite__main__box__top__item">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="findsite__main__box__top__item__id" text="Mã danh sách:" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="findsite__main__box__top__item__id" text="DS001" />
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <HBox layoutX="22.0" layoutY="5.0" prefHeight="36.0" prefWidth="148.0" styleClass="findsite__main__title">
+         <children>
+            <Button fx:id="btnBackOrderListItemView" mnemonicParsing="false" prefHeight="36.0" prefWidth="57.0">
+               <graphic>
+                  <FontAwesomeIcon glyphName="ARROW_LEFT" />
+               </graphic>
+            </Button>
+            <Label prefHeight="27.0" prefWidth="79.0" text="Tìm site">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
