@@ -76,11 +76,6 @@ public class ViewFactory {
 
         try {
             scene = new Scene(loadFXML(fxml));
-//            scene.getStylesheets().add(Objects.requireNonNull(App.class.getResource("styles/" + fxml + ".css")).toExternalForm());
-//            scene.getStylesheets().add(Objects.requireNonNull(App.class.getResource("styles/" + "Navbar" + ".css")).toExternalForm());
-//            scene.getStylesheets().add(Objects.requireNonNull(App.class.getResource("styles/" + "Header" + ".css")).toExternalForm());
-//            scene.getStylesheets().add(Objects.requireNonNull(App.class.getResource("styles/" + "OrderListsItem" + ".css")).toExternalForm());
-//            scene.getStylesheets().add(Objects.requireNonNull(App.class.getResource("styles/" + "OrderListItem" + ".css")).toExternalForm());
 
         } catch (Exception e) {
             System.out.print(e.getMessage());

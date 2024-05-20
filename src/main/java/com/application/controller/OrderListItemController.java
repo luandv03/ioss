@@ -9,8 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class OrderListItemController implements Initializable {
-    @FXML
-    Button btnBackOrderListsItemView;
+    public Button btnBackOrderListsItemView;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

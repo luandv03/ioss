@@ -18,23 +18,17 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class OrderListsItemController implements Initializable {
-    @FXML
-    TableView<OrderListItem> tableView;
+    public TableView<OrderListItem> tableView;
 
-    @FXML
-    TableColumn<OrderListItem, Integer> idColumn;
+    public TableColumn<OrderListItem, Integer> idColumn;
 
-    @FXML
-    TableColumn<OrderListItem, String> orderListItemIdColumn;
+    public TableColumn<OrderListItem, String> orderListItemIdColumn;
 
-    @FXML
-    TableColumn<OrderListItem, String> statusColumn;
+    public TableColumn<OrderListItem, String> statusColumn;
 
-    @FXML
-    TableColumn<OrderListItem, Integer> countColumn;
+    public TableColumn<OrderListItem, Integer> countColumn;
 
-    @FXML
-    TableColumn<OrderListItem, Button> viewColumn;
+    public TableColumn<OrderListItem, Button> viewColumn;
 
     ObservableList<OrderListItem> orderListsItem;
 
