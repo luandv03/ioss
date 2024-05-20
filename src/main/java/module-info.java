@@ -11,6 +11,8 @@ module org.example.demo {
     requires eu.hansolo.tilesfx;
     requires fontawesomefx;
     requires java.sql;
+    requires io.github.cdimascio.dotenv.java;
+    requires org.postgresql.jdbc;
 
     opens com.application to javafx.fxml;
     opens com.application.controller to javafx.fxml;
@@ -19,6 +21,9 @@ module org.example.demo {
     exports com.application.entity;
     exports com.application.view;
     opens com.application.view to javafx.fxml;
+    exports com.application.connection;
+    exports com.application.dao;
+    exports com.application.subsystemsql;
 //    exports com.application.view;
 //    opens com.application.view to javafx.fxml;
 }

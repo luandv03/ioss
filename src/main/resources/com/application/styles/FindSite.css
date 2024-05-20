@@ -1,0 +1,42 @@
+.findsite__main {
+    -fx-min-width: 950;
+    -fx-min-height: 600;
+    -fx-background-color: #FDF2F2;
+}
+
+.findsite__main__title {
+    -fx-spacing: 20px;
+    -fx-alignment: center;
+}
+
+.findsite__main__title Button {
+    -fx-background-color: #ffff;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+}
+
+.findsite__main__title Button:hover {
+    -fx-background-color: #E8D9D9;
+}
+
+.findsite__main__title Text {
+    -fx-font-weight: 600;
+    -fx-font-size: 18;
+}
+
+.findsite__main__container {
+    -fx-background-color: #FFFF;
+    -fx-border-radius: 4;
+}
+
+.findsite__main__box__top {
+    -fx-spacing: 50;
+}
+
+.findsite__main__box__top__item {
+    -fx-spacing: 10;
+}
+
+.findsite__main__box__top__item__id {
+    -fx-font-weight: bold;
+}

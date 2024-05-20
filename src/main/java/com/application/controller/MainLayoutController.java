@@ -16,7 +16,7 @@ public class MainLayoutController implements Initializable {
             switch (newVal) {
                 case "OrderListsItem" -> content__parent.setCenter(Model.getInstance().getViewFactory().getOrderListsItemView());
                 case "OrderListItem" -> content__parent.setCenter(Model.getInstance().getViewFactory().getOrderListItemView());
-//                case "OrderCancel" -> content__parent.setCenter(Model.getInstance().getViewFactory().getOrderCancel());
+                case "FindSite" -> content__parent.setCenter(Model.getInstance().getViewFactory().getFindSiteView());
                 default -> content__parent.setCenter(Model.getInstance().getViewFactory().getHomeView());
             }
         }));

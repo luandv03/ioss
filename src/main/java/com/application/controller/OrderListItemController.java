@@ -11,12 +11,19 @@ import java.util.ResourceBundle;
 public class OrderListItemController implements Initializable {
     public Button btnBackOrderListsItemView;
 
+    public Button btnFindSite;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         btnBackOrderListsItemView.setOnAction(event -> backOrderListsItemView());
     }
 
     public void backOrderListsItemView() {
-        Model.getInstance().getViewFactory().getSelectedMenuItem().set("OrderListsItem");
+//        Model.getInstance().getViewFactory().getSelectedMenuItem().set("OrderListsItem");
+        Model.getInstance().getViewFactory().getSelectedMenuItem().set("FindSite");
+    }
+
+    public void findSite() {
+        Model.getInstance().getViewFactory().getSelectedMenuItem().set("FindSite");
     }
 }

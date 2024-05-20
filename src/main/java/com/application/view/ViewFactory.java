@@ -18,6 +18,7 @@ public class ViewFactory {
     private AnchorPane homeView;
     private AnchorPane orderListsItemView;
     private AnchorPane orderListItemView;
+    private AnchorPane findSiteView;
 
     public ViewFactory() {
         this.selectedMenuItem = new SimpleStringProperty("");
@@ -49,6 +50,18 @@ public class ViewFactory {
         }
 
         return orderListItemView;
+    }
+
+    public AnchorPane getFindSiteView() {
+        if (findSiteView == null) {
+            try {
+                findSiteView = (AnchorPane) loadFXML("FindSite");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return findSiteView;
     }
 
     public AnchorPane getHomeView() {
