@@ -3,22 +3,17 @@ package com.application.controller;
 import com.application.entity.Item;
 import com.application.entity.OrderListItem;
 import com.application.model.Model;
-import com.application.subsystemsql.ItemSubsystem;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.sql.SQLException;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class OrderListsItemController implements Initializable {
@@ -43,17 +38,6 @@ public class OrderListsItemController implements Initializable {
                 new OrderListItem( "List 1", "Pending", 10),
                 new OrderListItem("List 2", "Approved", 5)
         );
-
-        ItemSubsystem itemSubsystem = new ItemSubsystem();
-
-        try {
-            List<Item> listItem = itemSubsystem.getListItem();
-
-            System.out.println(listItem.getFirst().getItemName());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
 
         idColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(orderListsItem.indexOf(param.getValue()) + 1));
         orderListItemIdColumn.setCellValueFactory(new PropertyValueFactory<OrderListItem, String>("orderListItemId"));
