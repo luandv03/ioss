@@ -1,6 +1,6 @@
 .order__list__item__container {
     -fx-background-color: #FDF2F2;
-    -fx-pref-width: 950px;
+    -fx-min-width: 1035;
 }
 
 .order__list__item__container__title {
