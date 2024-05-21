@@ -2,6 +2,7 @@ package com.application.entity;
 
 import java.util.List;
 
+// Danh sách mặt hàng cần đặt
 public class OrderListItem {
     private String orderListItemId;
     private String status;

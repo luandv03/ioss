@@ -1,5 +1,6 @@
 package com.application.entity;
 
+// Đơn hàng: được tạo ra khi BPĐHQT gửi yêu cầu đặt hàng đến Site
 public class Order {
     private String orderId;
     private String siteId;

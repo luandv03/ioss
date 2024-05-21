@@ -56,6 +56,10 @@
     -fx-text-fill: #FFFF;
 }
 
+.findsite__main__box__bottom__action MenuItem TextField Button {
+    -fx-pref-height: 30;
+}
+
 .findsite__main__box__bottom__action__btn__cancel {
     -fx-background-color: #93AEA7;
 }
@@ -69,7 +73,6 @@
     -fx-border-width: 1px;
     -fx-border-color: #E8D9D9;
     -fx-border-radius: 4px;
-    -fx-pref-width: 30;
 }
 
 .table-view {
