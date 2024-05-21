@@ -1,6 +1,6 @@
 .findsite__main {
-    -fx-min-width: 950;
-    -fx-min-height: 600;
+    -fx-min-width: 1035;
+    -fx-min-height: 670;
     -fx-background-color: #FDF2F2;
 }
 
@@ -54,9 +54,18 @@
 
 .findsite__main__box__bottom__action Button {
     -fx-text-fill: #FFFF;
+    -fx-pref-height: 30;
 }
 
-.findsite__main__box__bottom__action MenuItem TextField Button {
+.findsite__main__box__bottom__action Button:hover {
+    -fx-cursor: hand;
+}
+
+.findsite__main__box__bottom__action MenuButton  {
+    -fx-pref-height: 30;
+}
+
+.findsite__main__box__bottom__action TextField  {
     -fx-pref-height: 30;
 }
 
@@ -64,8 +73,16 @@
     -fx-background-color: #93AEA7;
 }
 
+.findsite__main__box__bottom__action__btn__cancel:hover {
+    -fx-background-color: #ABB8B5;
+}
+
 .findsite__main__box__bottom__action__btn__add {
     -fx-background-color: #2264E5;
+}
+
+.findsite__main__box__bottom__action__btn__add:hover {
+    -fx-background-color: #427AE9;
 }
 
 .findsite__main__box__bottom__action__btn__filter {

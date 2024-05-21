@@ -1,12 +1,12 @@
 .navbar__container {
-    -fx-pref-width: 250px;
-    -fx-pref-height: 100%;
+    -fx-pref-width: 250;
+    -fx-pref-height: 670;
 }
 
 .navbar__header {
     -fx-background-color: #ffff;
-    -fx-pref-width: 250px;
-    -fx-pref-height: 60px;
+    -fx-pref-width: 250;
+    -fx-pref-height: 60;
     -fx-display: flex;
     -fx-alignment: center;
     -fx-border-color: #E8D9D9;
@@ -15,14 +15,14 @@
 }
 
 .navbar__header__logo {
-    -fx-pref-width: 250px;
-    -fx-pref-height: 60px;
+    -fx-pref-width: 250;
+    -fx-pref-height: 60;
     -fx-alignment: center;
 }
 
 .navbar__body {
-    -fx-pref-width: 250px;
-    -fx-min-height: 640px;
+    -fx-pref-width: 250;
+    -fx-min-height: 610;
     -fx-background-color: #4B545C;
 }
 
