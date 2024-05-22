@@ -41,15 +41,15 @@ public class CorrespondingListOrderItemSiteController implements Initializable {
         );
 
 
-        loadChild("S0005", "taobao.com", "DH001","Đang Giao", "25/05/2024", list);
-        loadChild("S0006", "amazon.com", "DH0002", "Chờ Xác Nhận", "26/05/2024", list2);
+        loadChild("S0005", "taobao.com", "DH001","delevering", "25/05/2024", list);
+        loadChild("S0006", "amazon.com", "DH0002", "canceled", "#####", list2);
     }
     private void loadChild(CorrespondOrder list) {
         loadChild(list.getSiteId(),list.getSiteName(),list.getCorrespondOrderId(), list.getStatus(), list.getDesiredDeliveryDate(), list.getList());
     }
     private void loadChild(String maSite, String tenStie, String maDonHang, String trangThaiDon, String ngayGiaoDuKien, ObservableList<OrderItemSite> List_OrderItemSite) {
-        FXMLLoader child = Model.getInstance().getViewFactory().getOrderChild();
 
+        FXMLLoader child = Model.getInstance().getViewFactory().getOrderChild();
         try {
             VBox childV = child.load();
             childContainer.getChildren().add(childV);
