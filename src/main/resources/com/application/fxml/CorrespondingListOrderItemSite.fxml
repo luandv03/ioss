@@ -74,7 +74,7 @@
       </Pane>
       <HBox layoutX="23.0" layoutY="3.0" prefHeight="39.0" prefWidth="334.0" styleClass="order__list__item__container__title">
          <children>
-            <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="57.0">
+            <Button fx:id="btnBackToSite" mnemonicParsing="false" prefHeight="36.0" prefWidth="57.0">
                <graphic>
                   <FontAwesomeIcon glyphName="ARROW_LEFT" />
                </graphic>

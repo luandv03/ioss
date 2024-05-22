@@ -33,11 +33,31 @@ public class OrderListsItemController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        testData();
+    }
+
+    private void testData()
+    {
         // Thiết lập dữ liệu cho TableView
         orderListsItem = FXCollections.observableArrayList(
-                new OrderListItem( "List 1", "Pending", 10),
-                new OrderListItem("List 2", "Approved", 5)
+                new OrderListItem( "DS001", "Pending", 10),
+                new OrderListItem("DS002", "Loading", 5)
         );
+
+        // Set bộ dữ liệu cho bảng
+        setValue(orderListsItem);
+    }
+
+    public void onOrderListItem() {
+        Model.getInstance().getViewFactory().getSelectedMenuItem().set("OrderListItem");
+    }public void onOrderListItem_DaXuLi() {
+        Model.getInstance().getViewFactory().getSelectedMenuItem().set("OrderListItem_DaXuLi");
+    }
+
+    ///SetUp cho thằng tableView hiện dữ liệu
+    private void setValue(ObservableList<OrderListItem> orderListsItem)
+    {
+        tableView.getItems().clear();
 
         idColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(orderListsItem.indexOf(param.getValue()) + 1));
         orderListItemIdColumn.setCellValueFactory(new PropertyValueFactory<OrderListItem, String>("orderListItemId"));
@@ -51,22 +71,29 @@ public class OrderListsItemController implements Initializable {
             button.getStyleClass().add("view__button");
 
             button.setOnAction(event -> {
-                onOrderListItem();
 
                 OrderListItem selectedItem = tableView.getSelectionModel().getSelectedItem();
                 if (selectedItem != null) {
                     // Thực hiện logic hiển thị chi tiết ở đây
                     System.out.println("Xem chi tiết đơn hàng: " + selectedItem.getOrderListItemId());
 
+                    ///Hiển thị các khung khác nhau khi bấm vào các đơn hàng có trạng thái khác nhau
+                    switch (selectedItem.getStatus())
+                    {
+                        case "Loading":
+                        case "Done":
+                            onOrderListItem_DaXuLi(); break;
+                        case "Pending":
+                            onOrderListItem(); break;
+                        default:
+                            System.out.println("Trang thái đơn hàng " + selectedItem.getOrderListItemId() + " không hợp lệ");
+                    }
                 }
+
             });
 
             return new SimpleObjectProperty<>(button);
         });
-    }
-
-    public void onOrderListItem() {
-        Model.getInstance().getViewFactory().getSelectedMenuItem().set("OrderListItem_DaXuLi");
     }
 
 }
