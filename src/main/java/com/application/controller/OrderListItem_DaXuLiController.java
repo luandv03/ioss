@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -15,6 +16,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class OrderListItem_DaXuLiController implements Initializable {
+    public Label MaDanhSach;
+    public Label TrangThaiDanhSach;
     public Button btnBackOrderListsItemView;
     public Button btnViewCorrespondingListOrderItemSite;
     public TableView<OrderItem> tableView;
@@ -54,13 +57,23 @@ public class OrderListItem_DaXuLiController implements Initializable {
     private void setValue(ObservableList<OrderItem> orderItems)
     {
         tableView.getItems().clear();
-
         idColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(orderItems.indexOf(param.getValue()) + 1));
         itemIdColumn.setCellValueFactory(new PropertyValueFactory<OrderItem, String>("itemId"));
         itemNameColumn.setCellValueFactory(new PropertyValueFactory<OrderItem, String>("itemName"));
         unitColumn.setCellValueFactory(new PropertyValueFactory<OrderItem, String>("unit"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<OrderItem, Integer>("quantityOrdered"));
         desiredDeliveryDateColumn.setCellValueFactory(new PropertyValueFactory<OrderItem, String>("desiredDeliveryDate"));
+
+        quantityOrderColumn.setCellValueFactory(param -> {
+            int k = 10;
+            return new SimpleObjectProperty<>(k);
+        });
+
+        quantityreceivedColumn.setCellValueFactory(param -> {
+            int k = 20;
+            return new SimpleObjectProperty<>(k);
+        });
+
 
         tableView.setItems(orderItems);
 

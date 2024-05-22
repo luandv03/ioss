@@ -12,16 +12,17 @@
    <children>
       <Pane layoutX="26.0" layoutY="45.0" prefHeight="514.0" prefWidth="904.0" styleClass="order__list__item__box">
          <children>
-            <HBox layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="200.0">
+            <HBox layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="263.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã danh sách: " wrappingWidth="134.443359375">
                      <font>
                         <Font size="20.0" />
                      </font></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="order__list__item__box__header" text="DS001" wrappingWidth="67.29296875">
+                  <Label fx:id="MaDanhSach" text="DS0001">
                      <font>
-                        <Font size="20.0" />
-                     </font></Text>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </HBox>
             <HBox layoutX="14.0" layoutY="44.0" prefHeight="27.0" prefWidth="219.0" styleClass="order__list__item__box__header">
@@ -30,10 +31,11 @@
                      <font>
                         <Font size="20.0" />
                      </font></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="order__list__item__box__header" text="Đang Xử Lí" wrappingWidth="111.845703125">
+                  <Label fx:id="TrangThaiDanhSach" text="Đang Xử Lí">
                      <font>
-                        <Font size="20.0" />
-                     </font></Text>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </HBox>
             <Button fx:id="btnViewCorrespondingListOrderItemSite" layoutX="607.0" layoutY="12.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="283.0" styleClass="order__list__item__box__btn__order" text="Xem Đơn Hàng Ứng Với Danh Sách" />
@@ -44,8 +46,8 @@
                   <TableColumn fx:id="itemNameColumn" prefWidth="119.0" text="Tên Mặt Hàng" />
                   <TableColumn fx:id="unitColumn" prefWidth="63.0" text="Đơn vị" />
                   <TableColumn fx:id="quantityColumn" prefWidth="94.0" text="Số lượng" />
-                  <TableColumn prefWidth="78.0" text="Đã Nhận" />
-                  <TableColumn prefWidth="75.0" text="Đã Đặt" />
+                  <TableColumn fx:id="quantityreceivedColumn" prefWidth="78.0" text="Đã Nhận" />
+                  <TableColumn fx:id="quantityOrderColumn" prefWidth="75.0" text="Đã Đặt" />
                   <TableColumn fx:id="desiredDeliveryDateColumn" prefWidth="203.0" text="Ngày nhận mong muốn" />
                   <TableColumn fx:id="viewColumn" prefWidth="106.0" text="Hành động" />
               </columns>

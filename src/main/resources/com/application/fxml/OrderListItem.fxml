@@ -12,16 +12,17 @@
    <children>
       <Pane layoutX="26.0" layoutY="45.0" prefHeight="514.0" prefWidth="904.0" styleClass="order__list__item__box">
          <children>
-            <HBox layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="200.0">
+            <HBox layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="228.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã danh sách: " wrappingWidth="134.443359375">
                      <font>
                         <Font size="20.0" />
                      </font></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="order__list__item__box__header" text="DS001" wrappingWidth="67.29296875">
+                  <Label fx:id="MaDanhSach" prefHeight="21.0" prefWidth="65.0" text="DS001">
                      <font>
-                        <Font size="20.0" />
-                     </font></Text>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </HBox>
             <HBox layoutX="14.0" layoutY="44.0" prefHeight="27.0" prefWidth="219.0" styleClass="order__list__item__box__header">
@@ -30,10 +31,11 @@
                      <font>
                         <Font size="20.0" />
                      </font></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="order__list__item__box__header" text="Chưa xử lý" wrappingWidth="111.845703125">
+                  <Label fx:id="TrangThaiDanhSach" text="Chưa Xử Lí">
                      <font>
-                        <Font size="20.0" />
-                     </font></Text>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </HBox>
             <Button fx:id="btnFindSite" layoutX="793.0" layoutY="25.0" mnemonicParsing="false" styleClass="order__list__item__box__btn__order" text="Đặt hàng" />

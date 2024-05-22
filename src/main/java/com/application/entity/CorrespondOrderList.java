@@ -3,7 +3,7 @@ package com.application.entity;
 import javafx.collections.ObservableList;
 
 // Đối tượng được dùng để hiển thị các đơn hàng tương ứng với dsmhcd
-public class CorrespondOrder {
+public class CorrespondOrderList {
     // Mã của đơn hàng chứa mặt hàng này
     private String correspondOrderId;
 
@@ -21,7 +21,7 @@ public class CorrespondOrder {
 
     private ObservableList<OrderItemSite> list;
 
-    public CorrespondOrder(String correspondingOrder, String siteId, String siteName, String status, String desiredDeliveryDate, ObservableList<OrderItemSite> list)
+    public CorrespondOrderList(String correspondingOrder, String siteId, String siteName, String status, String desiredDeliveryDate, ObservableList<OrderItemSite> list)
     {
         this.correspondOrderId = correspondingOrder;
         this.siteId = siteId;

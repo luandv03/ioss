@@ -1,14 +1,14 @@
 package com.application.controller;
 
 import com.application.entity.OrderItemSite;
-import com.application.entity.CorrespondOrder;
+import com.application.entity.CorrespondOrderList;
 import com.application.model.Model;
-import eu.hansolo.tilesfx.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -16,7 +16,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CorrespondingListOrderItemSiteController implements Initializable {
-
+    public Label MaMatHang;
+    public Label TrangThaiMatHang;
+    public Label MaDanhSach;
+    public Label TrangThaiDanhSach;
     public VBox childContainer;
     public Button btnBackToSite;
     @Override
@@ -44,7 +47,7 @@ public class CorrespondingListOrderItemSiteController implements Initializable {
         loadChild("S0005", "taobao.com", "DH001","delevering", "25/05/2024", list);
         loadChild("S0006", "amazon.com", "DH0002", "canceled", "#####", list2);
     }
-    private void loadChild(CorrespondOrder list) {
+    private void loadChild(CorrespondOrderList list) {
         loadChild(list.getSiteId(),list.getSiteName(),list.getCorrespondOrderId(), list.getStatus(), list.getDesiredDeliveryDate(), list.getList());
     }
     private void loadChild(String maSite, String tenStie, String maDonHang, String trangThaiDon, String ngayGiaoDuKien, ObservableList<OrderItemSite> List_OrderItemSite) {

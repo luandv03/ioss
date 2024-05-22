@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -19,6 +20,8 @@ import java.util.ResourceBundle;
 public class OrderListItemController implements Initializable {
     public Button btnBackOrderListsItemView;
     public Button btnFindSite;
+    public Label MaDanhSach;
+    public Label TrangThaiDanhSach;
 
     public TableView<OrderItem> tableView;
 
