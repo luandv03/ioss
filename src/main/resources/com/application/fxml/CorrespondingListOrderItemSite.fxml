@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="715.0" prefWidth="1037.0" styleClass="order__list__item__container" stylesheets="@../styles/OrderListItem.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.controller.CorrespondingListOrderItemSiteController">
+   <children>
+      <Pane layoutX="26.0" layoutY="45.0" prefHeight="514.0" prefWidth="904.0" styleClass="order__list__item__box">
+         <children>
+            <ScrollPane layoutY="82.0" prefHeight="514.0" prefWidth="904.0">
+               <content>
+                  <VBox fx:id="childContainer" prefWidth="900.0" />
+               </content>
+            </ScrollPane>
+            <HBox layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã danh sách: " wrappingWidth="134.443359375">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="order__list__item__box__header" text="####" wrappingWidth="67.29296875">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Text>
+               </children>
+            </HBox>
+            <HBox layoutX="14.0" layoutY="44.0" prefHeight="27.0" prefWidth="219.0" styleClass="order__list__item__box__header">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Trạng thái:">
+                     <font>
+                        <Font size="24.0" />
+                     </font></Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="order__list__item__box__header" text="####" wrappingWidth="111.845703125">
+                     <font>
+                        <Font size="242.0" />
+                     </font></Text>
+               </children>
+            </HBox>
+            <HBox layoutX="672.0" layoutY="14.0" prefHeight="27.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã danh sách: " wrappingWidth="134.443359375">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="order__list__item__box__header" text="DS001" wrappingWidth="67.29296875">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox layoutX="672.0" layoutY="45.0" prefHeight="27.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Trạng thái:" wrappingWidth="99.443359375">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="order__list__item__box__header" text="Đang xử lí" wrappingWidth="107.29296875">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <HBox layoutX="23.0" layoutY="3.0" prefHeight="39.0" prefWidth="334.0" styleClass="order__list__item__container__title">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="57.0">
+               <graphic>
+                  <FontAwesomeIcon glyphName="ARROW_LEFT" />
+               </graphic>
+            </Button>
+            <Label prefHeight="27.0" prefWidth="298.0" text="Danh sách đơn hàng tương ứng">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Pagination layoutX="28.0" layoutY="641.0" prefHeight="65.0" prefWidth="904.0" />
+   </children>
+</AnchorPane>

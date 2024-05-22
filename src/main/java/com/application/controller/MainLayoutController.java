@@ -14,10 +14,18 @@ public class MainLayoutController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Model.getInstance().getViewFactory().getSelectedMenuItem().addListener(((observable, oldVal, newVal) -> {
             switch (newVal) {
-                case "OrderListsItem" -> content__parent.setCenter(Model.getInstance().getViewFactory().getOrderListsItemView());
-                case "OrderListItem" -> content__parent.setCenter(Model.getInstance().getViewFactory().getOrderListItemView());
-                case "FindSite" -> content__parent.setCenter(Model.getInstance().getViewFactory().getFindSiteView());
-                default -> content__parent.setCenter(Model.getInstance().getViewFactory().getHomeView());
+                case "OrderListsItem"
+                        -> content__parent.setCenter(Model.getInstance().getViewFactory().getOrderListsItemView());
+                case "OrderListItem"
+                        -> content__parent.setCenter(Model.getInstance().getViewFactory().getOrderListItemView());
+                case "FindSite"
+                        -> content__parent.setCenter(Model.getInstance().getViewFactory().getFindSiteView());
+                case "OrderListItem_DaXuLi"
+                        -> content__parent.setCenter(Model.getInstance().getViewFactory().getOrderListItem_DaXuLi());
+                case "CorrespondingListOrderItemSite"
+                        -> content__parent.setCenter(Model.getInstance().getViewFactory().getCorrespondingListOrderItemSite());
+                default
+                        -> content__parent.setCenter(Model.getInstance().getViewFactory().getHomeView());
             }
         }));
     }

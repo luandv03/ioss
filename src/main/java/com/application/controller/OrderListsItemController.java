@@ -66,7 +66,7 @@ public class OrderListsItemController implements Initializable {
     }
 
     public void onOrderListItem() {
-        Model.getInstance().getViewFactory().getSelectedMenuItem().set("OrderListItem");
+        Model.getInstance().getViewFactory().getSelectedMenuItem().set("OrderListItem_DaXuLi");
     }
 
 }

@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,6 +20,9 @@ public class ViewFactory {
     private AnchorPane orderListsItemView;
     private AnchorPane orderListItemView;
     private AnchorPane findSiteView;
+    private AnchorPane OrderListItem_DaXuLi;
+    private AnchorPane CorrespondingListOrderItemSite;
+    private VBox OrderChild;
 
     public ViewFactory() {
         this.selectedMenuItem = new SimpleStringProperty("");
@@ -62,6 +66,48 @@ public class ViewFactory {
         }
 
         return findSiteView;
+    }
+
+    public AnchorPane getOrderListItem_DaXuLi() {
+        if (OrderListItem_DaXuLi == null) {
+            try {
+                OrderListItem_DaXuLi = (AnchorPane) loadFXML("OrderListItem_DaXuLi");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return OrderListItem_DaXuLi;
+    }
+
+    public AnchorPane getCorrespondingListOrderItemSite() {
+        if (CorrespondingListOrderItemSite == null) {
+            try {
+                CorrespondingListOrderItemSite = (AnchorPane) loadFXML("CorrespondingListOrderItemSite");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return CorrespondingListOrderItemSite;
+    }
+
+    ///Lấy các thằng con của danh sách đơn hàng tương ứng
+/*    public VBox getOrderChild() {
+        if (OrderChild == null) {
+            try {
+                OrderChild = (VBox) loadFXML("OrderChild");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return OrderChild;
+    }*/
+
+    public FXMLLoader getOrderChild()
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/application/fxml/" + "OrderChild" + ".fxml"));
+        return  fxmlLoader;
     }
 
     public AnchorPane getHomeView() {
