@@ -2,12 +2,14 @@ package com.application.view;
 
 import com.application.controller.FindSiteController;
 import com.application.controller.MainLayoutController;
+import com.application.controller.OrderListItemController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,6 +25,9 @@ public class ViewFactory {
     private AnchorPane orderListItemView;
     private AnchorPane findSiteView;
     private FindSiteController findSiteController;
+    private AnchorPane OrderListItem_DaXuLi;
+    private AnchorPane CorrespondingListOrderItemSite;
+    private VBox OrderChild;
 
     public ViewFactory() {
         this.selectedMenuItem = new SimpleStringProperty("");
@@ -48,12 +53,21 @@ public class ViewFactory {
         if (orderListItemView == null) {
             try {
                 orderListItemView = (AnchorPane) loadFXML("OrderListItem");
-            } catch (IOException e) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/application/fxml/" + "OrderListItem" + ".fxml"));
+                OrderListItemController orderListItemController = OrderListItemController.getInstance();
+                fxmlLoader.setController(orderListItemController);
+
+                orderListItemView = fxmlLoader.load();
+            } catch (IOException | SQLException e) {
                 throw new RuntimeException(e);
             }
         }
 
         return orderListItemView;
+    }
+
+    public void resetOrderListItemView() {
+        orderListItemView = null;
     }
 
     public AnchorPane getFindSiteView() {
@@ -74,6 +88,48 @@ public class ViewFactory {
 
     public void resetFindSiteView() {
         findSiteView = null;
+    }
+
+    public AnchorPane getOrderListItem_DaXuLi() {
+        if (OrderListItem_DaXuLi == null) {
+            try {
+                OrderListItem_DaXuLi = (AnchorPane) loadFXML("OrderListItem_DaXuLi");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return OrderListItem_DaXuLi;
+    }
+
+    public AnchorPane getCorrespondingListOrderItemSite() {
+        if (CorrespondingListOrderItemSite == null) {
+            try {
+                CorrespondingListOrderItemSite = (AnchorPane) loadFXML("CorrespondingListOrderItemSite");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return CorrespondingListOrderItemSite;
+    }
+
+    ///Lấy các thằng con của danh sách đơn hàng tương ứng
+/*    public VBox getOrderChild() {
+        if (OrderChild == null) {
+            try {
+                OrderChild = (VBox) loadFXML("OrderChild");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return OrderChild;
+    }*/
+
+    public FXMLLoader getOrderChild()
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/application/fxml/" + "OrderChild" + ".fxml"));
+        return  fxmlLoader;
     }
 
     public AnchorPane getHomeView() {

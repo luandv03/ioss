@@ -15,6 +15,12 @@ public class OrderItemSite extends Item {
         this.deliveryType = deliveryType;
     }
 
+    public OrderItemSite(String itemId, String itemName, String unit, int quantityOrdered, String desiredDeliveryDate) {
+        super(itemId, itemName, unit);
+        this.quantityOrdered = quantityOrdered;
+        this.desiredDeliveryDate = desiredDeliveryDate;
+    }
+
     public OrderItemSite(int quantityOrdered, String desiredDeliveryDate) {
         this.quantityOrdered = quantityOrdered;
         this.desiredDeliveryDate = desiredDeliveryDate;

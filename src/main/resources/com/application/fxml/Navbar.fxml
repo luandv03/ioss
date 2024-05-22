@@ -48,6 +48,11 @@
                <graphic>
                   <FontAwesomeIcon glyphName="TRUCK" />
                </graphic></Button>
+            <Button layoutX="10.0" layoutY="210.0" mnemonicParsing="false" styleClass="navbar__menu__item" text="Quản lý đơn hàng 2">
+               <graphic>
+                  <FontAwesomeIcon glyphName="TRUCK" />
+               </graphic>
+            </Button>
          </children>
       </VBox>
    </children>

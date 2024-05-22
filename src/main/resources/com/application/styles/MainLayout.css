@@ -2,3 +2,9 @@
     -fx-min-width: 1285;
     -fx-min-height: 670;
 }
+
+.table-row-cell:selected {
+    -fx-background-color: rgba(120,0,0,.90);
+    -fx-table-cell-border-color: transparent;
+    -fx-background-insets: 0, 0 0 0 0;
+}

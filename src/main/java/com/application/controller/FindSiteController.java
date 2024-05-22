@@ -2,6 +2,7 @@ package com.application.controller;
 
 import com.application.entity.FindSiteItem;
 import com.application.entity.ItemSite;
+import com.application.entity.OrderItem;
 import com.application.model.Model;
 import com.application.subsystemsql.ItemSiteSubsystem;
 import javafx.beans.property.SimpleObjectProperty;
@@ -12,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -23,9 +25,20 @@ public class FindSiteController implements Initializable {
 
     private static FindSiteController instance;
 
-//    private String itemId;
+    private String orderListItemId;
+    private OrderItem orderItem;
+    private int selectedQuantity;
 
     public String itemId;
+
+    public Text orderListItemIdText;
+
+    public Text itemIdText;
+    public Text itemNameText;
+    public Text unitText;
+    public Text quantityText;
+    public Text desiredDeliveryDateText;
+    public Text selectedQuantityText;
 
     public Button btnAddItemSite;
 
@@ -62,7 +75,7 @@ public class FindSiteController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            findItemSiteByItemId(this.itemId);
+            findItemSiteByItemId(this.orderListItemId, this.orderItem, this.selectedQuantity);
             renderListSite();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -71,23 +84,26 @@ public class FindSiteController implements Initializable {
         btnAddItemSite.setOnAction(event -> getSelectedItems());
 
         btnCancelItemSite.setOnAction(event -> {
-            try {
-                findItemSiteByItemId("MH002");
-                renderListSite();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+
         });
+
+        orderListItemIdText.setText(orderListItemId);
+        itemIdText.setText(itemId);
+        itemNameText.setText(orderItem.getItemName());
+        unitText.setText(orderItem.getUnit());
+        quantityText.setText(String.valueOf(orderItem.getQuantityOrdered()));
+        desiredDeliveryDateText.setText(orderItem.getDesiredDeliveryDate());
+        selectedQuantityText.setText(String.valueOf(selectedQuantity));
+
     }
 
     public void backOrderListItemView() {
+        instance = null;
         Model.getInstance().getViewFactory().resetFindSiteView();
         Model.getInstance().getViewFactory().getSelectedMenuItem().set("OrderListItem");
     }
 
     public void renderListSite() throws SQLException {
-        System.out.println("Re-render");
-
         // Thiết lập dữ liệu cho TableView
         listItem = FXCollections.observableArrayList(
                findSiteItems
@@ -147,12 +163,16 @@ public class FindSiteController implements Initializable {
         return itemId;
     }
 
-    public void findItemSiteByItemId(String itemId) throws SQLException {
-        System.out.println("Update table "+ itemId);
+    public void findItemSiteByItemId(String orderListItemId, OrderItem orderItem, int selectedQuantity) throws SQLException {
+        System.out.println("Update table "+ orderItem.getItemId());
+        this.orderListItemId = orderListItemId;
+        this.orderItem = orderItem;
+        this.selectedQuantity = selectedQuantity;
+
         findSiteItems = new ArrayList<>();
 
         ItemSiteSubsystem itemSiteSubsystem = new ItemSiteSubsystem();
-           List<ItemSite> listItemSite = itemSiteSubsystem.findItemSiteByItemId(itemId);
+           List<ItemSite> listItemSite = itemSiteSubsystem.findItemSiteByItemId(orderItem.getItemId());
 
            for (ItemSite item : listItemSite) {
                findSiteItems.add(new FindSiteItem(item.getSiteId(), item.getSiteName(), item.getQuantity(), item.getDesiredDeliveryByShipDate(), item.getDesiredDeliveryByAirDate()));

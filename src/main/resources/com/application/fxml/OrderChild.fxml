@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.controller.OrderChildController">
+   <children>
+      <VBox layoutX="10.0" layoutY="10.0" prefHeight="288.0" prefWidth="904.0" style="-: ;">
+         <children>
+            <Pane prefHeight="129.0" prefWidth="904.0">
+               <children>
+                  <HBox layoutX="34.0" layoutY="2.0" prefHeight="24.0" prefWidth="190.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã Site:" wrappingWidth="78.6708984375">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="MaSite" prefHeight="27.0" prefWidth="124.0" text="Label">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="32.0" layoutY="35.0" prefHeight="24.0" prefWidth="190.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tên Site:" wrappingWidth="81.6708984375">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="TenSite" prefHeight="27.0" prefWidth="156.0" text="Label">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="34.0" layoutY="72.0" prefHeight="27.0" prefWidth="281.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã Đơn Hàng:" wrappingWidth="130.6708984375">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="MaDonHang" prefHeight="27.0" prefWidth="241.0" text="Label">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="514.0" layoutY="1.0" prefHeight="27.0" prefWidth="385.0" spacing="10.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Trạng Thái Đơn:" textAlignment="RIGHT" wrappingWidth="165.6708984375">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="TrangThaiDon" prefHeight="27.0" prefWidth="220.0" text="Label" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="514.0" layoutY="34.0" prefHeight="30.0" prefWidth="385.0" spacing="10.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày Giao Dự Kiến:" textAlignment="RIGHT" wrappingWidth="167.6708984375">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="NgayGiaoDuKien" prefHeight="27.0" prefWidth="202.0" text="Label" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </Pane>
+            <TableView fx:id="tableView" prefHeight="169.0" prefWidth="904.0">
+               <columns>
+                  <TableColumn fx:id="idColumn" prefWidth="53.0" text="STT" />
+                  <TableColumn fx:id="idProductColumn" prefWidth="153.0" text="Mã Mặt Hàng" />
+                  <TableColumn fx:id="nameColumn" prefWidth="361.0" text="Tên Mặt Hàng" />
+                  <TableColumn fx:id="unitColumn" maxWidth="500.0" prefWidth="115.0" text="Đơn Vị" />
+                  <TableColumn fx:id="quantityColumn" prefWidth="202.0" text="Số Lượng" />
+               </columns>
+            </TableView>
+            <ImageView fitHeight="14.0" fitWidth="887.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </VBox>
+   </children>
+</VBox>
