@@ -20,6 +20,7 @@ public class ViewFactory {
     private AnchorPane orderListItemView;
     private AnchorPane findSiteView;
 
+
     public ViewFactory() {
         this.selectedMenuItem = new SimpleStringProperty("");
     }
@@ -51,6 +52,8 @@ public class ViewFactory {
 
         return orderListItemView;
     }
+
+
 
     public AnchorPane getFindSiteView() {
         if (findSiteView == null) {

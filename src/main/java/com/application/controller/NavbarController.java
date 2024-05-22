@@ -11,6 +11,7 @@ public class NavbarController implements Initializable {
     public Button btn__home__view;
     public Button btn__order__lists__item__view;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addListeners();

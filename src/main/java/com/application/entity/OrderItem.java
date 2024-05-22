@@ -8,6 +8,7 @@ public class OrderItem extends Item {
     //Ngày nhận mong muốn
     private String desiredDeliveryDate;
 
+
     public OrderItem(String itemId, String itemName, String unit, int quantityOrdered, String desiredDeliveryDate) {
         super(itemId, itemName, unit);
         this.quantityOrdered = quantityOrdered;
