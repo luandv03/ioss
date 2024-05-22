@@ -85,6 +85,7 @@
                         </Label>
                      </children>
                   </HBox>
+                  <HBox fx:id="btnCancelLayout" layoutX="593.0" layoutY="71.0" prefHeight="30.0" prefWidth="202.0" spacing="10.0" />
                </children>
             </Pane>
             <TableView fx:id="tableView" prefHeight="169.0" prefWidth="904.0">

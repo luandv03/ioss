@@ -46,7 +46,7 @@ public class OrderListsItemController implements Initializable {
         }
         // Thiết lập dữ liệu cho TableView
         orderListsItem = FXCollections.observableArrayList(
-               orderListItemData
+                orderListItemData
         );
 
         idColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(orderListsItem.indexOf(param.getValue()) + 1));

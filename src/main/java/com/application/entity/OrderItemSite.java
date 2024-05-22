@@ -2,6 +2,7 @@ package com.application.entity;
 
 // Sản phẩm mà BPĐHQT đã đặt của site, hiện đang nằm trong đơn hàng
 public class OrderItemSite extends Item {
+
     // Số lượng đặt của site này
     private int quantityOrdered;
     // Ngày giao hàng dự kiến của site này;
