@@ -110,12 +110,6 @@ public class ViewFactory {
         return  fxmlLoader;
     }
 
-    public FXMLLoader getOrderChild_Cancel()
-    {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/application/fxml/" + "OrderChild_Cancel" + ".fxml"));
-        return  fxmlLoader;
-    }
-
     public AnchorPane getHomeView() {
         if (homeView == null) {
             try {
