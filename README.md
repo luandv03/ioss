@@ -34,3 +34,35 @@
 > ... Item
 > quantityOrdered: số lượng MH001 đã đặt ở site S001
 > desiredDeliveryDate: ngày giao hàng dự kiến cho mặt hàng MH001
+
+
+//        selectedItemColumn.setCellValueFactory(param -> {
+//            CheckBox checkBox = new CheckBox();
+//
+//            checkBox.setOnAction(event -> {
+//
+//            });
+//
+//            return new SimpleObjectProperty<>(checkBox);
+//        });
+
+//        deliveryTypeColumn.setCellValueFactory(param -> {
+//            MenuButton menuButton = new MenuButton("Ship");
+//            menuButton.getItems().addAll(new MenuItem("Air"));
+//
+//            menuButton.getStyleClass().add("findsite__main__box__bottom__action__btn__filter");
+//
+//            menuButton.setDisable(true);
+//
+//            return new SimpleObjectProperty<>(menuButton);
+//        });
+
+
+
+//        quantityOrderedColumn.setCellValueFactory(param -> {
+//            TextField textField = new TextField();
+//            textField.setDisable(true);
+//
+//            return new SimpleObjectProperty<>(textField);
+//        });
+

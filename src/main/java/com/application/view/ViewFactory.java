@@ -1,5 +1,7 @@
 package com.application.view;
 
+import com.application.controller.FindSiteController;
+import com.application.controller.MainLayoutController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.Stack;
 
@@ -19,6 +22,7 @@ public class ViewFactory {
     private AnchorPane orderListsItemView;
     private AnchorPane orderListItemView;
     private AnchorPane findSiteView;
+    private FindSiteController findSiteController;
 
     public ViewFactory() {
         this.selectedMenuItem = new SimpleStringProperty("");
@@ -55,13 +59,21 @@ public class ViewFactory {
     public AnchorPane getFindSiteView() {
         if (findSiteView == null) {
             try {
-                findSiteView = (AnchorPane) loadFXML("FindSite");
-            } catch (IOException e) {
+//                findSiteView = (AnchorPane) loadFXML("FindSite");
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/application/fxml/" + "FindSite" + ".fxml"));
+                FindSiteController findSiteController = FindSiteController.getInstance("");
+                fxmlLoader.setController(findSiteController);
+                findSiteView = fxmlLoader.load();
+            } catch (IOException | SQLException e) {
                 throw new RuntimeException(e);
             }
         }
 
         return findSiteView;
+    }
+
+    public void resetFindSiteView() {
+        findSiteView = null;
     }
 
     public AnchorPane getHomeView() {
