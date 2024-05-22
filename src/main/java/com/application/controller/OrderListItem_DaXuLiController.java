@@ -23,6 +23,8 @@ public class OrderListItem_DaXuLiController implements Initializable {
     public TableColumn<OrderItem, String> itemNameColumn;
     public TableColumn<OrderItem, String> unitColumn;
     public TableColumn<OrderItem, Integer> quantityColumn;
+    public TableColumn<OrderItem, Integer> quantityOrderColumn;
+    public TableColumn<OrderItem, Integer> quantityreceivedColumn;
     public TableColumn<OrderItem, String> desiredDeliveryDateColumn;
     public TableColumn<OrderItem, Button> viewColumn;
 
