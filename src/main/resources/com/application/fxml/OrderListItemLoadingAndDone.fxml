@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="581.0" prefWidth="1037.0" styleClass="order__list__item__container" stylesheets="@../styles/OrderListItem.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.controller.OrderListItem_DaXuLiController">
+<AnchorPane prefHeight="581.0" prefWidth="1037.0" styleClass="order__list__item__container" stylesheets="@../styles/OrderListItem.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.controller.OrderListItemLoadingAndDoneController">
    <children>
       <Pane layoutX="26.0" layoutY="45.0" prefHeight="514.0" prefWidth="904.0" styleClass="order__list__item__box">
          <children>
@@ -45,9 +45,9 @@
                 <TableColumn fx:id="itemIdColumn" prefWidth="105.0" text="Mã mặt hàng" />
                   <TableColumn fx:id="itemNameColumn" prefWidth="119.0" text="Tên Mặt Hàng" />
                   <TableColumn fx:id="unitColumn" prefWidth="63.0" text="Đơn vị" />
-                  <TableColumn fx:id="quantityColumn" prefWidth="94.0" text="Số lượng" />
-                  <TableColumn fx:id="quantityreceivedColumn" prefWidth="78.0" text="Đã Nhận" />
-                  <TableColumn fx:id="quantityOrderColumn" prefWidth="75.0" text="Đã Đặt" />
+                  <TableColumn fx:id="totalQuantityColumn" prefWidth="94.0" text="Số lượng" />
+                  <TableColumn fx:id="revicedQuantityColumn" prefWidth="78.0" text="Đã Nhận" />
+                  <TableColumn fx:id="orderedQuantityColumn" prefWidth="75.0" text="Đã Đặt" />
                   <TableColumn fx:id="desiredDeliveryDateColumn" prefWidth="203.0" text="Ngày nhận mong muốn" />
                   <TableColumn fx:id="viewColumn" prefWidth="106.0" text="Hành động" />
               </columns>

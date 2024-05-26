@@ -4,6 +4,7 @@ import com.application.entity.*;
 import com.application.model.Model;
 import com.application.subsystemsql.ItemSiteSubsystem;
 import com.application.subsystemsql.OrderListItemSubsystem;
+import com.application.view.ViewFactory;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -63,10 +64,15 @@ public class OrderListsItemController implements Initializable {
             button.setOnAction(event -> {
 
                 OrderListItem selectedItem = tableView.getSelectionModel().getSelectedItem();
+
+                //Update Flow
+                FlowHolder.flowHolder.UpdateId(selectedItem.getOrderListItemId(),selectedItem.getStatus(),0);
+
                 if (selectedItem != null) {
                     // Thực hiện logic hiển thị chi tiết ở đây
                     System.out.println("Xem chi tiết đơn hàng: " + selectedItem.getOrderListItemId());
                     System.out.println("Xem chi tiết đơn hàng: " + selectedItem.getStatus());
+
                     try {
                         onOrderListItem(selectedItem.getOrderListItemId(), selectedItem.getStatus());
                     } catch (SQLException e) {
@@ -84,7 +90,7 @@ public class OrderListsItemController implements Initializable {
             getListOrderItemPending(orderListItemId, status);
             Model.getInstance().getViewFactory().getSelectedMenuItem().set("OrderListItem");
         } else {
-            Model.getInstance().getViewFactory().getSelectedMenuItem().set("OrderListItem_DaXuLi");
+            Model.getInstance().getViewFactory().getSelectedMenuItem().set("OrderListItemLoadingAndDone");
         }
 
     }
