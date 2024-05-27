@@ -57,7 +57,7 @@ public class CorrespondingListOrderItemSiteController implements Initializable {
             filter[i].setOnAction(event -> {
                 filter[OptionMenu].setStyle("-fx-background-fill:black");
                 OptionMenu = index;
-                filter[index].setStyle("-fx-text-fill:purple");
+                filter[index].setStyle("-fx-text-fill:blue");
             });
             menuButton.getItems().add(filter[i]);
         }
