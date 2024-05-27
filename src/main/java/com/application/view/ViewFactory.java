@@ -91,6 +91,7 @@ public class ViewFactory {
     }
 
     public AnchorPane getOrderListItemLoadingAndDone() {
+        //Bắt scene phải load lại do trong javafx hơi khó lấy controller của nó
         //if (OrderListItemLoadingAndDone == null) {
             try {
                 OrderListItemLoadingAndDone = (AnchorPane) loadFXML("OrderListItemLoadingAndDone");
@@ -102,6 +103,7 @@ public class ViewFactory {
     }
 
     public AnchorPane getCorrespondingListOrderItemSite() {
+        //Bắt scene phải load lại do trong javafx hơi khó lấy controller của nó
         //if (CorrespondingListOrderItemSite == null) {
             try {
                 CorrespondingListOrderItemSite = (AnchorPane) loadFXML("CorrespondingListOrderItemSite");

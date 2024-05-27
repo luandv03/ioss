@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -8,53 +9,64 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="581.0" prefWidth="1037.0" styleClass="order__list__item__container" stylesheets="@../styles/OrderListItem.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.controller.OrderListItemLoadingAndDoneController">
+<AnchorPane prefHeight="581.0" prefWidth="1037.0" styleClass="order__list__item__container" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.controller.OrderListItemLoadingAndDoneController">
    <children>
       <Pane layoutX="26.0" layoutY="45.0" prefHeight="514.0" prefWidth="904.0" styleClass="order__list__item__box">
          <children>
-            <HBox layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="263.0">
+            <HBox layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="296.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã danh sách: " wrappingWidth="134.443359375">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font></Text>
-                  <Label fx:id="MaDanhSach" text="DS0001">
+                  <Label fx:id="MaDanhSach" alignment="CENTER" prefHeight="27.0" prefWidth="162.0" text="DS0001">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <HBox layoutX="14.0" layoutY="44.0" prefHeight="27.0" prefWidth="219.0" styleClass="order__list__item__box__header">
+            <HBox layoutX="14.0" layoutY="44.0" prefHeight="27.0" prefWidth="296.0" styleClass="order__list__item__box__header">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Trạng thái:">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Trạng thái:" wrappingWidth="135.26953125">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font></Text>
-                  <Label fx:id="TrangThaiDanhSach" text="Đang Xử Lí">
+                  <Label fx:id="TrangThaiDanhSach" alignment="CENTER" prefHeight="27.0" prefWidth="158.0" style="-fx-background-radius: 10;" text="Đang Xử Lí">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <Button fx:id="btnViewCorrespondingListOrderItemSite" layoutX="607.0" layoutY="12.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="283.0" styleClass="order__list__item__box__btn__order" text="Xem Đơn Hàng Ứng Với Danh Sách" />
-            <TableView fx:id="tableView" layoutX="14.0" layoutY="79.0" prefHeight="200.0" prefWidth="877.0">
+            <Button fx:id="btnViewCorrespondingListOrderItemSite" layoutX="607.0" layoutY="12.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="283.0" style="-fx-background-color: #000000; -fx-border-radius: 10;" styleClass="order__list__item__box__btn__order" text="Xem Đơn Hàng Ứng Với Danh Sách" />
+            <TableView fx:id="tableView" layoutX="20.0" layoutY="131.0" prefHeight="200.0" prefWidth="877.0">
               <columns>
                 <TableColumn fx:id="idColumn" prefWidth="33.0" text="#" />
-                <TableColumn fx:id="itemIdColumn" prefWidth="105.0" text="Mã mặt hàng" />
-                  <TableColumn fx:id="itemNameColumn" prefWidth="119.0" text="Tên Mặt Hàng" />
-                  <TableColumn fx:id="unitColumn" prefWidth="63.0" text="Đơn vị" />
-                  <TableColumn fx:id="totalQuantityColumn" prefWidth="94.0" text="Số lượng" />
-                  <TableColumn fx:id="revicedQuantityColumn" prefWidth="78.0" text="Đã Nhận" />
-                  <TableColumn fx:id="orderedQuantityColumn" prefWidth="75.0" text="Đã Đặt" />
-                  <TableColumn fx:id="desiredDeliveryDateColumn" prefWidth="203.0" text="Ngày nhận mong muốn" />
-                  <TableColumn fx:id="viewColumn" prefWidth="106.0" text="Hành động" />
+                <TableColumn fx:id="itemIdColumn" prefWidth="105.0" style="-fx-alignment: CENTER;" text="Mã mặt hàng" />
+                  <TableColumn fx:id="itemNameColumn" prefWidth="119.0" style="-fx-alignment: CENTER;" text="Tên Mặt Hàng" />
+                  <TableColumn fx:id="unitColumn" prefWidth="63.0" style="-fx-alignment: CENTER;" text="Đơn vị" />
+                  <TableColumn fx:id="totalQuantityColumn" prefWidth="77.0" style="-fx-alignment: CENTER;" text="Số lượng" />
+                  <TableColumn fx:id="orderedQuantityColumn" prefWidth="68.0" style="-fx-alignment: CENTER;" text="Đã Đặt" />
+                  <TableColumn fx:id="revicedQuantityColumn" prefWidth="75.0" style="-fx-alignment: CENTER;" text="Đã Nhận" />
+                  <TableColumn fx:id="desiredDeliveryDateColumn" prefWidth="183.0" style="-fx-alignment: CENTER;" text="Ngày nhận mong muốn" />
+                  <TableColumn fx:id="viewColumn" prefWidth="153.0" style="-fx-alignment: CENTER;" text="Hành động" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
+            <HBox layoutX="20.0" layoutY="82.0" prefHeight="39.0" prefWidth="498.0" styleClass="bar__action">
+               <children>
+                  <MenuButton fx:id="menuButton" mnemonicParsing="false" prefHeight="36.0" prefWidth="14.0" styleClass="btn__filter">
+                     <graphic>
+                        <FontAwesomeIcon glyphName="FILTER" />
+                     </graphic>
+                  </MenuButton>
+                  <TextField fx:id="keywordsearch" prefHeight="39.0" prefWidth="320.0" promptText="Search" styleClass="input__search" />
+                  <Button fx:id="btn_Search" mnemonicParsing="false" prefHeight="39.0" prefWidth="108.0" styleClass="btn__search" text="Tìm kiếm" />
+               </children>
+            </HBox>
          </children>
       </Pane>
       <HBox layoutX="23.0" layoutY="3.0" prefHeight="39.0" prefWidth="334.0" styleClass="order__list__item__container__title">
@@ -72,4 +84,9 @@
          </children>
       </HBox>
    </children>
+   <stylesheets>
+      <URL value="@../styles/OrderListItem.css" />
+      <URL value="@../styles/CorrespondingListOrderItemSite.css" />
+      <URL value="@../styles/OrderListsItem.css" />
+   </stylesheets>
 </AnchorPane>

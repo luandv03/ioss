@@ -18,13 +18,12 @@ public class OrderItemLoadAndDoneSubsytem implements OrderItemLoadAndDoneSubSyst
 
     @Override
     public List<OrderItemLoadingAndDone> getAllOrderItemByListId(String orderListItemId) throws SQLException {
-        String query =
-                "SELECT \n" +
+        String query = "SELECT \n" +
                 "    i.itemid,\n" +
                 "    i.itemName,\n" +
                 "\ti.unit,\n" +
-                "    SUM(ois.quantityOrdered) AS totalQuantity,\n" +
-                "\tSUM(CASE WHEN o.status <> 'in_active' THEN ois.quantityOrdered ELSE 0 END) AS totalQuantityOrdered,\n" +
+                "\toi.quantityOrdered AS totalquantity,\n" +
+                "    SUM(ois.quantityOrdered) AS totalQuantityOrdered,\n" +
                 "    SUM(CASE WHEN o.status = 'done' THEN ois.quantityOrdered ELSE 0 END) AS totalQuantityOrderedDone,\n" +
                 "    MAX(CASE WHEN o.status <> 'canceled' THEN ois.desiredDeliveryDate ELSE NULL END) AS latestDeliveryDate\n" +
                 "FROM \n" +
@@ -35,10 +34,12 @@ public class OrderItemLoadAndDoneSubsytem implements OrderItemLoadAndDoneSubSyst
                 "    orderitemsite ois ON isite.itemsiteid = ois.itemsiteid\n" +
                 "JOIN \n" +
                 "    \"order\" o ON ois.orderid = o.orderid\n" +
+                "JOIN\n" +
+                "\torderitem oi ON oi.orderlistitemid = o.orderlistitemid AND oi.itemid = i.itemid\n" +
                 "WHERE \n" +
-                "    o.orderlistitemid ='" + orderListItemId + "'\n" +
+                "    o.orderlistitemid = '" + orderListItemId + "'\n" +
                 "GROUP BY \n" +
-                "    i.itemid, i.itemName;";
+                "    i.itemid, i.itemName,oi.quantityOrdered;";
 
         PreparedStatement ps
                 = con.prepareStatement(query);

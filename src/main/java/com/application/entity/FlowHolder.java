@@ -29,7 +29,6 @@ public class FlowHolder {
     }
 
     public String getOrderListItemId(){return id_level[0];}
-
     public String getItemId(){return id_level[1];}
     public String getStatus(){ return status_level[0];};
 }

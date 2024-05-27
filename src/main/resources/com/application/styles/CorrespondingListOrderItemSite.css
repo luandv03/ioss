@@ -1,0 +1,19 @@
+.label-delivering {
+    -fx-background-color: #DFFFE4; /* Màu nền xanh nhạt */
+}
+
+.label-canceled {
+    -fx-background-color: #FF1E1E; /* Màu nền đỏ */
+}
+
+.label-done {
+    -fx-background-color: #05FF00; /* Màu nền xanh lá */
+}
+
+.label-pending {
+    -fx-background-color: #FFF856; /* Màu nền vàng */
+}
+
+.label-default {
+    -fx-background-color: #D9D9D9; /* Màu nền xám nhạt */
+}

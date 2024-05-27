@@ -9,12 +9,13 @@ import com.application.subsystemsql.OrderItemLoadAndDoneSubsytem;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -37,23 +38,62 @@ public class OrderListItemLoadingAndDoneController implements Initializable {
     public TableColumn<OrderItemLoadingAndDone, Integer> revicedQuantityColumn;
     public TableColumn<OrderItemLoadingAndDone, Integer> orderedQuantityColumn;
     public TableColumn<OrderItemLoadingAndDone, String> desiredDeliveryDateColumn;
-    public TableColumn<OrderItemLoadingAndDone, Button> viewColumn;
+    public TableColumn<OrderItemLoadingAndDone, HBox> viewColumn;
     ArrayList<OrderItemLoadingAndDone> orderData;
+
+    MenuItem filterMaMatHang = new MenuItem("Tìm theo mã mặt hàng");
+    MenuItem filterTenMatHang = new MenuItem("Tìm theo tên mặt hàng");
+    MenuItem filterDonVi = new MenuItem("Tìm theo đơn vị");
+    MenuItem filterSoLuong = new MenuItem("Tìm theo số lượng");
+    MenuItem filterNgayMongMuonNhan = new MenuItem("Tìm theo ngày mong muốn nhận");
+    public MenuButton menuButton;
+    public TextField keywordsearch;
+    public Button btn_Search;
+
+    private String[] menuItemLabel = {
+            "Tìm theo mã mặt hàng",
+            "Tìm theo tên mặt hàng",
+            "Tìm theo đơn vị",
+            "Tìm theo số lượng",
+            "Tìm theo ngày mong muốn nhận"
+    };
+
+    private static int OptionMenu = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         btnBackOrderListsItemView.setOnAction(event -> backOrderListsItemView());
-
-        ///Xem danh sách các đơn hàng tương ứng
         btnViewCorrespondingListOrderItemSite.setOnAction(actionEvent -> viewCorrespondingListOrderItemSite());
 
-        Reload();
+        btn_Search.setOnAction(actionEvent->filterOrderData());
+        MenuItem[] filter = new MenuItem[menuItemLabel.length];
+        for (int i = 0; i<menuItemLabel.length; i++) {
+            final int index = i;
+            filter[i] = new MenuItem(menuItemLabel[i]);
+            filter[i].setOnAction(event -> {
+                filter[OptionMenu].setStyle("-fx-background-fill:black");
+                OptionMenu = index;
+                filter[index].setStyle("-fx-text-fill:purple");
+            });
+            menuButton.getItems().add(filter[i]);
+        }
 
+        Reload();
         setValue(orderData);
     }
 
     public void Reload()
     {
+        MaDanhSach.setText((FlowHolder.flowHolder.getOrderListItemId()));
+        TrangThaiDanhSach.setText(FlowHolder.flowHolder.getStatus());
+        switch (TrangThaiDanhSach.getText())
+        {
+            case "loading": TrangThaiDanhSach.getStyleClass().add("label-delivering"); break;
+            case "pending":TrangThaiDanhSach.getStyleClass().add("label-pending"); break;
+            case "done":TrangThaiDanhSach.getStyleClass().add("label-done"); break;
+            default:
+        }
+
         try {
             getAllOrderItemByListId(FlowHolder.flowHolder.getOrderListItemId());
         } catch (SQLException e) {
@@ -80,9 +120,10 @@ public class OrderListItemLoadingAndDoneController implements Initializable {
         tableView.setItems(orderItems);
 
         viewColumn.setCellValueFactory(param -> {
+
+            HBox hbox = new HBox();
             Button button = new Button("Xem chi tiết");
             button.getStyleClass().add("view__button");
-
             button.setOnAction(event -> {
 
                 OrderItem selectedItem = tableView.getSelectionModel().getSelectedItem();
@@ -97,7 +138,20 @@ public class OrderListItemLoadingAndDoneController implements Initializable {
                 viewCorrespondingListOrderItemSite();
             });
 
-            return new SimpleObjectProperty<>(button);
+            hbox.getChildren().add(button);
+
+            ///Nếu số lượng đã đặt nhỏ hơn số lượng cần đặt
+            if (param.getValue().getOrderedQuantity() < param.getValue().getTotalQuantity())
+            {
+                Button timSiteBtn = new Button("Tìm Site");
+                timSiteBtn.getStyleClass().add("view__button");
+
+                //thêm action ở đây...
+
+                hbox.getChildren().add(timSiteBtn);
+            }
+
+            return new SimpleObjectProperty<>(hbox);
         });
     }
 
@@ -114,5 +168,30 @@ public class OrderListItemLoadingAndDoneController implements Initializable {
         orderData = new ArrayList<>();
         OrderItemLoadAndDoneSubsytem sub = new OrderItemLoadAndDoneSubsytem();
         orderData.addAll(sub.getAllOrderItemByListId(listId));
+    }
+
+    public void filterOrderData() {
+        ArrayList<OrderItemLoadingAndDone> filterData = new ArrayList<>();
+        for (var data: orderData) {
+            if (keywordsearch.getText().isEmpty() || keywordsearch.getText().isBlank() || keywordsearch.getText() == null)
+                filterData.add(data);
+            else
+            if (OptionMenu == 0 && data.getItemId().contains(keywordsearch.getText()))
+                filterData.add(data);
+            else
+            if (OptionMenu == 1 && data.getItemName().contains(keywordsearch.getText()))
+                filterData.add(data);
+            else
+            if (OptionMenu == 2 && data.getUnit().contains(keywordsearch.getText()))
+                filterData.add(data);
+            else
+            if (OptionMenu == 3 && data.getOrderedQuantity() == Integer.parseInt(keywordsearch.getText()) )
+                filterData.add(data);
+            else
+            if (OptionMenu == 4 && data.getDesiredDeliveryDate().contains(keywordsearch.getText()))
+                filterData.add(data);
+        }
+
+        setValue(filterData);
     }
 }

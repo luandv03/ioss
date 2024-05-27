@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.image.*?>
 <?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import javafx.scene.text.*?>
@@ -9,67 +10,78 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="715.0" prefWidth="1037.0" styleClass="order__list__item__container" stylesheets="@../styles/OrderListItem.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.controller.CorrespondingListOrderItemSiteController">
+<AnchorPane prefHeight="715.0" prefWidth="1037.0" styleClass="order__list__item__container" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.controller.CorrespondingListOrderItemSiteController">
    <children>
-      <Pane layoutX="26.0" layoutY="45.0" prefHeight="514.0" prefWidth="904.0" styleClass="order__list__item__box">
+      <Pane layoutX="26.0" layoutY="45.0" prefHeight="627.0" prefWidth="904.0" styleClass="order__list__item__box">
          <children>
-            <ScrollPane layoutY="82.0" prefHeight="514.0" prefWidth="904.0">
+            <ScrollPane layoutX="-3.0" layoutY="128.0" prefHeight="514.0" prefWidth="910.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../styles/Sroll_Panel.css">
                <content>
                   <VBox fx:id="childContainer" prefWidth="900.0" />
                </content>
             </ScrollPane>
-            <HBox layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="200.0">
+            <HBox layoutX="14.0" layoutY="14.0" prefHeight="28.0" prefWidth="320.0" spacing="10.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã mặt hàng: " wrappingWidth="134.443359375">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã mặt hàng: " wrappingWidth="122.443359375">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font></Text>
-                  <Label fx:id="MaMatHang" text="####">
+                  <Label fx:id="MaMatHang" prefHeight="28.0" prefWidth="186.0" text="####">
                      <font>
                         <Font size="19.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <HBox layoutX="14.0" layoutY="44.0" prefHeight="27.0" prefWidth="269.0" styleClass="order__list__item__box__header">
+            <HBox layoutX="14.0" layoutY="44.0" prefHeight="27.0" prefWidth="313.0" spacing="104.0" styleClass="order__list__item__box__header" visible="false">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Trạng thái mặt hàng:" wrappingWidth="172.12109375">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font></Text>
-                  <Label fx:id="TrangThaiMatHang" text="####">
+                  <Label fx:id="TrangThaiMatHang" alignment="BOTTOM_LEFT" prefHeight="27.0" prefWidth="147.0" style="-fx-background-radius: 10;" text="####">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <HBox layoutX="617.0" layoutY="13.0" prefHeight="27.0" prefWidth="200.0">
+            <HBox layoutX="530.0" layoutY="14.0" prefHeight="28.0" prefWidth="346.0" spacing="5.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã danh sách: " wrappingWidth="134.443359375">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã danh sách: " textAlignment="RIGHT" wrappingWidth="193.0">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Label fx:id="MaDanhSach" text="DS001">
+                  <Label fx:id="MaDanhSach" alignment="CENTER" prefHeight="28.0" prefWidth="177.0" text="DS001">
                      <font>
                         <Font size="19.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <HBox layoutX="550.0" layoutY="43.0" prefHeight="28.0" prefWidth="334.0">
+            <HBox layoutX="530.0" layoutY="43.0" prefHeight="28.0" prefWidth="354.0" spacing="5.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Trạng thái Danh Sách:" wrappingWidth="193.443359375">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Trạng thái Danh Sách:" textAlignment="RIGHT" wrappingWidth="190.0">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Label fx:id="TrangThaiDanhSach" text="Đang Xử Lí">
+                  <Label fx:id="TrangThaiDanhSach" alignment="CENTER" prefHeight="28.0" prefWidth="168.0" style="-fx-background-radius: 10;" text="Đang Xử Lí">
                      <font>
                         <Font size="19.0" />
                      </font>
                   </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="14.0" layoutY="81.0" prefHeight="39.0" prefWidth="498.0" styleClass="bar__action">
+               <children>
+                  <MenuButton fx:id="menuButton" mnemonicParsing="false" prefHeight="36.0" prefWidth="14.0" styleClass="btn__filter">
+                     <graphic>
+                        <FontAwesomeIcon glyphName="FILTER" />
+                     </graphic>
+                  </MenuButton>
+                  <TextField fx:id="keywordsearch" alignment="CENTER" prefHeight="43.0" prefWidth="320.0" promptText="Search" styleClass="input__search" />
+                  <Button fx:id="btn_Search" mnemonicParsing="false" prefHeight="31.0" prefWidth="119.0" styleClass="btn__search" text="Tìm kiếm" />
                </children>
             </HBox>
          </children>
@@ -88,6 +100,11 @@
             </Label>
          </children>
       </HBox>
-      <Pagination layoutX="28.0" layoutY="641.0" prefHeight="65.0" prefWidth="904.0" />
    </children>
+   <stylesheets>
+      <URL value="@../styles/OrderListItem.css" />
+      <URL value="@../styles/CorrespondingListOrderItemSite.css" />
+      <URL value="@../styles/OrderListsItem.css" />
+      <URL value="@../styles/OrderChildStatus.css" />
+   </stylesheets>
 </AnchorPane>
