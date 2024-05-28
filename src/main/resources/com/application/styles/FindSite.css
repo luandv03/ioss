@@ -1,6 +1,6 @@
 .findsite__main {
     -fx-min-width: 1035;
-    -fx-min-height: 600;
+    -fx-min-height: 670;
     -fx-background-color: #FDF2F2;
 }
 
@@ -92,25 +92,17 @@
     -fx-border-radius: 4px;
 }
 
-ComboBox {
-    -fx-background-color: #FFFF;
-    -fx-border-width: 1px;
-    -fx-border-color: #E8D9D9;
-    -fx-border-radius: 4px;
-}
-
 .table-view {
-    /*-fx-background-color: transparent;*/
-    -fx-pref-height: 300;
+    -fx-background-color: transparent;
 }
 
-/*.table-view .corner {*/
-/*    -fx-background-color: transparent;*/
-/*}*/
+.table-view .corner {
+    -fx-background-color: transparent;
+}
 
-/*.table-view .column-header-background .filler {*/
-/*    -fx-background-color: transparent;*/
-/*}*/
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
 
 /*.table-view .column-header-background{*/
 /*    -fx-background-color: linear-gradient(to bottom, #1dbbdd44, #93f9b944);*/
@@ -119,14 +111,10 @@ ComboBox {
 /*    -fx-padding: 0 0 5px 0;*/
 /*}*/
 
-.table-view .table-column {
-    -fx-alignment: CENTER;
-}
-
 .table-view .column-header {
     -fx-background-color: #F4F7FC;
-    -fx-border-width: 1px;
-    -fx-border-color: #E8D9D9;
+    /*-fx-border-width: 1px;*/
+    /*-fx-border-color: #E8D9D9;*/
 }
 
 .table-view .table-cell{
@@ -134,10 +122,10 @@ ComboBox {
     -fx-padding: 2 0 2 10px;
 }
 
-/*.table-row-cell:hover {*/
-/*    -fx-background-color: #93f9b911;*/
-/*    -fx-text-background-color: #427AE9;*/
-/*}*/
+.table-row-cell:hover {
+    -fx-background-color: #93f9b911;
+    -fx-text-background-color: #E8D9D9;
+}
 
 .table-row-cell:odd {
     -fx-background-color: #F9FAFC;
@@ -161,24 +149,4 @@ ComboBox {
 
 .view__button:hover {
     -fx-background-color: -fx-hovered-background;
-}
-
-/*styling checkbox*/
-* {
-    -fx-darkest-grey-color: #427AE9;
-}
-
-.check-box .box {
-    -fx-background-color: white;
-    -fx-border-color: #E8D9D9;
-    -fx-border-radius: 4;
-}
-.check-box .mark {
-    -fx-shape: "M1.73,12.91 8.1,19.28 22.79,4.59 22.79,1.59 8.1,16.28 1.73,9.91";
-}
-.check-box:selected .mark {
-    -fx-background-color: white;
-}
-.check-box:selected .box {
-    -fx-background-color: -fx-darkest-grey-color;
 }

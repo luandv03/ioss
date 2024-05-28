@@ -36,7 +36,7 @@
                      </font></Text>
                </children>
             </HBox>
-            <Button fx:id="btnFindSite" layoutX="793.0" layoutY="25.0" mnemonicParsing="false" styleClass="order__list__item__box__btn__order" text="Đặt hàng" />
+            <Button layoutX="793.0" layoutY="25.0" mnemonicParsing="false" styleClass="order__list__item__box__btn__order" text="Đặt hàng" />
             <TableView layoutX="14.0" layoutY="79.0" prefHeight="200.0" prefWidth="877.0">
               <columns>
                 <TableColumn prefWidth="52.0" text="#" />
