@@ -44,6 +44,10 @@
     -fx-background-color: transparent;
 }
 
+.table-view .table-column {
+    -fx-alignment: CENTER;
+}
+
 .table-view .corner {
     -fx-background-color: transparent;
 }
@@ -70,10 +74,10 @@
     -fx-padding: 2 0 2 10px;
 }
 
-.table-row-cell:hover {
-    -fx-background-color: #93f9b911;
-    -fx-text-background-color: #E8D9D9;
-}
+/*.table-row-cell:hover {*/
+/*    -fx-background-color: #93f9b911;*/
+/*    -fx-text-background-color: #E8D9D9;*/
+/*}*/
 
 .table-row-cell:odd {
     -fx-background-color: #F9FAFC;

@@ -47,7 +47,7 @@ public class OrderListItemSubsystem implements OrderListItemDao {
                 "(select its.itemId, o.orderId, o.orderListItemId, ois.quantityOrdered as selectedQuantity from \"order\" o\n" +
                 "join orderItemSite ois using(orderId)\n" +
                 "join itemSite its on (its.itemSiteId = ois.itemsiteid)\n" +
-                "where status = 'active' and  o.orderlistitemid = ?) as t2\n" +
+                "where status = 'inActive' and  o.orderlistitemid = ?) as t2\n" +
                 "on t1.itemId = t2.itemId";
         PreparedStatement ps
                 = con.prepareStatement(query);

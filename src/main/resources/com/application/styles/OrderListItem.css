@@ -53,6 +53,10 @@
     -fx-background-color: transparent;
 }
 
+.table-view .table-column {
+    -fx-alignment: CENTER;
+}
+
 .table-view .corner {
     -fx-background-color: transparent;
 }

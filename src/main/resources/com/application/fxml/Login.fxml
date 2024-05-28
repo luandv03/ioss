@@ -17,7 +17,7 @@
          </font>
       </Text>
       <TextField fx:id="email__input" layoutX="38.0" layoutY="166.0" prefHeight="39.0" prefWidth="439.0" promptText="nguyen.van.a@gmail.com" />
-      <TextField fx:id="password__input" layoutX="38.0" layoutY="257.0" prefHeight="39.0" prefWidth="439.0" promptText="Aabc@123" />
+<!--      <PasswordFieldField fx:id="password__input" layoutX="38.0" layoutY="257.0" prefHeight="39.0" prefWidth="439.0" promptText="Aabc@123" />-->
       <Label layoutX="38.0" layoutY="125.0" text="Email">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -31,21 +31,24 @@
       <Label layoutX="93.0" layoutY="125.0" text="*" textFill="#e21b1b" />
       <Label layoutX="125.0" layoutY="217.0" text="*" textFill="#e21b1b" />
       <HBox layoutX="38.0" layoutY="332.0" prefHeight="39.0" prefWidth="256.0">
-         <Text fill="#c0baba" strokeType="OUTSIDE" strokeWidth="0.0" text="Bạn có tài khoản chưa?">
-            <font>
-               <Font size="20.0"/>
-            </font>
-         </Text>
-         <Text fill="#c0baba" strokeType="OUTSIDE" strokeWidth="0.0" text="Đăng ký">
-            <font>
-               <Font size="20.0"/>
-            </font>
-         </Text>
+         <children>
+            <Text fill="#c0baba" strokeType="OUTSIDE" strokeWidth="0.0" text="Bạn có tài khoản chưa?">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fill="#c0baba" strokeType="OUTSIDE" strokeWidth="0.0" text="Đăng ký">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
       </HBox>
       <Button fx:id="btn__login" layoutX="354.0" layoutY="332.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="126.0" styleClass="btn--login" text="Đăng nhập" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Arial" size="18.0" />
          </font>
       </Button>
+      <PasswordField layoutX="38.0" layoutY="255.0" prefHeight="39.0" prefWidth="439.0" />
    </children>
 </AnchorPane>

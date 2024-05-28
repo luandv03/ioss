@@ -104,6 +104,11 @@ ComboBox {
     -fx-pref-height: 300;
 }
 
+.table-view .table-row-cell:selected {
+    -fx-background-color: #003366;
+    -fx-text-fill: #FFFF;
+}
+
 /*.table-view .corner {*/
 /*    -fx-background-color: transparent;*/
 /*}*/

@@ -91,7 +91,7 @@
                   <HBox layoutX="618.0" layoutY="14.0" prefHeight="39.0" prefWidth="249.0" styleClass="findsite__main__box__bottom__action">
                      <children>
                         <Button fx:id="btnCancelItemSite" mnemonicParsing="false" prefHeight="39.0" prefWidth="73.0" styleClass="findsite__main__box__bottom__action__btn__cancel" text="Hủy" />
-                        <Button fx:id="btnAddItemSite" mnemonicParsing="false" styleClass="findsite__main__box__bottom__action__btn__add" text="Lưu danh sách">
+                        <Button fx:id="btnSaveItemSite" mnemonicParsing="false" styleClass="findsite__main__box__bottom__action__btn__add" text="Lưu danh sách">
                            <graphic>
                               <FontAwesomeIcon fill="WHITE" glyphName="PLUS" />
                            </graphic>

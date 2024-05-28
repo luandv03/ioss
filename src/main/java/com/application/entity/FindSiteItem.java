@@ -12,12 +12,14 @@ import javafx.scene.control.*;
 
 public class FindSiteItem extends ItemSite{
     private TextField quantityOrdered;
-    private BooleanProperty selectedSite;
+//    private BooleanProperty selectedSite;
+    private CheckBox selectedSite;
     private ComboBox<String> deliveryType;
 
     public FindSiteItem(String siteId, String siteName, int quantity, String desiredDeliveryByShipDate, String desiredDeliveryByAirDate) {
         super(siteId, siteName, quantity, desiredDeliveryByShipDate, desiredDeliveryByAirDate);
-        this.selectedSite = new SimpleBooleanProperty(false);
+//        this.selectedSite = new SimpleBooleanProperty(false);
+        this.selectedSite = new CheckBox();
         this.quantityOrdered = new TextField();
         this.deliveryType = new ComboBox<>();
         this.deliveryType.getItems().addAll("Ship", "Air"); // Thêm các lựa chọn vào ComboBox
@@ -33,15 +35,30 @@ public class FindSiteItem extends ItemSite{
         return quantityOrdered;
     }
 
-    public BooleanProperty selectedSiteProperty() {
+//    public BooleanProperty selectedSiteProperty() {
+//        return selectedSite;
+//    }
+
+    public void selectedSiteProperty(CheckBox checkBox) {
+        this.selectedSite = checkBox;
+    }
+
+//    public CheckBox getSelectedSite() {
+//        CheckBox checkBox = new CheckBox();
+//        checkBox.selectedProperty().bindBidirectional(selectedSite);
+//        return checkBox;
+//    }
+
+    public CheckBox getSelectedSite() {
+//        CheckBox checkBox = new CheckBox();
+//        checkBox.selectedProperty().bindBidirectional(selectedSite);
         return selectedSite;
     }
 
-    public CheckBox getSelectedSite() {
-        CheckBox checkBox = new CheckBox();
-        checkBox.selectedProperty().bindBidirectional(selectedSite);
-        return checkBox;
+    public void setSelectedSite(CheckBox checkBox) {
+        this.selectedSite = checkBox;
     }
+
     public ComboBox<String> getDeliveryType() {
         return deliveryType;
     }
@@ -50,9 +67,9 @@ public class FindSiteItem extends ItemSite{
         this.quantityOrdered = quantityOrdered;
     }
 
-    public void setSelectedSite(CheckBox selectedSite) {
-        this.selectedSite.bind(selectedSite.selectedProperty());
-    }
+//    public void setSelectedSite(CheckBox selectedSite) {
+//        this.selectedSite.bind(selectedSite.selectedProperty());
+//    }
 
     public void setDeliveryType(ComboBox<String> deliveryType) {
         this.deliveryType = deliveryType;

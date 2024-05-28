@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -86,35 +87,81 @@ public class OrderListItemController implements Initializable {
         quantityOrderedCol.setCellValueFactory(new PropertyValueFactory<OrderItemPending, Integer>("quantityOrdered"));
         selectedQuantityCol.setCellValueFactory(new PropertyValueFactory<OrderItemPending, Integer>("selectedQuantity"));
         pendingQuantityCol.setCellValueFactory(new PropertyValueFactory<OrderItemPending, Integer>("pendingQuantity"));
+//
+//        btnFindSite.setCellValueFactory(param -> {
+//            Button btn = new Button("Tìm site");
+//            btn.getStyleClass().add("view__item__button");
+//
+//            btn.setOnAction(event -> {
+//
+//                OrderItemPending selectedItem = tableView.getSelectionModel().getSelectedItem();
+//                if (selectedItem != null) {
+//                    try {
+//                        System.out.println(selectedItem.getItemId());
+//                        String itemId = selectedItem.getItemId();
+//                        String itemName = selectedItem.getItemName();
+//                        String unit = selectedItem.getUnit();
+//                        int quantity = selectedItem.getQuantityOrdered();
+//                        String desiredDeliveryDate = selectedItem.getDesiredDeliveryDate();
+//                        int selectedQuantity = selectedItem.getSelectedQuantity();
+//
+//                        OrderItem orderItem = new OrderItem(itemId, itemName, unit, quantity, desiredDeliveryDate);
+//                        findSite(orderItem, selectedQuantity);
+//                    } catch (SQLException e) {
+//                        throw new RuntimeException(e);
+//                    }
+//                }
+//
+//            });
+//
+//            return new SimpleObjectProperty<>(btn);
+//        });
 
-        btnFindSite.setCellValueFactory(param -> {
-            Button btn = new Button("Tìm site");
-            btn.getStyleClass().add("view__item__button");
+        btnFindSite.setCellFactory(column -> {
+                    return new TableCell<OrderItemPending, Button>() {
+                        @Override
+                        protected void updateItem(Button item, boolean empty) {
+                            super.updateItem(item, empty);
 
-            btn.setOnAction(event -> {
+                            if (empty) {
+                                setGraphic(null);
+                            } else {
+                                Button btn = new Button("Tìm site");
+                                btn.getStyleClass().add("view__item__button");
 
-                OrderItemPending selectedItem = tableView.getSelectionModel().getSelectedItem();
-                if (selectedItem != null) {
-                    try {
-                        System.out.println(selectedItem.getItemId());
-                        String itemId = selectedItem.getItemId();
-                        String itemName = selectedItem.getItemName();
-                        String unit = selectedItem.getUnit();
-                        int quantity = selectedItem.getQuantityOrdered();
-                        String desiredDeliveryDate = selectedItem.getDesiredDeliveryDate();
-                        int selectedQuantity = selectedItem.getSelectedQuantity();
 
-                        OrderItem orderItem = new OrderItem(itemId, itemName, unit, quantity, desiredDeliveryDate);
-                        findSite(orderItem, selectedQuantity);
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
+                                // Lưu trữ index của dòng hiện tại vào TableCell
+                                int rowIndex = getIndex();
 
-            });
+                                btn.setOnAction(event -> {
 
-            return new SimpleObjectProperty<>(btn);
+                                    OrderItemPending selectedItem = getTableView().getItems().get(rowIndex);
+
+                                    if (selectedItem != null) {
+                                        try {
+                                            System.out.println(selectedItem.getItemId());
+                                            String itemId = selectedItem.getItemId();
+                                            String itemName = selectedItem.getItemName();
+                                            String unit = selectedItem.getUnit();
+                                            int quantity = selectedItem.getQuantityOrdered();
+                                            String desiredDeliveryDate = selectedItem.getDesiredDeliveryDate();
+                                            int selectedQuantity = selectedItem.getSelectedQuantity();
+
+                                            OrderItem orderItem = new OrderItem(itemId, itemName, unit, quantity, desiredDeliveryDate);
+                                            findSite(orderItem, selectedQuantity);
+                                        } catch (SQLException e) {
+                                            throw new RuntimeException(e);
+                                        }
+                                    }
+
+                                });
+
+                                setGraphic(btn);
+                            }
+                        }
+                    };
         });
+
 
         tableView.setItems(orderItemLists);
     }

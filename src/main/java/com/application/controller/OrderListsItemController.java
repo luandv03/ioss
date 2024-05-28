@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -56,27 +57,71 @@ public class OrderListsItemController implements Initializable {
 
         tableView.setItems(orderListsItem);
 
-        viewColumn.setCellValueFactory(param -> {
-            Button button = new Button("Xem chi tiết");
-            button.getStyleClass().add("view__button");
+        // cach moi
+        viewColumn.setCellFactory(column -> {
+            return new TableCell<OrderListItem, Button>() {
+                @Override
+                protected void updateItem(Button item, boolean empty) {
+                    super.updateItem(item, empty);
 
-            button.setOnAction(event -> {
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        Button button = new Button("Xem chi tiết");
+                        button.getStyleClass().add("view__button");
 
-                OrderListItem selectedItem = tableView.getSelectionModel().getSelectedItem();
-                if (selectedItem != null) {
-                    // Thực hiện logic hiển thị chi tiết ở đây
-                    System.out.println("Xem chi tiết đơn hàng: " + selectedItem.getOrderListItemId());
-                    System.out.println("Xem chi tiết đơn hàng: " + selectedItem.getStatus());
-                    try {
-                        onOrderListItem(selectedItem.getOrderListItemId(), selectedItem.getStatus());
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
+                        // Lưu trữ index của dòng hiện tại vào TableCell
+                        int rowIndex = getIndex();
+
+                        button.setOnAction(event -> {
+                            // Truy cập index của dòng hiện tại
+                            System.out.println("Index của dòng: " + rowIndex);
+
+                            OrderListItem selectedItem = getTableView().getItems().get(rowIndex);
+
+                            if (selectedItem != null) {
+                                // Thực hiện logic hiển thị chi tiết 1 dsmhcd ở đây
+                                String orderListItemId = selectedItem.getOrderListItemId();
+                                String status = selectedItem.getStatus();
+
+                                try {
+                                    onOrderListItem(orderListItemId, status);
+                                } catch (SQLException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+                        });
+
+                        setGraphic(button);
                     }
                 }
-            });
-
-            return new SimpleObjectProperty<>(button);
+            };
         });
+
+        // Cach cu
+//        viewColumn.setCellValueFactory(param -> {
+//            Button button = new Button("Xem chi tiết");
+//            button.getStyleClass().add("view__button");
+//
+//            button.setOnAction(event -> {
+//
+//                OrderListItem selectedItem = tableView.getSelectionModel().getSelectedItem();
+//
+//                if (selectedItem != null) {
+//                    // Thực hiện logic hiển thị chi tiết 1 dsmhcd ở đây
+//                    String orderListItemId = selectedItem.getOrderListItemId();
+//                    String status = selectedItem.getStatus();
+//
+//                    try {
+//                        onOrderListItem(orderListItemId, status);
+//                    } catch (SQLException e) {
+//                        throw new RuntimeException(e);
+//                    }
+//                }
+//            });
+//
+//            return new SimpleObjectProperty<>(button);
+//        });
     }
 
     public void onOrderListItem(String orderListItemId, String status) throws SQLException {
