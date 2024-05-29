@@ -20,8 +20,8 @@ public class MainLayoutController implements Initializable {
                         -> content__parent.setCenter(Model.getInstance().getViewFactory().getOrderListItemView());
                 case "FindSite"
                         -> content__parent.setCenter(Model.getInstance().getViewFactory().getFindSiteView());
-                case "OrderListItem_DaXuLi"
-                        -> content__parent.setCenter(Model.getInstance().getViewFactory().getOrderListItem_DaXuLi());
+                case "OrderListItemLoadingAndDone"
+                        -> content__parent.setCenter(Model.getInstance().getViewFactory().getOrderListItemLoadingAndDone());
                 case "CorrespondingListOrderItemSite"
                         -> content__parent.setCenter(Model.getInstance().getViewFactory().getCorrespondingListOrderItemSite());
                 default

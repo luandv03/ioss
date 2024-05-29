@@ -37,7 +37,8 @@ public class OrderChildController implements Initializable {
     public TableColumn<OrderItemSite, String> nameColumn;
     public TableColumn<OrderItemSite, String> unitColumn;
     public TableColumn<OrderItemSite, Integer> quantityColumn;
-
+    @FXML
+    public Button reOrder_Button;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -49,16 +50,21 @@ public class OrderChildController implements Initializable {
         TenSite.setText(tenStie);
         MaDonHang.setText(maDonHang);
         TrangThaiDon.setText(trangThaiDon);
-        NgayGiaoDuKien.setText(ngayGiaoDuKien);
-
-        //Thêm nút đặt lại đơn hàng
-        if (trangThaiDon.contains("canceled"))
+        switch (trangThaiDon)
         {
-            Button button = new Button("Đặt lại đơn hàng");
-            button.getStyleClass().add("view__button");
-            btnCancelLayout.getChildren().add(button);
-            button.setOnAction(event -> reOrder());
+            case "delivering":TrangThaiDon.getStyleClass().add("label-delivering"); break;
+            case "canceled":
+                TrangThaiDon.getStyleClass().add("label-canceled");
+                ngayGiaoDuKien = "N/A";
+                reOrder_Button.setOnAction(event -> reOrder());
+                reOrder_Button.setVisible(true);
+                break;
+            case "done":TrangThaiDon.getStyleClass().add("label-done"); break;
+            case "pending":TrangThaiDon.getStyleClass().add("label-pending"); break;
+            default:TrangThaiDon.getStyleClass().add("label-default"); break;
         }
+
+        NgayGiaoDuKien.setText(ngayGiaoDuKien);
 
         idColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(List_OrderItemSite.indexOf(param.getValue()) + 1));
         idProductColumn.setCellValueFactory(new PropertyValueFactory<OrderItemSite, String>("itemId"));
@@ -72,7 +78,7 @@ public class OrderChildController implements Initializable {
     //Đặt lại đơn hàng
     public void reOrder()
     {
-        System.out.println("Dat Lai Don Hang");
+        System.out.println("Dat Lai Don Hang: " + MaDonHang.getText());
 //        Model.getInstance().getViewFactory().getSelectedMenuItem().set("...");
     }
 }

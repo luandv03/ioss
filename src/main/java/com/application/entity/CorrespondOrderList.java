@@ -2,10 +2,12 @@ package com.application.entity;
 
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
+
 // Đối tượng được dùng để hiển thị các đơn hàng tương ứng với dsmhcd
-public class CorrespondOrder {
+public class CorrespondOrderList {
     // Mã của đơn hàng chứa mặt hàng này
-    private String correspondOrderId;
+    private String orderId;
 
     // Mã của site chứa mặt hàng này
     private String siteId;
@@ -19,18 +21,20 @@ public class CorrespondOrder {
     // Ngày giao dự kiến
     private String desiredDeliveryDate;
 
-    private ObservableList<OrderItemSite> list;
+    private ArrayList<OrderItemSite> list = new ArrayList<>();
 
-    public CorrespondOrder(String correspondingOrder, String siteId, String siteName, String status, String desiredDeliveryDate, ObservableList<OrderItemSite> list)
+    public CorrespondOrderList()
     {
-        this.correspondOrderId = correspondingOrder;
+
+    }
+
+    public CorrespondOrderList(String orderId, String siteId, String siteName, String status, String desiredDeliveryDate)
+    {
+        this.orderId = orderId;
         this.siteId = siteId;
         this.siteName = siteName;
         this.status = status;
         this.desiredDeliveryDate = desiredDeliveryDate;
-
-        this.list.clear();
-        this.list.addAll(list);
     }
 
     public void CorrespondOrderAdd(String itemId, String itemName, String unit, int quantityOrdered, String desiredDeliveryDate) {
@@ -53,11 +57,11 @@ public class CorrespondOrder {
         return desiredDeliveryDate;
     }
 
-    public String getCorrespondOrderId() {
-        return correspondOrderId;
+    public String getOrderId() {
+        return orderId;
     }
 
-    public ObservableList<OrderItemSite> getList() {
+    public ArrayList<OrderItemSite> getList() {
         return list;
     }
 

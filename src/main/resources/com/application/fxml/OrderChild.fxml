@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import javafx.scene.text.*?>
@@ -9,95 +10,104 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.controller.OrderChildController">
+<VBox prefWidth="900.0" style="-fx-border-color: #D2D2D2; -fx-border-width: 0 0 1.5px 0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.controller.OrderChildController">
    <children>
-      <VBox layoutX="10.0" layoutY="10.0" prefHeight="288.0" prefWidth="904.0" style="-: ;">
+      <VBox layoutX="10.0" layoutY="10.0" prefHeight="310.0" prefWidth="900.0" style="-: ;">
          <children>
-            <Pane prefHeight="129.0" prefWidth="904.0">
+            <Pane prefHeight="143.0" prefWidth="900.0" style="-fx-background-color: #FFFFFF;">
                <children>
-                  <HBox layoutX="34.0" layoutY="2.0" prefHeight="24.0" prefWidth="190.0">
+                  <HBox layoutX="35.0" layoutY="24.0" prefHeight="27.0" prefWidth="308.0" spacing="10.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã Site:" wrappingWidth="78.6708984375">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã Site:" wrappingWidth="72.0">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                         </Text>
-                        <Label fx:id="MaSite" prefHeight="27.0" prefWidth="124.0" text="Label">
+                        <Label fx:id="MaSite" prefHeight="27.0" prefWidth="205.0" text="Label">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </HBox>
+                  <HBox layoutX="33.0" layoutY="57.0" prefHeight="27.0" prefWidth="308.0" spacing="10.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tên Site:" wrappingWidth="72.0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="TenSite" prefHeight="27.0" prefWidth="202.0" text="Label">
+                           <font>
+                              <Font size="17.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox layoutX="32.0" layoutY="35.0" prefHeight="24.0" prefWidth="190.0">
+                  <HBox layoutX="35.0" layoutY="94.0" prefHeight="27.0" prefWidth="308.0" spacing="10.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tên Site:" wrappingWidth="81.6708984375">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã Đơn Hàng:" wrappingWidth="123.0">
                            <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
-                        <Label fx:id="TenSite" prefHeight="27.0" prefWidth="156.0" text="Label">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox layoutX="34.0" layoutY="72.0" prefHeight="27.0" prefWidth="281.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã Đơn Hàng:" wrappingWidth="130.6708984375">
-                           <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                         </Text>
                         <Label fx:id="MaDonHang" prefHeight="27.0" prefWidth="241.0" text="Label">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="17.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox layoutX="514.0" layoutY="1.0" prefHeight="27.0" prefWidth="385.0" spacing="10.0">
+                  <HBox layoutX="515.0" layoutY="23.0" prefHeight="27.0" prefWidth="385.0" spacing="10.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Trạng Thái Đơn:" textAlignment="RIGHT" wrappingWidth="165.6708984375">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                         </Text>
-                        <Label fx:id="TrangThaiDon" prefHeight="27.0" prefWidth="220.0" text="Label" textAlignment="CENTER">
+                        <Label fx:id="TrangThaiDon" alignment="CENTER" prefHeight="27.0" prefWidth="174.0" style="-fx-background-radius: 10;" text="Label" textAlignment="CENTER">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="17.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox layoutX="514.0" layoutY="34.0" prefHeight="30.0" prefWidth="385.0" spacing="10.0">
+                  <HBox layoutX="515.0" layoutY="56.0" prefHeight="30.0" prefWidth="385.0" spacing="10.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày Giao Dự Kiến:" textAlignment="RIGHT" wrappingWidth="167.6708984375">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                         </Text>
-                        <Label fx:id="NgayGiaoDuKien" prefHeight="27.0" prefWidth="202.0" text="Label" textAlignment="CENTER">
+                        <Label fx:id="NgayGiaoDuKien" alignment="CENTER" prefHeight="27.0" prefWidth="171.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" text="Label" textAlignment="CENTER" textFill="WHITE">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="17.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox fx:id="btnCancelLayout" layoutX="593.0" layoutY="71.0" prefHeight="30.0" prefWidth="202.0" spacing="10.0" />
+                  <HBox fx:id="btnCancelLayout" layoutX="692.0" layoutY="92.0" prefHeight="30.0" prefWidth="174.0" spacing="10.0">
+                     <children>
+                        <Button fx:id="reOrder_Button" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="171.0" style="-fx-background-radius: 10; -fx-background-color: #0500FF;" text="Đặt lại" textAlignment="CENTER" textFill="WHITE" visible="false">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Button>
+                     </children></HBox>
                </children>
             </Pane>
-            <TableView fx:id="tableView" prefHeight="169.0" prefWidth="904.0">
+            <TableView fx:id="tableView" prefHeight="167.0" prefWidth="900.0" styleClass="order__lists__item__title" stylesheets="@../styles/OrderListsItem.css">
                <columns>
-                  <TableColumn fx:id="idColumn" prefWidth="53.0" text="STT" />
-                  <TableColumn fx:id="idProductColumn" prefWidth="153.0" text="Mã Mặt Hàng" />
-                  <TableColumn fx:id="nameColumn" prefWidth="361.0" text="Tên Mặt Hàng" />
-                  <TableColumn fx:id="unitColumn" maxWidth="500.0" prefWidth="115.0" text="Đơn Vị" />
-                  <TableColumn fx:id="quantityColumn" prefWidth="202.0" text="Số Lượng" />
+                  <TableColumn fx:id="idColumn" editable="false" prefWidth="53.0" style="-fx-alignment: CENTER;" text="STT" />
+                  <TableColumn fx:id="nameColumn" prefWidth="361.0" style="-fx-alignment: CENTER;" text="Tên Mặt Hàng" />
+                  <TableColumn fx:id="idProductColumn" prefWidth="153.0" style="-fx-alignment: CENTER;" text="Mã Mặt Hàng" />
+                  <TableColumn fx:id="unitColumn" maxWidth="500.0" prefWidth="115.0" style="-fx-alignment: CENTER;" text="Đơn Vị" />
+                  <TableColumn fx:id="quantityColumn" prefWidth="202.0" style="-fx-alignment: CENTER;" text="Số Lượng" />
                </columns>
             </TableView>
-            <ImageView fitHeight="14.0" fitWidth="887.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </VBox>
    </children>

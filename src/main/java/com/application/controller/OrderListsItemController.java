@@ -4,6 +4,7 @@ import com.application.entity.*;
 import com.application.model.Model;
 import com.application.subsystemsql.ItemSiteSubsystem;
 import com.application.subsystemsql.OrderListItemSubsystem;
+import com.application.view.ViewFactory;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -79,6 +80,9 @@ public class OrderListsItemController implements Initializable {
 
                             OrderListItem selectedItem = getTableView().getItems().get(rowIndex);
 
+                            //Update Flow
+                            FlowHolder.flowHolder.UpdateId(selectedItem.getOrderListItemId(),selectedItem.getStatus(),0);
+
                             if (selectedItem != null) {
                                 // Thực hiện logic hiển thị chi tiết 1 dsmhcd ở đây
                                 String orderListItemId = selectedItem.getOrderListItemId();
@@ -129,9 +133,8 @@ public class OrderListsItemController implements Initializable {
             getListOrderItemPending(orderListItemId, status);
             Model.getInstance().getViewFactory().getSelectedMenuItem().set("OrderListItem");
         } else {
-            Model.getInstance().getViewFactory().getSelectedMenuItem().set("OrderListItem_DaXuLi");
+            Model.getInstance().getViewFactory().getSelectedMenuItem().set("OrderListItemLoadingAndDone");
         }
-
     }
 
     public void getListOrderItemAll() throws SQLException {

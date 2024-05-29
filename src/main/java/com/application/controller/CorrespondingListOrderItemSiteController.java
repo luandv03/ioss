@@ -1,51 +1,96 @@
 package com.application.controller;
 
+import com.application.entity.FlowHolder;
+import com.application.entity.OrderItemLoadingAndDone;
 import com.application.entity.OrderItemSite;
-import com.application.entity.CorrespondOrder;
+import com.application.entity.CorrespondOrderList;
 import com.application.model.Model;
-import eu.hansolo.tilesfx.Test;
+import com.application.subsystemsql.CorrespondOrderSubsystem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class CorrespondingListOrderItemSiteController implements Initializable {
-
+    public Label MaMatHang;
+    public Label TrangThaiMatHang;
+    public Label MaDanhSach;
+    public Label TrangThaiDanhSach;
     public VBox childContainer;
     public Button btnBackToSite;
+    private ArrayList<CorrespondOrderList> orderData;
+    public MenuButton menuButton;
+    public TextField keywordsearch;
+    public Button btn_Search;
+    public static int OptionMenu;
+
+    private String[] menuItemLabel = {
+            "Tìm theo mã site",
+            "Tìm theo tên site",
+            "Tìm theo mã đơn hàng",
+            "Tìm theo trạng thái đơn hàng",
+            "Tìm theo ngày mong muốn nhận",
+            "Tìm theo mã mặt hàng",
+            "Tìm theo tên mặt hàng",
+            "Tìm theo đơn vị",
+            "Tìm theo số lượng"
+    };
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        TestDataGenerate();
-
         btnBackToSite.setOnAction(event -> backOrderListsItemView());
+
+        btn_Search.setOnAction(actionEvent->filterOrderData());
+        MenuItem[] filter = new MenuItem[menuItemLabel.length];
+        for (int i = 0; i<menuItemLabel.length; i++) {
+            final int index = i;
+            filter[i] = new MenuItem(menuItemLabel[i]);
+            filter[i].setOnAction(event -> {
+                filter[OptionMenu].setStyle("-fx-background-fill:black");
+                OptionMenu = index;
+                filter[index].setStyle("-fx-text-fill:blue");
+            });
+            menuButton.getItems().add(filter[i]);
+        }
+
+        Reload();
     }
 
-    private void TestDataGenerate() {
-        //Tạo mới
-        ObservableList<OrderItemSite> list = FXCollections.observableArrayList(
-                new OrderItemSite("MH005","Dieu Hoa","Chiec",5,"25/5/2024"),
-                new OrderItemSite("MH006","Thit Bo","Cai",30,"28/5/2024"),
-                new OrderItemSite("MH007","Roboto","Cai",90,"29/5/2024")
-        );
 
-        ObservableList<OrderItemSite> list2 = FXCollections.observableArrayList(
-                new OrderItemSite("MH005","Dieu Hoa","Chiec",15,"25/5/2024"),
-                new OrderItemSite("MH008","May Loc Nuoc Pikachu","Cai",10,"28/5/2024"),
-                new OrderItemSite("MH007","Roboto","Cai",10,"29/5/2024")
-        );
+    public void Reload()
+    {
+        TrangThaiDanhSach.setText(FlowHolder.flowHolder.getStatus());
+        switch (TrangThaiDanhSach.getText())
+        {
+            case "loading":TrangThaiDanhSach.getStyleClass().add("label-delivering"); break;
+            case "pending":TrangThaiDanhSach.getStyleClass().add("label-pending"); break;
+            case "done":TrangThaiDanhSach.getStyleClass().add("label-done"); break;
+            default:
+        }
 
+        try {
+            if (FlowHolder.flowHolder.getItemId() == "")
+                getOrderByListOrderId(FlowHolder.flowHolder.getOrderListItemId());
+            else
+                getOrderByListOrderIdAndItemId(FlowHolder.flowHolder.getOrderListItemId(), FlowHolder.flowHolder.getItemId());
 
-        loadChild("S0005", "taobao.com", "DH001","delevering", "25/05/2024", list);
-        loadChild("S0006", "amazon.com", "DH0002", "canceled", "#####", list2);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
-    private void loadChild(CorrespondOrder list) {
-        loadChild(list.getSiteId(),list.getSiteName(),list.getCorrespondOrderId(), list.getStatus(), list.getDesiredDeliveryDate(), list.getList());
+
+    private void loadChild(CorrespondOrderList list) {
+        loadChild(list.getSiteId(),list.getSiteName(),list.getOrderId(), list.getStatus(),
+                list.getDesiredDeliveryDate(), FXCollections.observableArrayList(list.getList()));
     }
     private void loadChild(String maSite, String tenStie, String maDonHang, String trangThaiDon, String ngayGiaoDuKien, ObservableList<OrderItemSite> List_OrderItemSite) {
 
@@ -61,6 +106,93 @@ public class CorrespondingListOrderItemSiteController implements Initializable {
     }
 
     public void backOrderListsItemView() {
-        Model.getInstance().getViewFactory().getSelectedMenuItem().set("OrderListItem_DaXuLi");
+        FlowHolder.flowHolder.UpdateId("","",1);
+        Model.getInstance().getViewFactory().getSelectedMenuItem().set("OrderListItemLoadingAndDone");
+    }
+
+    public void getOrderByListOrderId(String listOrderId) throws SQLException
+    {
+        orderData = new ArrayList<>();
+
+        MaDanhSach.setText(FlowHolder.flowHolder.getOrderListItemId());
+
+        CorrespondOrderSubsystem sub = new CorrespondOrderSubsystem();
+        for (var orderId: sub.getOrderIdByOrderListId(listOrderId))
+        {
+            var order = sub.getCorrespondOrderListByOrderId(orderId);
+            orderData.add(order);
+            loadChild(order);
+        }
+    }
+
+    public void getOrderByListOrderIdAndItemId(String listOrderId, String itemId) throws SQLException
+    {
+        orderData = new ArrayList<>();
+
+        MaDanhSach.setText(FlowHolder.flowHolder.getOrderListItemId());
+        MaMatHang.setText(FlowHolder.flowHolder.getItemId());
+
+        CorrespondOrderSubsystem sub = new CorrespondOrderSubsystem();
+        for (var orderId: sub.getOrderIdByOrderListIdAndItemId(listOrderId,itemId))
+        {
+            var order = sub.getCorrespondOrderListByOrderId(orderId);
+            orderData.add(order);
+            loadChild(order);
+            //System.out.println(orderId);
+        }
+    }
+
+    public void filterOrderData() {
+        ArrayList<CorrespondOrderList> filterData = new ArrayList<>();
+        for (var data : orderData) {
+            if (keywordsearch.getText().isEmpty() || keywordsearch.getText().isBlank() || keywordsearch.getText() == null)
+                filterData.add(data);
+            else
+            if (OptionMenu == 0 && data.getSiteId().contains(keywordsearch.getText()))
+                filterData.add(data);
+            else
+            if (OptionMenu == 1 && data.getSiteName().contains(keywordsearch.getText()))
+                filterData.add(data);
+            else
+            if (OptionMenu == 2 && data.getOrderId().contains(keywordsearch.getText()))
+                filterData.add(data);
+            else
+            if (OptionMenu == 3 && data.getStatus().contains(keywordsearch.getText()))
+                filterData.add(data);
+            else
+            if (OptionMenu == 4 && data.getDesiredDeliveryDate().contains(keywordsearch.getText()))
+                filterData.add(data);
+            else
+            if (OptionMenu > 4) {
+                for (var item : data.getList()) {
+                    if (OptionMenu == 5 && item.getItemId().contains(keywordsearch.getText())) {
+                        filterData.add(data);
+                        break;
+                    }
+                    else
+                    if (OptionMenu == 6 && item.getItemName().contains(keywordsearch.getText())) {
+                        filterData.add(data);
+                        break;
+                    }
+                    else
+                    if (OptionMenu == 7 && item.getUnit().contains(keywordsearch.getText())) {
+                        filterData.add(data);
+                        break;
+                    }
+                    else
+                    if (OptionMenu == 8 && item.getQuantityOrdered() == Integer.parseInt(keywordsearch.getText())) {
+                        filterData.add(data);
+                        break;
+                    }
+                }
+            }
+        }
+
+        childContainer.getChildren().clear();
+        //In ra phần tử
+        for (var orderId : filterData) {
+            loadChild(orderId);
+        }
+
     }
 }

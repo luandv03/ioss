@@ -31,7 +31,7 @@ public class ItemSiteSubsystem implements ItemSiteDao {
             String siteName = rs.getString("siteName");
             String quantity = rs.getString("quantity");
             List<String> d = calculateDesiredDeliveryDate(siteId);
-            ItemSite itemSite = new ItemSite(siteId, siteName, Integer.parseInt(quantity), d.getFirst(), d.get(1));
+            ItemSite itemSite = new ItemSite(siteId, siteName, Integer.parseInt(quantity), d.get(0), d.get(1));
             listItem.add(itemSite);
         }
 

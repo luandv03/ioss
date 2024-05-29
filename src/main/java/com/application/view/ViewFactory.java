@@ -25,7 +25,7 @@ public class ViewFactory {
     private AnchorPane orderListItemView;
     private AnchorPane findSiteView;
     private FindSiteController findSiteController;
-    private AnchorPane OrderListItem_DaXuLi;
+    private AnchorPane OrderListItemLoadingAndDone;
     private AnchorPane CorrespondingListOrderItemSite;
     private VBox OrderChild;
 
@@ -90,41 +90,30 @@ public class ViewFactory {
         findSiteView = null;
     }
 
-    public AnchorPane getOrderListItem_DaXuLi() {
-        if (OrderListItem_DaXuLi == null) {
+    public AnchorPane getOrderListItemLoadingAndDone() {
+        //Bắt scene phải load lại do trong javafx hơi khó lấy controller của nó
+        //if (OrderListItemLoadingAndDone == null) {
             try {
-                OrderListItem_DaXuLi = (AnchorPane) loadFXML("OrderListItem_DaXuLi");
+                OrderListItemLoadingAndDone = (AnchorPane) loadFXML("OrderListItemLoadingAndDone");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }
-
-        return OrderListItem_DaXuLi;
+        //}
+        return OrderListItemLoadingAndDone;
     }
 
     public AnchorPane getCorrespondingListOrderItemSite() {
-        if (CorrespondingListOrderItemSite == null) {
+        //Bắt scene phải load lại do trong javafx hơi khó lấy controller của nó
+        //if (CorrespondingListOrderItemSite == null) {
             try {
                 CorrespondingListOrderItemSite = (AnchorPane) loadFXML("CorrespondingListOrderItemSite");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }
+        //}
 
         return CorrespondingListOrderItemSite;
     }
-
-    ///Lấy các thằng con của danh sách đơn hàng tương ứng
-/*    public VBox getOrderChild() {
-        if (OrderChild == null) {
-            try {
-                OrderChild = (VBox) loadFXML("OrderChild");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        return OrderChild;
-    }*/
 
     public FXMLLoader getOrderChild()
     {

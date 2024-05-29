@@ -1,0 +1,31 @@
+.scroll-pane {
+    -fx-background-color: transparent; /* Nền của ScrollPane */
+    -fx-padding: 10px; /* Khoảng cách đệm xung quanh nội dung */
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: white; /* Nền của vùng hiển thị nội dung */
+    -fx-border-color: #d3d3d3; /* Màu viền của vùng hiển thị */
+    -fx-border-width: 1px; /* Độ rộng viền */
+}
+
+.scroll-bar {
+    -fx-padding: 1px; /* Khoảng cách đệm của thanh cuộn */
+}
+
+.scroll-bar:horizontal .thumb, .scroll-bar:vertical .thumb {
+    -fx-background-color: #1B1C00; /* Màu nền của phần di chuyển */
+    -fx-background-insets: 1; /* Khoảng cách bên trong */
+    -fx-background-radius: 5; /* Bo tròn góc */
+}
+
+.scroll-bar:horizontal .track, .scroll-bar:vertical .track {
+    -fx-background-color: #F3FFFF; /* Màu nền của đường di chuyển */
+    -fx-background-radius: 5; /* Bo tròn góc */
+}
+
+.scroll-bar:horizontal .increment-button, .scroll-bar:vertical .increment-button,
+.scroll-bar:horizontal .decrement-button, .scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent; /* Nền của các nút */
+    -fx-padding: 0; /* Loại bỏ khoảng cách đệm của các nút */
+}
