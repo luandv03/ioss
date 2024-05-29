@@ -12,7 +12,7 @@ import javafx.scene.control.*;
 
 public class FindSiteItem extends ItemSite{
     private TextField quantityOrdered;
-//    private BooleanProperty selectedSite;
+    //    private BooleanProperty selectedSite;
     private CheckBox selectedSite;
     private ComboBox<String> deliveryType;
 

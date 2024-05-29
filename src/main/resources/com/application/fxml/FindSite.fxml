@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="897.0" prefWidth="1767.0" styleClass="findsite__main" stylesheets="@../styles/FindSite.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
    <children>
-      <Pane layoutX="22.0" layoutY="46.0" prefHeight="767.0" prefWidth="1724.0" styleClass="findsite__main__container">
+      <Pane layoutX="22.0" layoutY="46.0" prefHeight="772.0" prefWidth="1724.0" styleClass="findsite__main__container">
          <children>
             <HBox layoutX="22.0" layoutY="48.0" prefHeight="100.0" prefWidth="593.0" styleClass="findsite__main__box__top">
                <children>

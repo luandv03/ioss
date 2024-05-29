@@ -24,7 +24,10 @@ public class ViewFactory {
     private AnchorPane orderListsItemView;
     private AnchorPane orderListItemView;
     private AnchorPane findSiteView;
-    private FindSiteController findSiteController;
+    private AnchorPane CheckOrdersView;
+    private AnchorPane ReportView;
+
+    private AnchorPane InventoryManagementView;
     private AnchorPane OrderListItemLoadingAndDone;
     private AnchorPane CorrespondingListOrderItemSite;
     private VBox OrderChild;
@@ -37,6 +40,17 @@ public class ViewFactory {
         return selectedMenuItem;
     }
 
+    public AnchorPane getReportView() {
+        if (orderListsItemView == null) {
+            try {
+                ReportView = (AnchorPane) loadFXML("Report");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return ReportView;
+    }
     public AnchorPane getOrderListsItemView() {
         if (orderListsItemView == null) {
             try {
@@ -73,12 +87,8 @@ public class ViewFactory {
     public AnchorPane getFindSiteView() {
         if (findSiteView == null) {
             try {
-//                findSiteView = (AnchorPane) loadFXML("FindSite");
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/application/fxml/" + "FindSite" + ".fxml"));
-                FindSiteController findSiteController = FindSiteController.getInstance("");
-                fxmlLoader.setController(findSiteController);
-                findSiteView = fxmlLoader.load();
-            } catch (IOException | SQLException e) {
+                findSiteView = (AnchorPane) loadFXML("FindSite");
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
@@ -89,6 +99,18 @@ public class ViewFactory {
     public void resetFindSiteView() {
         findSiteView = null;
     }
+
+    public AnchorPane getInventoryManagementView() {
+        if (InventoryManagementView == null) {
+            try {
+                InventoryManagementView = (AnchorPane) loadFXML("InventoryManagement");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return InventoryManagementView; // Sửa từ homeView thành InventoryManagementView
+    }
+
 
     public AnchorPane getOrderListItemLoadingAndDone() {
         //Bắt scene phải load lại do trong javafx hơi khó lấy controller của nó
@@ -131,6 +153,18 @@ public class ViewFactory {
         }
 
         return homeView;
+    }
+
+    public AnchorPane getCheckOrdersView() {
+        if (CheckOrdersView == null) {
+            try {
+                CheckOrdersView = (AnchorPane) loadFXML("CheckOrders");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return CheckOrdersView;
     }
 
     public void showLoginWindow() {

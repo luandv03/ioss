@@ -170,7 +170,7 @@ public class FindSiteController implements Initializable {
     public void renderListSite() throws SQLException {
         // Thiết lập dữ liệu cho TableView
         listItem = FXCollections.observableArrayList(
-               findSiteItems
+                findSiteItems
         );
 
         indexColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(listItem.indexOf(param.getValue()) + 1));
@@ -320,11 +320,11 @@ public class FindSiteController implements Initializable {
         findSiteItems = new ArrayList<>();
 
         ItemSiteSubsystem itemSiteSubsystem = new ItemSiteSubsystem();
-           List<ItemSite> listItemSite = itemSiteSubsystem.findItemSiteByItemId(orderItem.getItemId());
+        List<ItemSite> listItemSite = itemSiteSubsystem.findItemSiteByItemId(orderItem.getItemId());
 
-           for (ItemSite item : listItemSite) {
-               findSiteItems.add(new FindSiteItem(item.getSiteId(), item.getSiteName(), item.getQuantity(), item.getDesiredDeliveryByShipDate(), item.getDesiredDeliveryByAirDate()));
-           }
+        for (ItemSite item : listItemSite) {
+            findSiteItems.add(new FindSiteItem(item.getSiteId(), item.getSiteName(), item.getQuantity(), item.getDesiredDeliveryByShipDate(), item.getDesiredDeliveryByAirDate()));
+        }
 
     }
 

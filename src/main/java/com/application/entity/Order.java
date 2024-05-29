@@ -6,14 +6,15 @@ public class Order {
     private String siteId;
     private String status;
 
-    public Order(String orderId, String siteId, String status) {
+    public Order(String orderId, String siteId, String id) {
         this.orderId = orderId;
         this.siteId = siteId;
-        this.status = status;
+        this.status = id;
     }
 
-    public Order() {
-
+    public Order(String orderId, String status) {
+        this.orderId = orderId;
+        this.status = status;
     }
 
     public String getOrderId() {

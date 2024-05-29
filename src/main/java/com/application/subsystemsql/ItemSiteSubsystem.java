@@ -52,12 +52,12 @@ public class ItemSiteSubsystem implements ItemSiteDao {
         String desiredDeliveryByAirDate = "";
 
         while(rs.next()) {
-               int numberOfDaysDeliveryByShip = Integer.parseInt(rs.getString("numberOfDaysDeliveryByShip"));
-               desiredDeliveryByShipDate = cl.calculateDesiredDeliveryDate(numberOfDaysDeliveryByShip);
-               d.add(desiredDeliveryByShipDate);
-               int numberOfDaysDeliveryByAir = Integer.parseInt(rs.getString("numberOfDaysDeliveryByAir"));
-               desiredDeliveryByAirDate = cl.calculateDesiredDeliveryDate(numberOfDaysDeliveryByAir);
-               d.add(desiredDeliveryByAirDate);
+            int numberOfDaysDeliveryByShip = Integer.parseInt(rs.getString("numberOfDaysDeliveryByShip"));
+            desiredDeliveryByShipDate = cl.calculateDesiredDeliveryDate(numberOfDaysDeliveryByShip);
+            d.add(desiredDeliveryByShipDate);
+            int numberOfDaysDeliveryByAir = Integer.parseInt(rs.getString("numberOfDaysDeliveryByAir"));
+            desiredDeliveryByAirDate = cl.calculateDesiredDeliveryDate(numberOfDaysDeliveryByAir);
+            d.add(desiredDeliveryByAirDate);
         }
 
         return d;

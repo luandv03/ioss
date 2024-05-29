@@ -14,8 +14,7 @@
     <center>
         <VBox prefHeight="707.0" prefWidth="635.0">
             <fx:include source="Header.fxml"/>
-            <BorderPane fx:id="content__parent" >
-            </BorderPane>
+            <BorderPane fx:id="content__parent" />
         </VBox>
     </center>
 

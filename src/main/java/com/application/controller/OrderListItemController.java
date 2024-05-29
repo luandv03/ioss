@@ -118,48 +118,48 @@ public class OrderListItemController implements Initializable {
 //        });
 
         btnFindSite.setCellFactory(column -> {
-                    return new TableCell<OrderItemPending, Button>() {
-                        @Override
-                        protected void updateItem(Button item, boolean empty) {
-                            super.updateItem(item, empty);
+            return new TableCell<OrderItemPending, Button>() {
+                @Override
+                protected void updateItem(Button item, boolean empty) {
+                    super.updateItem(item, empty);
 
-                            if (empty) {
-                                setGraphic(null);
-                            } else {
-                                Button btn = new Button("Tìm site");
-                                btn.getStyleClass().add("view__item__button");
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        Button btn = new Button("Tìm site");
+                        btn.getStyleClass().add("view__item__button");
 
 
-                                // Lưu trữ index của dòng hiện tại vào TableCell
-                                int rowIndex = getIndex();
+                        // Lưu trữ index của dòng hiện tại vào TableCell
+                        int rowIndex = getIndex();
 
-                                btn.setOnAction(event -> {
+                        btn.setOnAction(event -> {
 
-                                    OrderItemPending selectedItem = getTableView().getItems().get(rowIndex);
+                            OrderItemPending selectedItem = getTableView().getItems().get(rowIndex);
 
-                                    if (selectedItem != null) {
-                                        try {
-                                            System.out.println(selectedItem.getItemId());
-                                            String itemId = selectedItem.getItemId();
-                                            String itemName = selectedItem.getItemName();
-                                            String unit = selectedItem.getUnit();
-                                            int quantity = selectedItem.getQuantityOrdered();
-                                            String desiredDeliveryDate = selectedItem.getDesiredDeliveryDate();
-                                            int selectedQuantity = selectedItem.getSelectedQuantity();
+                            if (selectedItem != null) {
+                                try {
+                                    System.out.println(selectedItem.getItemId());
+                                    String itemId = selectedItem.getItemId();
+                                    String itemName = selectedItem.getItemName();
+                                    String unit = selectedItem.getUnit();
+                                    int quantity = selectedItem.getQuantityOrdered();
+                                    String desiredDeliveryDate = selectedItem.getDesiredDeliveryDate();
+                                    int selectedQuantity = selectedItem.getSelectedQuantity();
 
-                                            OrderItem orderItem = new OrderItem(itemId, itemName, unit, quantity, desiredDeliveryDate);
-                                            findSite(orderItem, selectedQuantity);
-                                        } catch (SQLException e) {
-                                            throw new RuntimeException(e);
-                                        }
-                                    }
-
-                                });
-
-                                setGraphic(btn);
+                                    OrderItem orderItem = new OrderItem(itemId, itemName, unit, quantity, desiredDeliveryDate);
+                                    findSite(orderItem, selectedQuantity);
+                                } catch (SQLException e) {
+                                    throw new RuntimeException(e);
+                                }
                             }
-                        }
-                    };
+
+                        });
+
+                        setGraphic(btn);
+                    }
+                }
+            };
         });
 
 

@@ -39,7 +39,7 @@
                <graphic>
                   <FontAwesomeIcon glyphName="FILE" />
                </graphic></Button>
-            <Button mnemonicParsing="false" styleClass="navbar__menu__item" text="Quản lý kho">
+            <Button fx:id="btn___InventoryManagementView___view" mnemonicParsing="false" styleClass="navbar__menu__item" text="Quản lý kho">
                <graphic>
                   <FontAwesomeIcon glyphName="BUILDING" />
                </graphic>

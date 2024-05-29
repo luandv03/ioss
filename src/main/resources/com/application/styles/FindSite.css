@@ -1,7 +1,7 @@
 .findsite__main {
     -fx-min-width: 1035;
-    -fx-min-height: 600;
-    -fx-background-color: #FDF2F2;
+    -fx-min-height: 670;
+    -fx-background-color: #fdf2f2;
 }
 
 .findsite__main__title {
@@ -16,7 +16,7 @@
 }
 
 .findsite__main__title Button:hover {
-    -fx-background-color: #E8D9D9;
+    -fx-background-color: #e8d9d9;
 }
 
 .findsite__main__title Text {
@@ -25,7 +25,7 @@
 }
 
 .findsite__main__container {
-    -fx-background-color: #FFFF;
+    -fx-background-color: #ffff;
     -fx-border-radius: 4;
     -fx-min-height: 600;
 }
@@ -44,7 +44,7 @@
 
 .findsite__main__box__bottom {
     -fx-border-width: 1px;
-    -fx-border-color: #E8D9D9;
+    -fx-border-color: #e8d9d9;
     -fx-border-radius: 4px;
 }
 
@@ -53,7 +53,7 @@
 }
 
 .findsite__main__box__bottom__action Button {
-    -fx-text-fill: #FFFF;
+    -fx-text-fill: #ffff;
     -fx-pref-height: 30;
 }
 
@@ -61,61 +61,58 @@
     -fx-cursor: hand;
 }
 
-.findsite__main__box__bottom__action MenuButton  {
+.findsite__main__box__bottom__action MenuButton {
     -fx-pref-height: 30;
 }
 
-.findsite__main__box__bottom__action TextField  {
+.findsite__main__box__bottom__action TextField {
     -fx-pref-height: 30;
 }
 
 .findsite__main__box__bottom__action__btn__cancel {
-    -fx-background-color: #93AEA7;
+    -fx-background-color: #93aea7;
 }
 
 .findsite__main__box__bottom__action__btn__cancel:hover {
-    -fx-background-color: #ABB8B5;
+    -fx-background-color: #abb8b5;
 }
 
 .findsite__main__box__bottom__action__btn__add {
-    -fx-background-color: #2264E5;
+    -fx-background-color: #2264e5;
 }
 
 .findsite__main__box__bottom__action__btn__add:hover {
-    -fx-background-color: #427AE9;
+    -fx-background-color: #427ae9;
 }
 
 .findsite__main__box__bottom__action__btn__filter {
-    -fx-background-color: #FFFF;
+    -fx-background-color: #ffff;
     -fx-border-width: 1px;
-    -fx-border-color: #E8D9D9;
-    -fx-border-radius: 4px;
-}
-
-ComboBox {
-    -fx-background-color: #FFFF;
-    -fx-border-width: 1px;
-    -fx-border-color: #E8D9D9;
+    -fx-border-color: #e8d9d9;
     -fx-border-radius: 4px;
 }
 
 .table-view {
-    /*-fx-background-color: transparent;*/
-    -fx-pref-height: 300;
+    -fx-background-color: transparent;
 }
 
 .table-view .table-row-cell:selected {
     -fx-background-color: #003366;
-    -fx-text-fill: #FFFF;
+    -fx-text-fill: #ffff;
 }
 
-/*.table-view .corner {*/
-/*    -fx-background-color: transparent;*/
-/*}*/
+.table-view .table-row-cell:selected {
+    -fx-background-color: #003366;
+    -fx-text-fill: #ffff;
+}
 
-/*.table-view .column-header-background .filler {*/
-/*    -fx-background-color: transparent;*/
-/*}*/
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
 
 /*.table-view .column-header-background{*/
 /*    -fx-background-color: linear-gradient(to bottom, #1dbbdd44, #93f9b944);*/
@@ -124,39 +121,35 @@ ComboBox {
 /*    -fx-padding: 0 0 5px 0;*/
 /*}*/
 
-.table-view .table-column {
-    -fx-alignment: CENTER;
-}
-
 .table-view .column-header {
-    -fx-background-color: #F4F7FC;
-    -fx-border-width: 1px;
-    -fx-border-color: #E8D9D9;
+    -fx-background-color: #f4f7fc;
+    /*-fx-border-width: 1px;*/
+    /*-fx-border-color: #E8D9D9;*/
 }
 
-.table-view .table-cell{
+.table-view .table-cell {
     -fx-border-color: transparent;
     -fx-padding: 2 0 2 10px;
 }
 
-/*.table-row-cell:hover {*/
-/*    -fx-background-color: #93f9b911;*/
-/*    -fx-text-background-color: #427AE9;*/
-/*}*/
+.table-row-cell:hover {
+    -fx-background-color: #93f9b911;
+    -fx-text-background-color: #e8d9d9;
+}
 
 .table-row-cell:odd {
-    -fx-background-color: #F9FAFC;
+    -fx-background-color: #f9fafc;
     -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em;
+    -fx-padding: 0em;
 }
-.table-row-cell:even{
-    -fx-background-color: #FFFF;
+.table-row-cell:even {
+    -fx-background-color: #ffff;
     -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em;
+    -fx-padding: 0em;
 }
 
 .view__button {
-    -fx-background-color: #2264E5;
+    -fx-background-color: #2264e5;
     -fx-text-fill: #ffff;
     -fx-font-weight: 500;
     -fx-cursor: hand;
@@ -166,24 +159,4 @@ ComboBox {
 
 .view__button:hover {
     -fx-background-color: -fx-hovered-background;
-}
-
-/*styling checkbox*/
-* {
-    -fx-darkest-grey-color: #427AE9;
-}
-
-.check-box .box {
-    -fx-background-color: white;
-    -fx-border-color: #E8D9D9;
-    -fx-border-radius: 4;
-}
-.check-box .mark {
-    -fx-shape: "M1.73,12.91 8.1,19.28 22.79,4.59 22.79,1.59 8.1,16.28 1.73,9.91";
-}
-.check-box:selected .mark {
-    -fx-background-color: white;
-}
-.check-box:selected .box {
-    -fx-background-color: -fx-darkest-grey-color;
 }
