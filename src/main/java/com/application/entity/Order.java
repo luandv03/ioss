@@ -12,6 +12,11 @@ public class Order {
         this.status = status;
     }
 
+    public Order(String orderId, String siteId) {
+        this.orderId = orderId;
+        this.siteId = siteId;
+    }
+
     public Order() {
 
     }

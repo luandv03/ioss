@@ -29,12 +29,28 @@ public class ViewFactory {
     private AnchorPane CorrespondingListOrderItemSite;
     private VBox OrderChild;
 
+    private AnchorPane CheckOrdersView;
+    private AnchorPane ReportView;
+    private AnchorPane InventoryManagementView;
+
     public ViewFactory() {
         this.selectedMenuItem = new SimpleStringProperty("");
     }
 
     public StringProperty getSelectedMenuItem() {
         return selectedMenuItem;
+    }
+
+    public AnchorPane getReportView() {
+        if (orderListsItemView == null) {
+            try {
+                ReportView = (AnchorPane) loadFXML("Report");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return ReportView;
     }
 
     public AnchorPane getOrderListsItemView() {
@@ -131,6 +147,30 @@ public class ViewFactory {
         }
 
         return homeView;
+    }
+
+    public AnchorPane getInventoryManagementView() {
+        if (InventoryManagementView == null) {
+            try {
+                InventoryManagementView = (AnchorPane) loadFXML("InventoryManagement");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return InventoryManagementView; // Sửa từ homeView thành InventoryManagementView
+    }
+
+
+    public AnchorPane getCheckOrdersView() {
+        if (CheckOrdersView == null) {
+            try {
+                CheckOrdersView = (AnchorPane) loadFXML("CheckOrders");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return CheckOrdersView;
     }
 
     public void showLoginWindow() {

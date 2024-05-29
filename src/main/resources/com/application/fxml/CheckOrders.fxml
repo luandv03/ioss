@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.controller.CheckOrdersController">
+    <children>
+        <Pane layoutX="12.0" layoutY="42.0" prefHeight="516.0" prefWidth="816.0" styleClass="order__lists__item__box">
+            <children>
+                <TableView fx:id="tableView" layoutX="3.0" layoutY="69.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="364.0" prefWidth="802.0">
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                    <columns>
+                        <TableColumn fx:id="idColumn" prefWidth="121.48564147949219" text="#" />
+                        <TableColumn fx:id="itemCodeColumn" prefWidth="192.5143585205078" text="Mã Mặt Hàng" />
+                        <TableColumn fx:id="itemNameColumn" prefWidth="158.0" text="Tên Mặt Hàng" />
+                        <TableColumn fx:id="unitColumn" prefWidth="128.0" text="Đơn Vị" />
+                        <TableColumn fx:id="quantityColumn" prefWidth="157.0" text="Số Lượng" />
+                        <TableColumn fx:id="quantityOrderColumn" prefWidth="75.0" text="Số Lượng Đặt" />
+                        <TableColumn prefWidth="75.0" text="Trạng Thái" />
+                    </columns>
+                </TableView>
+                <Pagination layoutX="29.0" layoutY="437.0" prefHeight="12.0" prefWidth="766.0" />
+                <Label layoutX="10.0" layoutY="13.0" prefHeight="15.0" prefWidth="101.0" text="Mã đơn hàng: ">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Label>
+                <Label layoutX="12.0" layoutY="36.0" text="Mã site: ">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <Label fx:id="OrderID" layoutX="119.0" layoutY="12.0" prefHeight="22.0" prefWidth="102.0" text="Label">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Label>
+                <Label fx:id="SiteID" layoutX="70.0" layoutY="38.0" prefHeight="17.0" prefWidth="76.0" text="Label" />
+                <Button layoutX="639.0" layoutY="22.0" mnemonicParsing="false" onAction="#Report" text="Báo Cáo" />
+                <Button layoutX="722.0" layoutY="22.0" mnemonicParsing="false" text="Nhập kho" />
+                <Button layoutX="578.0" layoutY="22.0" mnemonicParsing="false" onAction="#goBack" text="Huỷ" />
+            </children>
+        </Pane>
+        <Text layoutX="19.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="order__lists__item__title" text="Kiểm tra đơn hàng">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Text>
+    </children>
+</AnchorPane>
