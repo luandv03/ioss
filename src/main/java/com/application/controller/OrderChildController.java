@@ -73,6 +73,6 @@ public class OrderChildController implements Initializable {
     public void reOrder()
     {
         System.out.println("Dat Lai Don Hang");
-//        Model.getInstance().getViewFactory().getSelectedMenuItem().set("...");
+        Model.getInstance().getViewFactory().getSelectedMenuItem().set("OderDetail");
     }
 }

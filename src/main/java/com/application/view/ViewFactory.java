@@ -3,6 +3,7 @@ package com.application.view;
 import com.application.controller.FindSiteController;
 import com.application.controller.MainLayoutController;
 import com.application.controller.OrderListItemController;
+import com.application.controller.OderDetailController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,7 @@ import java.sql.SQLException;
 import java.util.Objects;
 import java.util.Stack;
 
+
 public class ViewFactory {
 
     public final StringProperty selectedMenuItem;
@@ -24,6 +26,9 @@ public class ViewFactory {
     private AnchorPane orderListsItemView;
     private AnchorPane orderListItemView;
     private AnchorPane findSiteView;
+
+    private AnchorPane orderItemDetailView;
+
     private FindSiteController findSiteController;
     private AnchorPane OrderListItem_DaXuLi;
     private AnchorPane CorrespondingListOrderItemSite;
@@ -47,6 +52,25 @@ public class ViewFactory {
         }
 
         return orderListsItemView;
+    }
+
+
+
+    public AnchorPane getOrderItemDetailView() {
+        if (orderItemDetailView == null) {
+            try {
+                orderItemDetailView = (AnchorPane) loadFXML("OrderDetail");
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/application/fxml/" + "OrderDetail" + ".fxml"));
+                OderDetailController oderDetailController = OderDetailController.getInstance();
+                fxmlLoader.setController(oderDetailController);
+
+                orderItemDetailView = fxmlLoader.load();
+            } catch (IOException | SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return orderListItemView;
     }
 
     public AnchorPane getOrderListItemView() {
