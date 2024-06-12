@@ -23,7 +23,9 @@ public class OrderSubsystem implements OrderDao {
         String query = "select o.orderId, o.status, o.created_at, sum(ots.quantityOrdered) sumItem from \"order\" o\n" +
                 "join orderItemSite ots using(orderId)\n" +
                 "where o.status in (?, 'done')" +
-                "group by (orderId)";
+                "group by (orderId)"+
+                "order by o.status";
+
         PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1, status);
         ResultSet rs = ps.executeQuery();

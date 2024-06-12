@@ -77,7 +77,7 @@ public class InventoryManagementController implements Initializable {
                         setGraphic(null);
                     } else {
                         Button button = new Button("Xem chi tiết");
-                        button.getStyleClass().add("view__button");
+                        button.getStyleClass().add("view__item__button");
 
                         // Lưu trữ index của dòng hiện tại vào TableCell
                         int rowIndex = getIndex();

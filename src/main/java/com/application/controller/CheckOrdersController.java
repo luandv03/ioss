@@ -1,6 +1,7 @@
 package com.application.controller;
 
 import com.application.entity.*;
+import com.application.enums.OrderStatus;
 import com.application.model.Model;
 import com.application.subsystemsql.OrderItemSiteSubsystem;
 import com.application.subsystemsql.OrderSubsystem;
@@ -38,6 +39,10 @@ public class CheckOrdersController implements Initializable {
     Label OrderID;
     public Button btnBackPrevPage;
     public Button btnSave;
+    public Button btnCancel;
+
+    OrderStatus os = new OrderStatus();;
+
     @FXML
     public TableColumn<OrderItemSite,String> itemCodeColumn;
     @FXML
@@ -77,7 +82,8 @@ public class CheckOrdersController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // set orderId
         OrderID.setText(this.orderId);
-        StatusOrder.setText(this.status);
+
+        StatusOrder.setText(status);
 
         btnBackPrevPage.setOnAction(event -> {
             try {
@@ -89,6 +95,13 @@ public class CheckOrdersController implements Initializable {
         btnSave.setOnAction(event -> {
             try {
                 save();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        btnCancel.setOnAction(event -> {
+            try {
+                goBack();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -133,6 +146,19 @@ public class CheckOrdersController implements Initializable {
                                 Optional<String> result = dialog.showAndWait();
 
                                 result.ifPresent(quantity -> {
+                                    //validate input
+                                    for (int i = 0; i < quantity.length(); i++) {
+                                        if (!Character.isDigit(quantity.charAt(i))) {
+                                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                            alert.setTitle("Cảnh báo");
+                                            alert.setHeaderText(null);
+                                            alert.setContentText("Số lượng phải là 1 số nguyên!");
+
+                                            alert.showAndWait();
+                                            return;
+                                        }
+                                    }
+
                                     listOrderItemSite.stream()
                                             .filter(p -> p.getItemId().equals(selectedItem.getItemId()))
                                             .findFirst().ifPresent(o -> {

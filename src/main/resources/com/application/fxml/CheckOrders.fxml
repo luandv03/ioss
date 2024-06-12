@@ -26,7 +26,6 @@
                         <TableColumn fx:id="editColumn" prefWidth="75.0" text="Hành động" />
                     </columns>
                 </TableView>
-                <Pagination layoutX="29.0" layoutY="437.0" prefHeight="12.0" prefWidth="766.0" />
                 <Label layoutX="10.0" layoutY="13.0" prefHeight="26.0" prefWidth="120.0" text="Mã đơn hàng: ">
                     <font>
                         <Font size="17.0" />
@@ -37,8 +36,6 @@
                         <Font size="17.0" />
                     </font>
                 </Label>
-                <Button fx:id="btnSave" layoutX="928.0" layoutY="20.0" mnemonicParsing="false" text="Lưu" />
-                <Button layoutX="865.0" layoutY="20.0" mnemonicParsing="false" onAction="#goBack" text="Huỷ" />
             <Label layoutX="8.0" layoutY="32.0" prefHeight="22.0" prefWidth="102.0" text="Trạng thái:">
                 <font>
                     <Font size="17.0" />
@@ -49,9 +46,15 @@
                     <Font size="17.0" />
                 </font>
             </Label>
+            <HBox layoutX="845.0" layoutY="26.0" prefHeight="39.0" prefWidth="140.0" styleClass="findsite__main__box__bottom__action">
+               <children>
+                      <Button fx:id="btnCancel" mnemonicParsing="false" styleClass="btn__cancel" text="Huỷ" />
+                      <Button fx:id="btnSave" mnemonicParsing="false" prefHeight="39.0" prefWidth="63.0" styleClass="btn__save" text="Lưu" />
+               </children>
+            </HBox>
             </children>
         </Pane>
-      <HBox layoutX="14.0" layoutY="14.0" prefHeight="39.0" prefWidth="334.0" styleClass="order__list__item__container__title">
+      <HBox layoutX="14.0" layoutY="14.0" prefHeight="39.0" prefWidth="334.0" styleClass="findsite__main__box__bottom__action">
          <children>
             <Button fx:id="btnBackPrevPage" mnemonicParsing="false" prefHeight="36.0" prefWidth="57.0">
                <graphic>

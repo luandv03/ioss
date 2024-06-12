@@ -62,28 +62,23 @@
     -fx-background-color: -fx-hovered-background;
 }
 
-.btn__save {
+.findsite__main__box__bottom__search {
     -fx-background-color: #2264E5;
+    -fx-text-fill: #ffff;
+    -fx-font-weight: 500;
     -fx-cursor: hand;
-    -fx-pref-width: 60;
     -fx-pref-height: 30;
-    -fx-text-fill: #FFFF;
 }
 
-.btn__cancel {
-    -fx-background-color: #93AEA7;
-    -fx-cursor: hand;
-    -fx-pref-width: 60;
-    -fx-pref-height: 30;
-    -fx-text-fill: #FFFF;
-}
-
-
-.btn__save:hover {
+.findsite__main__box__bottom__search:hover {
     -fx-background-color: #4676d5;
 }
 
 .findsite__main__box__bottom__action {
     -fx-spacing: 10;
     -fx-alignment: center;
+}
+
+.findsite__main__box__bottom__action TextField {
+    -fx-pref-height: 30;
 }
