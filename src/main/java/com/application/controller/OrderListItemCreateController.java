@@ -222,6 +222,8 @@ public class OrderListItemCreateController implements Initializable {
 
     public void saveListOrderItem() throws SQLException {
 
+        if (listDataItem.isEmpty()) return;
+
         OrderListItemSubsystem s1 = new OrderListItemSubsystem();
         String orderListItemId = s1.createOrderListItem("pending");
 
