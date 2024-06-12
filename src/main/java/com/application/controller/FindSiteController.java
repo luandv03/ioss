@@ -114,7 +114,11 @@ public class FindSiteController implements Initializable {
                     throw new RuntimeException(e);
                 }
             } else if (this.preView.equals("OrderDetail")) {
-                backOrderCanceledView();
+                try {
+                    backOrderCanceledView();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -147,9 +151,10 @@ public class FindSiteController implements Initializable {
         Model.getInstance().getViewFactory().getSelectedMenuItem().set("OrderListItem");
     }
 
-    public void backOrderCanceledView() {
+    public void backOrderCanceledView() throws SQLException {
         instance = null;
         Model.getInstance().getViewFactory().resetFindSiteView();
+        OrderDetailController.getInstance().reloadData();
         Model.getInstance().getViewFactory().getSelectedMenuItem().set("OrderDetail");
     }
 

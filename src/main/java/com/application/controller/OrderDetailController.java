@@ -160,6 +160,14 @@ public class OrderDetailController implements Initializable  {
         siteNameElement.setText(siteName);
     }
 
+    public void reloadData() throws SQLException {
+        OrderSubsystem orderSubsystem = new OrderSubsystem();
+        listOrderItem = orderSubsystem.getOrderCanceled(this.orderId);
+
+        tableView.refresh();
+        renderTable();
+    }
+
     public void setOrderId(String orderId) {
         this.orderId = orderId;
 

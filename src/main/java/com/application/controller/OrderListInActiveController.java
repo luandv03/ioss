@@ -157,7 +157,8 @@ public class OrderListInActiveController implements Initializable {
         notification(Pos.TOP_RIGHT, null, "Gửi yêu cầu đặt hàng thành công!");
         notificationBuilder.show();
 
-
+        OrderDetailController.getInstance().setOrderStatus("deleted");
+        OrderDetailController.getInstance().renderContent(); // reload status
     }
 
     private void notification(Pos pos, Node graphic, String text) {
