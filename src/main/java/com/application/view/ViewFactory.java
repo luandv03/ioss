@@ -64,7 +64,13 @@ public class ViewFactory {
     public AnchorPane getOrderListsItemView() {
         if (orderListsItemView == null) {
             try {
-              orderListsItemView = (AnchorPane) loadFXML("OrderListsItem");
+//              orderListsItemView = (AnchorPane) loadFXML("OrderListsItem");
+
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/application/fxml/" + "OrderListsItem" + ".fxml"));
+                OrderListsItemController c = OrderListsItemController.getInstance();
+                fxmlLoader.setController(c);
+
+                orderListsItemView = fxmlLoader.load();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

@@ -10,6 +10,6 @@ public interface OrderListItemDao {
     public String createOrderListItem(String status) throws SQLException;
     public List<OrderListItem> getListOrderItemAll() throws SQLException;
     public void updateStatusOrderListItem(String orderListItemId, String status) throws SQLException;
-    public List<OrderItemPending> getListOrderItemById(String orderListItemId, String status) throws SQLException;
+    public List<OrderItemPending> getListOrderItemById(String orderListItemId) throws SQLException;
 
 }

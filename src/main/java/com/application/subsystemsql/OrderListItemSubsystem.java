@@ -69,7 +69,7 @@ public class OrderListItemSubsystem implements OrderListItemDao {
     }
 
     @Override
-    public List<OrderItemPending> getListOrderItemById(String orderListItemId, String status) throws SQLException {
+    public List<OrderItemPending> getListOrderItemById(String orderListItemId) throws SQLException {
         String query = "select t1.itemId, itemName, t1.quantityOrdered, t1.unit, t1.desiredDeliveryDate, COALESCE(t2.selectedQuantity, 0) selectedQuantity from (select i.itemId, i.itemName, i.unit, odi.quantityOrdered, odi.desiredDeliveryDate from orderItem odi\n" +
                 " join item i using(itemId)\n" +
                 " where odi.orderlistitemid = ?) as t1\n" +

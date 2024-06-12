@@ -100,7 +100,7 @@ public class OrderSubsystem implements OrderDao {
                         = con.prepareStatement(q2);
 
                 // Chuyển đổi desiredDeliveryDate từ kiểu String sang kiểu Date
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 java.util.Date date;
                 try {
                     date = sdf.parse(orderLine.getDesiredDeliveryDate());

@@ -43,7 +43,7 @@
                         <TableColumn fx:id="itemIdCol" prefWidth="123.0" text="Mã mặt hàng" />
                         <TableColumn fx:id="itemNameCol" prefWidth="117.0" text="Tên Mặt Hàng" />
                         <TableColumn fx:id="unitCol" prefWidth="89.0" text="Đơn vị" />
-                        <TableColumn fx:id="quantityOrderedCol" prefWidth="33.0" text="Số lượng" />
+                        <TableColumn fx:id="quantityOrderedCol" prefWidth="70.0" text="Số lượng" />
                         <TableColumn fx:id="desiredDeliveryDateCol" prefWidth="203.0" text="Ngày nhận mong muốn" />
                         <TableColumn fx:id="selectedQuantityCol" prefWidth="78.0" text="Đã chọn" />
                         <TableColumn fx:id="pendingQuantityCol" prefWidth="75.0" text="Còn lại" />

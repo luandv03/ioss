@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="591.0" prefWidth="875.0" styleClass="order__lists__item__container" stylesheets="@../styles/OrderListsItem.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.controller.OrderListsItemController">
+<AnchorPane prefHeight="591.0" prefWidth="875.0" styleClass="order__lists__item__container" stylesheets="@../styles/OrderListsItem.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
        <Pane layoutX="30.0" layoutY="54.0" prefHeight="516.0" prefWidth="816.0" styleClass="order__lists__item__box" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="54.0">
           <children>
@@ -30,8 +30,7 @@
                  <children>
                      <MenuButton mnemonicParsing="false" prefHeight="36.0" prefWidth="14.0" styleClass="btn__filter">
                          <items>
-                             <MenuItem mnemonicParsing="false" text="Action 1" />
-                             <MenuItem mnemonicParsing="false" text="Action 2" />
+                             <MenuItem mnemonicParsing="false" text="Mã danh sách" />
                          </items>
                          <graphic>
                              <FontAwesomeIcon glyphName="FILTER" />
@@ -41,7 +40,6 @@
                      <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="108.0" styleClass="btn__search" text="Tìm kiếm" />
                  </children>
               </HBox>
-              <Pagination layoutX="36.0" layoutY="420.0" prefHeight="12.0" prefWidth="766.0" />
           </children>
        </Pane>
       <Text layoutX="30.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="order__lists__item__title" text="Các danh sách mặt hàng cần đặt">

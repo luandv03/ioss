@@ -63,7 +63,7 @@ public class OrderListInActiveController implements Initializable {
                 } else if (this.orderTypePage.equals("OrderListItem")) {
                     requestOrderForOrderListItem();
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | IOException e) {
                 throw new RuntimeException(e);
             }
         });
@@ -120,7 +120,9 @@ public class OrderListInActiveController implements Initializable {
         listOrderDetail = orderSubsystem.getListOrderByOrderListItemIdAndStatus(orderListItemId, "inActive", orderParentId);
     }
 
-    public void requestOrderForOrderListItem() throws SQLException {
+    public void requestOrderForOrderListItem() throws SQLException, IOException {
+        if (listOrderDetail.isEmpty()) return;
+
         for (OrderDetail orderDetail: listOrderDetail) {
             orderSubsystem.updateOrderStatus(orderDetail.getOrderId(), "active");
         }
@@ -131,9 +133,16 @@ public class OrderListInActiveController implements Initializable {
         graphic = null;
         notification(Pos.TOP_RIGHT, null, "Gửi yêu cầu đặt hàng thành công!");
         notificationBuilder.show();
+
+        displayListOrder();
+
+        OrderListItemController.getInstance().setOrderListItemStatus("loading");
+        OrderListItemController.getInstance().updateOrderListItemStatusText("loading");
     }
 
-    public void requestOrderForOrderCanceled() throws SQLException {
+    public void requestOrderForOrderCanceled() throws SQLException, IOException {
+        if (listOrderDetail.isEmpty()) return;
+
         for (OrderDetail orderDetail: listOrderDetail) {
             orderSubsystem.updateOrderStatus(orderDetail.getOrderId(), "active");
         }
@@ -145,6 +154,8 @@ public class OrderListInActiveController implements Initializable {
         graphic = null;
         notification(Pos.TOP_RIGHT, null, "Gửi yêu cầu đặt hàng thành công!");
         notificationBuilder.show();
+
+
     }
 
     private void notification(Pos pos, Node graphic, String text) {

@@ -25,6 +25,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class OrderListsItemController implements Initializable {
+    private static OrderListsItemController instance;
+
     public TableView<OrderListItem> tableView;
 
     public TableColumn<OrderListItem, Integer> idColumn;
@@ -41,6 +43,13 @@ public class OrderListsItemController implements Initializable {
 
     List<OrderListItem> orderListItemData = new ArrayList<>();
 
+    public static OrderListsItemController getInstance()  {
+        if (instance == null) {
+            instance = new OrderListsItemController();
+        }
+        return instance;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -48,6 +57,12 @@ public class OrderListsItemController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        renderTable();
+
+    }
+
+    public void renderTable() {
         // Thiết lập dữ liệu cho TableView
         orderListsItem = FXCollections.observableArrayList(
                 orderListItemData

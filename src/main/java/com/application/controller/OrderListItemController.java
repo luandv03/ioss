@@ -71,7 +71,11 @@ public class OrderListItemController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         btnBackOrderListsItemView.setOnAction(event -> {
-            backOrderListsItemView();
+            try {
+                backOrderListsItemView();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         orderListItemIdValue.setText(orderListItemId);
@@ -145,8 +149,11 @@ public class OrderListItemController implements Initializable {
         tableView.setItems(orderItemLists);
     }
 
-    public void backOrderListsItemView() {
+    public void backOrderListsItemView() throws SQLException {
         Model.getInstance().getViewFactory().resetOrderListItemView();
+        reloadData(this.orderListItemId);
+        OrderListsItemController.getInstance().getListOrderItemAll();
+        OrderListsItemController.getInstance().renderTable();
         Model.getInstance().getViewFactory().getSelectedMenuItem().set("OrderListsItem");
     }
 
@@ -162,7 +169,15 @@ public class OrderListItemController implements Initializable {
         this.orderListItemStatus = status;
 
         OrderListItemSubsystem orderListItemSubsystem = new OrderListItemSubsystem();
-        listDataItem = orderListItemSubsystem.getListOrderItemById(orderListItemId, status);
+        listDataItem = orderListItemSubsystem.getListOrderItemById(orderListItemId);
+    }
+
+    public void reloadData(String orderListItemId) throws SQLException {
+        OrderListItemSubsystem orderListItemSubsystem = new OrderListItemSubsystem();
+        listDataItem = orderListItemSubsystem.getListOrderItemById(orderListItemId);
+
+        tableView.refresh();
+        renderListOrderItem();
     }
 
     public void handleOrder() {
@@ -193,5 +208,17 @@ public class OrderListItemController implements Initializable {
         stage.setScene(scene);
         stage.show();
 
+    }
+
+    public void setOrderListItemId(String orderListItemId) {
+        this.orderListItemId = orderListItemId;
+    }
+
+    public void setOrderListItemStatus(String status) {
+        this.orderListItemStatus = status;
+    }
+
+    public void updateOrderListItemStatusText(String status) {
+        orderListItemStatusValue.setText(status);
     }
 }

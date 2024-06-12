@@ -108,7 +108,11 @@ public class FindSiteController implements Initializable {
         btnBackOrderListItemView.setOnAction(event -> {
             System.out.println("Pre page = " + this.preView);
             if (this.preView.equals("OrderListItem")) {
-                backOrderListItemView();
+                try {
+                    backOrderListItemView();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
             } else if (this.preView.equals("OrderDetail")) {
                 backOrderCanceledView();
             }
@@ -136,9 +140,10 @@ public class FindSiteController implements Initializable {
 
     }
 
-    public void backOrderListItemView() {
+    public void backOrderListItemView() throws SQLException {
         instance = null;
         Model.getInstance().getViewFactory().resetFindSiteView();
+        OrderListItemController.getInstance().reloadData(this.orderListItemId);
         Model.getInstance().getViewFactory().getSelectedMenuItem().set("OrderListItem");
     }
 
@@ -344,17 +349,17 @@ public class FindSiteController implements Initializable {
 
         if (val > (quantityRequested - selectedQuantity)) {
             VBox newVbox = new VBox();
-            HBox newHbox = new HBox();
-            Label text = new Label("Số lượng chọn đã vượt quá số lượng cần đặt. Bạn có muốn tiếp tục không ?");
+//            HBox newHbox = new HBox();
+            Label text = new Label("Số lượng chọn đã vượt quá số lượng cần đặt.");
             newVbox.getChildren().add(text);
 
-            Button btnOk = new Button("Ok");
-            Button btnCancel = new Button("Huy");
-
-            newHbox.getChildren().add(btnCancel);
-            newHbox.getChildren().add(btnOk);
-
-            newVbox.getChildren().add(newHbox);
+//            Button btnOk = new Button("Ok");
+//            Button btnCancel = new Button("Huy");
+//
+//            newHbox.getChildren().add(btnCancel);
+//            newHbox.getChildren().add(btnOk);
+//
+//            newVbox.getChildren().add(newHbox);
 
             graphic = newVbox;
             notification(Pos.CENTER, graphic, "");
@@ -415,7 +420,7 @@ public class FindSiteController implements Initializable {
 
     private void notification(Pos pos, Node graphic, String text) {
         notificationBuilder = Notifications.create()
-                .title("Thong bao")
+                .title("Thông báo")
                 .text(text)
                 .graphic(graphic)
                 .hideAfter(Duration.seconds(30))
