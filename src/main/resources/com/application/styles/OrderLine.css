@@ -1,0 +1,21 @@
+.order__detail__container {
+    -fx-min-width: 732;
+    -fx-background-color: #FFFF;
+    -fx-padding: 10;
+}
+
+.order__detail__title__list {
+    -fx-spacing: 1;
+}
+
+.order__detail__title__item {
+    -fx-spacing: 4;
+}
+
+.order__detail__table {
+    -fx-min-width: 712;
+}
+
+.table-view .table-column {
+    -fx-alignment: CENTER;
+}

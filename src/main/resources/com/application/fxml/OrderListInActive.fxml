@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<!--        fx:controller="com.application.controller.OrderListInActiveController"-->
+
+<AnchorPane fx:id="orderListInActiveElement" styleClass="order__list__in_active__container" stylesheets="@../styles/OrderListInActive.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox layoutY="46.0" prefHeight="45.0" prefWidth="600.0" styleClass="order__list__in_active__header" stylesheets="@../styles/OrderListInActive.css">
+         <children>
+            <Label styleClass="order__list__in_active__header__left" text="Danh sách đơn hàng tương ứng" />
+            <Button fx:id="requestOrderBtn" mnemonicParsing="false" styleClass="order__list__in_active__header__right" text="Gửi yêu cầu đặt hàng" />
+         </children>
+      </HBox>
+      <Button fx:id="btnClose" layoutX="711.0" mnemonicParsing="false" styleClass="order__list__in_active__header__btn__close">
+         <graphic>
+            <FontAwesomeIcon glyphName="REMOVE" />
+         </graphic></Button>
+      <ScrollPane layoutX="14.0" layoutY="112.0" prefHeight="547.0" prefWidth="585.0" styleClass="order__list__in_active__scroll__pane">
+         <content>
+            <VBox fx:id="orderListElement" prefHeight="200.0" prefWidth="100.0" styleClass="order__list__in_active__box__list" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

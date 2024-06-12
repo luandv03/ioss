@@ -1,23 +1,24 @@
 package com.application.entity;
 
 public class OrdersStock extends Order {
-    private String ReceivedDate;
+    private String orderDate; // ngay dat
+    private int sumItem;
 
-    public OrdersStock(String orderId, String siteId, String status, String receivedDate) {
+    public OrdersStock(String orderId, String siteId, String status, String orderDate, int sumItem) {
         super(orderId,siteId,status);
-        ReceivedDate = receivedDate;
+        this.orderDate = orderDate;
+        this.sumItem = sumItem;
     }
-    public OrdersStock(String orderId, String status, String receivedDate) {
+    public OrdersStock(String orderId, String status, String orderDate) {
         super(orderId, status);
-        ReceivedDate = receivedDate;
+        this.orderDate = orderDate;
     }
 
-    public String getReceivedDate() {
-        return ReceivedDate;
+    public String getOrderDate() {
+        return this.orderDate;
     }
 
-    public void setReceivedDate(String receivedDate) {
-        ReceivedDate = receivedDate;
+    public int getSumItem() {
+        return sumItem;
     }
-
 }

@@ -6,6 +6,7 @@ import com.application.model.Model;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class OrderChildController implements Initializable {
@@ -50,13 +52,20 @@ public class OrderChildController implements Initializable {
         TenSite.setText(tenStie);
         MaDonHang.setText(maDonHang);
         TrangThaiDon.setText(trangThaiDon);
+//        System.out.println("Trang thái đơn cua " + maDonHang + ": " + trangThaiDon);
         switch (trangThaiDon)
         {
             case "delivering":TrangThaiDon.getStyleClass().add("label-delivering"); break;
             case "canceled":
                 TrangThaiDon.getStyleClass().add("label-canceled");
                 ngayGiaoDuKien = "N/A";
-                reOrder_Button.setOnAction(event -> reOrder());
+                reOrder_Button.setOnAction(event -> {
+                    try {
+                        reOrder();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
                 reOrder_Button.setVisible(true);
                 break;
             case "done":TrangThaiDon.getStyleClass().add("label-done"); break;
@@ -75,10 +84,15 @@ public class OrderChildController implements Initializable {
         tableView.setItems(List_OrderItemSite);
     }
 
-    //Đặt lại đơn hàng
-    public void reOrder()
-    {
+    // Đặt lại đơn hàng
+    public void reOrder() throws SQLException {
         System.out.println("Dat Lai Don Hang: " + MaDonHang.getText());
-//        Model.getInstance().getViewFactory().getSelectedMenuItem().set("...");
+        OrderDetailController odc = OrderDetailController.getInstance();
+        odc.setOrderId(MaDonHang.getText());
+        odc.setOrderStatus(TrangThaiDon.getText());
+        odc.setSiteId(MaSite.getText());
+        odc.setSiteName(TenSite.getText());
+        odc.getOrderItemDetail(MaDonHang.getText());
+        Model.getInstance().getViewFactory().getSelectedMenuItem().set("OrderDetail");
     }
 }

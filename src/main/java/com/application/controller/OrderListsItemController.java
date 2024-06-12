@@ -1,6 +1,8 @@
 package com.application.controller;
 
 import com.application.entity.*;
+import com.application.enums.OrderListItemStatus;
+import com.application.enums.OrderStatus;
 import com.application.model.Model;
 import com.application.subsystemsql.ItemSiteSubsystem;
 import com.application.subsystemsql.OrderListItemSubsystem;
@@ -101,31 +103,6 @@ public class OrderListsItemController implements Initializable {
                 }
             };
         });
-
-        // Cach cu
-//        viewColumn.setCellValueFactory(param -> {
-//            Button button = new Button("Xem chi tiết");
-//            button.getStyleClass().add("view__button");
-//
-//            button.setOnAction(event -> {
-//
-//                OrderListItem selectedItem = tableView.getSelectionModel().getSelectedItem();
-//
-//                if (selectedItem != null) {
-//                    // Thực hiện logic hiển thị chi tiết 1 dsmhcd ở đây
-//                    String orderListItemId = selectedItem.getOrderListItemId();
-//                    String status = selectedItem.getStatus();
-//
-//                    try {
-//                        onOrderListItem(orderListItemId, status);
-//                    } catch (SQLException e) {
-//                        throw new RuntimeException(e);
-//                    }
-//                }
-//            });
-//
-//            return new SimpleObjectProperty<>(button);
-//        });
     }
 
     public void onOrderListItem(String orderListItemId, String status) throws SQLException {
@@ -138,12 +115,14 @@ public class OrderListsItemController implements Initializable {
     }
 
     public void getListOrderItemAll() throws SQLException {
+        OrderListItemStatus orderListItemStatus = new OrderListItemStatus();
         orderListItemData = new ArrayList<>();
 
         OrderListItemSubsystem orderListItemSubsystem = new OrderListItemSubsystem();
         List<OrderListItem> orderListsItemSite = orderListItemSubsystem.getListOrderItemAll();
 
         for (OrderListItem orderListItemSite : orderListsItemSite) {
+//            String status = orderListItemStatus.getOrderListItemStatus(orderListItemSite.getStatus());
             orderListItemData.add(new OrderListItem(orderListItemSite.getOrderListItemId(), orderListItemSite.getStatus(), orderListItemSite.getCountItem()));
         }
     }

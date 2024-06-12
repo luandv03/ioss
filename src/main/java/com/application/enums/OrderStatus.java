@@ -1,6 +1,6 @@
 package com.application.enums;
 
-public class OrderEnum {
+public class OrderStatus {
 
     public String getOrderStatus(String orderStatus) {
         return switch (orderStatus) {

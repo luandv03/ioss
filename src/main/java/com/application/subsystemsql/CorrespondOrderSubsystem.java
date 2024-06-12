@@ -22,7 +22,7 @@ public class CorrespondOrderSubsystem implements CorrespondOrderDao {
     @Override
     public List<String> getOrderIdByOrderListId(String orderListItemId) throws SQLException {
         String query =
-                "SELECT * FROM \"order\" WHERE orderlistitemid = '" + orderListItemId + "';";
+                "SELECT * FROM \"order\" WHERE orderlistitemid = '" + orderListItemId + "' AND status != 'inActive'";
         PreparedStatement ps
                 = con.prepareStatement(query);
         ResultSet rs = ps.executeQuery();

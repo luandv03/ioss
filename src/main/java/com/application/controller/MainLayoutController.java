@@ -13,11 +13,16 @@ public class MainLayoutController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Model.getInstance().getViewFactory().getSelectedMenuItem().addListener(((observable, oldVal, newVal) -> {
+            System.out.println(newVal);
             switch (newVal) {
                 case "OrderListsItem"
                         -> content__parent.setCenter(Model.getInstance().getViewFactory().getOrderListsItemView());
+                case "OrderListsItemSale"
+                        -> content__parent.setCenter(Model.getInstance().getViewFactory().getOrderListsItemSaleView());
                 case "OrderListItem"
                         -> content__parent.setCenter(Model.getInstance().getViewFactory().getOrderListItemView());
+                case "OrderListItemCreate"
+                        -> content__parent.setCenter(Model.getInstance().getViewFactory().getOrderListItemCreateView());
                 case "FindSite"
                         -> content__parent.setCenter(Model.getInstance().getViewFactory().getFindSiteView());
                 case "OrderListItemLoadingAndDone"
@@ -27,6 +32,9 @@ public class MainLayoutController implements Initializable {
                 case "InventoryManagementView" -> content__parent.setCenter(Model.getInstance().getViewFactory().getInventoryManagementView());
                 case "CheckOrders" -> content__parent.setCenter(Model.getInstance().getViewFactory().getCheckOrdersView());
                 case "ReportView" -> content__parent.setCenter(Model.getInstance().getViewFactory().getReportView());
+                case "OrderListInActive" -> content__parent.setCenter(Model.getInstance().getViewFactory().getOrderListInActiveView());
+                case "OrderDetail"
+                        -> content__parent.setCenter(Model.getInstance().getViewFactory().getOrderDetailView());
                 default
                         -> content__parent.setCenter(Model.getInstance().getViewFactory().getHomeView());
             }

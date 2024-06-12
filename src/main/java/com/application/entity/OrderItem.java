@@ -21,6 +21,14 @@ public class OrderItem extends Item {
         return quantityOrdered;
     }
 
+    public void setQuantityOrdered(int quantityOrdered) {
+        this.quantityOrdered = quantityOrdered;
+    }
+
+    public void setDesiredDeliveryDate(String desiredDeliveryDate) {
+        this.desiredDeliveryDate = desiredDeliveryDate;
+    }
+
     public String getDesiredDeliveryDate() {
         return desiredDeliveryDate;
     }

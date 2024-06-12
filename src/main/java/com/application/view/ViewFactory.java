@@ -1,8 +1,7 @@
 package com.application.view;
 
-import com.application.controller.FindSiteController;
-import com.application.controller.MainLayoutController;
-import com.application.controller.OrderListItemController;
+import com.application.controller.*;
+import com.application.entity.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
@@ -19,11 +18,17 @@ import java.util.Stack;
 
 public class ViewFactory {
 
+    private User user;
+
     public final StringProperty selectedMenuItem;
     private AnchorPane homeView;
     private AnchorPane orderListsItemView;
+    private AnchorPane orderListsItemSaleView;
+
     private AnchorPane orderListItemView;
+    private AnchorPane orderListItemCreateView;
     private AnchorPane findSiteView;
+    private AnchorPane orderListInActiveView;
     private FindSiteController findSiteController;
     private AnchorPane OrderListItemLoadingAndDone;
     private AnchorPane CorrespondingListOrderItemSite;
@@ -32,6 +37,9 @@ public class ViewFactory {
     private AnchorPane CheckOrdersView;
     private AnchorPane ReportView;
     private AnchorPane InventoryManagementView;
+
+    private AnchorPane orderDetailView;
+
 
     public ViewFactory() {
         this.selectedMenuItem = new SimpleStringProperty("");
@@ -65,6 +73,42 @@ public class ViewFactory {
         return orderListsItemView;
     }
 
+    public AnchorPane getOrderListsItemSaleView() {
+        if (orderListsItemSaleView == null) {
+            try {
+//                orderListsItemSaleView = (AnchorPane) loadFXML("OrderListsItemSale");
+
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/application/fxml/" + "OrderListsItemSale" + ".fxml"));
+                OrderListsItemSaleController c = OrderListsItemSaleController.getInstance();
+                fxmlLoader.setController(c);
+
+                orderListsItemSaleView = fxmlLoader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return orderListsItemSaleView;
+    }
+
+    //
+    public AnchorPane getOrderDetailView() {
+        if (orderDetailView == null) {
+            try {
+                orderDetailView = (AnchorPane) loadFXML("OrderDetail");
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/application/fxml/" + "OrderDetail" + ".fxml"));
+                OrderDetailController orderDetailController = OrderDetailController.getInstance();
+                fxmlLoader.setController(orderDetailController);
+
+                orderDetailView = fxmlLoader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return orderDetailView;
+    }
+
     public AnchorPane getOrderListItemView() {
         if (orderListItemView == null) {
             try {
@@ -82,7 +126,36 @@ public class ViewFactory {
         return orderListItemView;
     }
 
+    public AnchorPane getOrderListItemCreateView() {
+        if (orderListItemCreateView == null) {
+            try {
+//                orderListItemCreateView = (AnchorPane) loadFXML("OrderListItem");
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/application/fxml/" + "OrderListItemCreate" + ".fxml"));
+                OrderListItemCreateController c = OrderListItemCreateController.getInstance();
+                fxmlLoader.setController(c);
+
+                orderListItemCreateView = fxmlLoader.load();
+            } catch (IOException | SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return orderListItemCreateView;
+    }
+
     public void resetOrderListItemView() {
+        orderListItemView = null;
+    }
+
+    public void resetOrderListItemCreateView() {
+        orderListItemCreateView = null;
+    }
+
+    public void resetOrderCanceledView() {
+        orderListItemView = null;
+    }
+
+    public void resetOrderDetail() {
         orderListItemView = null;
     }
 
@@ -149,28 +222,60 @@ public class ViewFactory {
         return homeView;
     }
 
+    public void resetHomeView() {
+        homeView = null;
+    }
+
     public AnchorPane getInventoryManagementView() {
         if (InventoryManagementView == null) {
             try {
-                InventoryManagementView = (AnchorPane) loadFXML("InventoryManagement");
+//                InventoryManagementView = (AnchorPane) loadFXML("InventoryManagement");
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/application/fxml/" + "InventoryManagement" + ".fxml"));
+                InventoryManagementController c = InventoryManagementController.getInstance();
+                fxmlLoader.setController(c);
+                InventoryManagementView = fxmlLoader.load();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
-        return InventoryManagementView; // Sửa từ homeView thành InventoryManagementView
+        return InventoryManagementView;
+    }
+
+    public void resetInventoryManagementView() {
+        InventoryManagementView = null;
     }
 
 
     public AnchorPane getCheckOrdersView() {
         if (CheckOrdersView == null) {
             try {
-                CheckOrdersView = (AnchorPane) loadFXML("CheckOrders");
+//                CheckOrdersView = (AnchorPane) loadFXML("CheckOrders");
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/application/fxml/" + "CheckOrders" + ".fxml"));
+                CheckOrdersController c = CheckOrdersController.getInstance();
+                fxmlLoader.setController(c);
+                CheckOrdersView = fxmlLoader.load();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
 
         return CheckOrdersView;
+    }
+
+    public void resetCheckOrdersView() {
+        CheckOrdersView = null;
+    }
+
+    public AnchorPane getOrderListInActiveView() {
+        if (orderListInActiveView == null) {
+            try {
+                orderListInActiveView = (AnchorPane) loadFXML("OrderListInActive");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return orderListInActiveView;
     }
 
     public void showLoginWindow() {
@@ -181,7 +286,7 @@ public class ViewFactory {
         createStage("MainLayout");
     }
 
-    private void createStage(String fxml) {
+    public void createStage(String fxml) {
         Scene scene = null;
 
         try {
@@ -204,5 +309,14 @@ public class ViewFactory {
     private Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/application/fxml/" + fxml + ".fxml"));
         return fxmlLoader.load();
+    }
+
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getUser() {
+       return this.user;
     }
 }

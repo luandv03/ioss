@@ -24,4 +24,5 @@ module org.example.demo {
     exports com.application.connection;
     exports com.application.dao;
     exports com.application.subsystemsql;
+    exports com.application.enums;
 }

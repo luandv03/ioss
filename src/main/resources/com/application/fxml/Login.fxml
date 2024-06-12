@@ -16,7 +16,7 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </Text>
-      <TextField fx:id="email__input" layoutX="38.0" layoutY="166.0" prefHeight="39.0" prefWidth="439.0" promptText="nguyen.van.a@gmail.com" />
+      <TextField fx:id="emailElement" layoutX="38.0" layoutY="166.0" prefHeight="39.0" prefWidth="439.0" promptText="nguyen.van.a@gmail.com" />
 <!--      <PasswordFieldField fx:id="password__input" layoutX="38.0" layoutY="257.0" prefHeight="39.0" prefWidth="439.0" promptText="Aabc@123" />-->
       <Label layoutX="38.0" layoutY="125.0" text="Email">
          <font>
@@ -49,6 +49,7 @@
             <Font name="Arial" size="18.0" />
          </font>
       </Button>
-      <PasswordField layoutX="38.0" layoutY="255.0" prefHeight="39.0" prefWidth="439.0" />
+      <PasswordField fx:id="passwordElement" layoutX="38.0" layoutY="255.0" prefHeight="39.0" prefWidth="439.0" />
+      <Label fx:id="errorLabel" layoutX="38.0" layoutY="305.0" styleClass="error__message" />
    </children>
 </AnchorPane>

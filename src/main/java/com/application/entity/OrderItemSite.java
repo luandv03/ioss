@@ -4,10 +4,19 @@ package com.application.entity;
 public class OrderItemSite extends Item {
 
     // Số lượng đặt của site này
+    private String itemSiteId;
     private int quantityOrdered;
+    private int recievedQuantity;
     // Ngày giao hàng dự kiến của site này;
     private String desiredDeliveryDate;
     private String deliveryType;
+
+    public OrderItemSite(String itemId, String itemName, String unit, int quantityOrdered, int recievedQuantity, String desiredDeliveryDate) {
+        super(itemId, itemName, unit);
+        this.quantityOrdered = quantityOrdered;
+        this.recievedQuantity = recievedQuantity;
+        this.desiredDeliveryDate = desiredDeliveryDate;
+    }
 
     public OrderItemSite(String itemId, String itemName, String unit, int quantityOrdered, String desiredDeliveryDate, String deliveryType) {
         super(itemId, itemName, unit);
@@ -41,5 +50,21 @@ public class OrderItemSite extends Item {
 
     public String getDeliveryType() {
         return deliveryType;
+    }
+
+    public int getRecievedQuantity() {
+        return recievedQuantity;
+    }
+
+    public void setRecievedQuantity(int recievedQuantity) {
+        this.recievedQuantity = recievedQuantity;
+    }
+
+    public String getItemSiteId() {
+        return this.itemSiteId;
+    }
+
+    public void setItemSiteId(String itemSiteId) {
+        this.itemSiteId = itemSiteId;
     }
 }

@@ -6,11 +6,11 @@
     -fx-border-width: 1px 1px 1px 0;
     -fx-border-style: solid;
     -fx-margin-left: auto;
-    -fx-alignment: center-right;
+    -fx-alignment: center;
 }
 
 .header__user {
-    -fx-alignment: center-right;
+    -fx-alignment: center;
     -fx-spacing: 10;
 }
 

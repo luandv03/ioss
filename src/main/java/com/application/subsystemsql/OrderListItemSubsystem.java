@@ -18,6 +18,25 @@ public class OrderListItemSubsystem implements OrderListItemDao {
             = JDBCPostgreSQLConnection.getConnection();
 
     @Override
+    public String createOrderListItem(String status) throws SQLException {
+        String query = "insert into orderListItem(status, created_at, updated_at) values(?, current_date, current_date) returning *";
+        PreparedStatement ps
+                = con.prepareStatement(query);
+        ps.setString(1, status);
+        ResultSet rs = ps.executeQuery();
+
+        String orderListItemId = "";
+
+        while (rs.next()) {
+            orderListItemId = rs.getString("orderListItemId");
+
+        }
+
+        return orderListItemId;
+
+    }
+
+    @Override
     public List<OrderListItem> getListOrderItemAll() throws SQLException {
         String query = "select olt.*, count(itemId) as countItem from orderListItem olt\n" +
                 "join orderItem using(orderListItemId) \n" +
@@ -39,16 +58,29 @@ public class OrderListItemSubsystem implements OrderListItemDao {
     }
 
     @Override
+    public void updateStatusOrderListItem(String orderListItemId, String status) throws SQLException {
+        String q = "Update orderListItem Set status = ? Where orderListItemId = ?";
+        PreparedStatement ps
+                = con.prepareStatement(q);
+
+        ps.setString(1, status);
+        ps.setString(2, orderListItemId);
+        ps.executeUpdate();
+    }
+
+    @Override
     public List<OrderItemPending> getListOrderItemById(String orderListItemId, String status) throws SQLException {
-        String query = "select t1.itemId, itemName, t1.quantityOrdered, t1.unit, t1.desiredDeliveryDate, COALESCE(0, t2.selectedQuantity) selectedQuantity from (select i.itemId, i.itemName, i.unit, odi.quantityOrdered, odi.desiredDeliveryDate from orderItem odi\n" +
-                "join item i using(itemId)\n" +
-                "where odi.orderlistitemid = ?) as t1\n" +
-                "left join \n" +
-                "(select its.itemId, o.orderId, o.orderListItemId, ois.quantityOrdered as selectedQuantity from \"order\" o\n" +
-                "join orderItemSite ois using(orderId)\n" +
-                "join itemSite its on (its.itemSiteId = ois.itemsiteid)\n" +
-                "where status = 'inActive' and  o.orderlistitemid = ?) as t2\n" +
-                "on t1.itemId = t2.itemId";
+        String query = "select t1.itemId, itemName, t1.quantityOrdered, t1.unit, t1.desiredDeliveryDate, COALESCE(t2.selectedQuantity, 0) selectedQuantity from (select i.itemId, i.itemName, i.unit, odi.quantityOrdered, odi.desiredDeliveryDate from orderItem odi\n" +
+                " join item i using(itemId)\n" +
+                " where odi.orderlistitemid = ?) as t1\n" +
+                " left join \n" +
+                "(select itemId, sum(selectedQuantity) selectedQuantity from (select its.itemId, o.orderId, o.orderListItemId, ois.quantityOrdered as selectedQuantity from \"order\" o\n" +
+                " join orderItemSite ois using(orderId)\n" +
+                "  join itemSite its on (its.itemSiteId = ois.itemsiteid)\n" +
+                " where status = 'inActive' and  o.orderlistitemid = ?) as tmp\n" +
+                " group by itemId) t2\n" +
+                " on t1.itemId = t2.itemId";
+
         PreparedStatement ps
                 = con.prepareStatement(query);
         ps.setString(1, orderListItemId);
@@ -70,4 +102,6 @@ public class OrderListItemSubsystem implements OrderListItemDao {
 
         return orderItemLists;
     }
+
+
 }

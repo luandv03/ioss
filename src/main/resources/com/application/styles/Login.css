@@ -9,3 +9,7 @@
 .btn--login:hover {
     -fx-cursor: hand;
 }
+
+.error__message {
+    -fx-text-fill: red;
+}

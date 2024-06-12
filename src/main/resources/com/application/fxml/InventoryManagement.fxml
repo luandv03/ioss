@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="568.0" prefWidth="819.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.controller.InventoryManagementController">
+<AnchorPane prefHeight="568.0" prefWidth="819.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
     <children>
         <Pane layoutX="8.0" layoutY="43.0" prefHeight="507.0" prefWidth="804.0">
             <children>
@@ -18,9 +18,9 @@
                     <columns>
                         <TableColumn fx:id="idColumn" prefWidth="24.0" text="#" />
                         <TableColumn fx:id="OrderIdColumn" prefWidth="244.0" text="Mã Đơn Hàng" />
-                        <TableColumn fx:id="SiteIDColumn" prefWidth="75.0" text="Mã Site" />
                         <TableColumn fx:id="StatusColumn" prefWidth="254.0" text="Trạng thái" />
-                        <TableColumn fx:id="DateColumn" prefWidth="157.0" text="Ngày Nhận Hàng" />
+                        <TableColumn fx:id="DateColumn" prefWidth="157.0" text="Ngày Đặt Hàng" />
+                        <TableColumn fx:id="SumItemColumn" prefWidth="157.0" text="Số mặt hàng" />
                         <TableColumn fx:id="viewColumn" prefWidth="113.0" text="Hành động" />
                     </columns>
                 </TableView>

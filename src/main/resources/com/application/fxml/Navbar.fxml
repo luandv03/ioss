@@ -30,24 +30,38 @@
             <Button fx:id="btn__home__view" mnemonicParsing="false" prefWidth="251.0" styleClass="navbar__menu__item" text="Trang chủ">
                <graphic>
                   <FontAwesomeIcon glyphName="HOME" />
-               </graphic></Button>
+               </graphic>
+            </Button>
             <Button fx:id="btn__order__lists__item__view" mnemonicParsing="false" styleClass="navbar__menu__item" text="Quản lý nhập hàng">
                <graphic>
                   <FontAwesomeIcon glyphName="SHOPPING_CART" />
-               </graphic></Button>
-            <Button mnemonicParsing="false" styleClass="navbar__menu__item" text="Quản lý mặt hàng ">
+               </graphic>
+            </Button>
+            <Button fx:id="btnQuanLyMatHang" mnemonicParsing="false" styleClass="navbar__menu__item" text="Quản lý mặt hàng ">
                <graphic>
                   <FontAwesomeIcon glyphName="FILE" />
-               </graphic></Button>
+               </graphic>
+            </Button>
             <Button fx:id="btn___InventoryManagementView___view" mnemonicParsing="false" styleClass="navbar__menu__item" text="Quản lý kho">
                <graphic>
                   <FontAwesomeIcon glyphName="BUILDING" />
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" styleClass="navbar__menu__item" text="Quản lý đơn hàng">
+            <Button fx:id="btnQuanLyDonHang" mnemonicParsing="false" styleClass="navbar__menu__item" text="Quản lý đơn hàng">
                <graphic>
                   <FontAwesomeIcon glyphName="TRUCK" />
-               </graphic></Button>
+               </graphic>
+            </Button>
+            <Button fx:id="btnQuanLyNhapHangSale" mnemonicParsing="false" styleClass="navbar__menu__item" text="Quản lý nhập hàng">
+               <graphic>
+                  <FontAwesomeIcon glyphName="SHOPPING_CART" />
+               </graphic>
+            </Button>
+            <Button fx:id="btnLogout" mnemonicParsing="false" styleClass="navbar__menu__item" text="Đăng xuất">
+               <graphic>
+                  <FontAwesomeIcon glyphName="SIGN_OUT" />
+               </graphic>
+            </Button>
          </children>
       </VBox>
    </children>

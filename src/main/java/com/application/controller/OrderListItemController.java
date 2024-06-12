@@ -11,12 +11,17 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -73,6 +78,10 @@ public class OrderListItemController implements Initializable {
         orderListItemStatusValue.setText(orderListItemStatus);
 
         renderListOrderItem();
+
+        btnOrder.setOnAction(event -> {
+            handleOrder();
+        });
     }
 
     public void renderListOrderItem() {
@@ -87,35 +96,6 @@ public class OrderListItemController implements Initializable {
         quantityOrderedCol.setCellValueFactory(new PropertyValueFactory<OrderItemPending, Integer>("quantityOrdered"));
         selectedQuantityCol.setCellValueFactory(new PropertyValueFactory<OrderItemPending, Integer>("selectedQuantity"));
         pendingQuantityCol.setCellValueFactory(new PropertyValueFactory<OrderItemPending, Integer>("pendingQuantity"));
-//
-//        btnFindSite.setCellValueFactory(param -> {
-//            Button btn = new Button("Tìm site");
-//            btn.getStyleClass().add("view__item__button");
-//
-//            btn.setOnAction(event -> {
-//
-//                OrderItemPending selectedItem = tableView.getSelectionModel().getSelectedItem();
-//                if (selectedItem != null) {
-//                    try {
-//                        System.out.println(selectedItem.getItemId());
-//                        String itemId = selectedItem.getItemId();
-//                        String itemName = selectedItem.getItemName();
-//                        String unit = selectedItem.getUnit();
-//                        int quantity = selectedItem.getQuantityOrdered();
-//                        String desiredDeliveryDate = selectedItem.getDesiredDeliveryDate();
-//                        int selectedQuantity = selectedItem.getSelectedQuantity();
-//
-//                        OrderItem orderItem = new OrderItem(itemId, itemName, unit, quantity, desiredDeliveryDate);
-//                        findSite(orderItem, selectedQuantity);
-//                    } catch (SQLException e) {
-//                        throw new RuntimeException(e);
-//                    }
-//                }
-//
-//            });
-//
-//            return new SimpleObjectProperty<>(btn);
-//        });
 
         btnFindSite.setCellFactory(column -> {
                     return new TableCell<OrderItemPending, Button>() {
@@ -162,7 +142,6 @@ public class OrderListItemController implements Initializable {
                     };
         });
 
-
         tableView.setItems(orderItemLists);
     }
 
@@ -174,6 +153,7 @@ public class OrderListItemController implements Initializable {
     public void findSite(OrderItem orderItem, int selectedQuantity) throws SQLException {
         FindSiteController findSiteController =  FindSiteController.getInstance(orderItem.getItemId());
         findSiteController.findItemSiteByItemId(orderListItemId, orderItem, selectedQuantity);
+        findSiteController.setPreView("OrderListItem");
         Model.getInstance().getViewFactory().getSelectedMenuItem().set("FindSite"); // thực hiện load FXML của file FindSite.FXML
     }
 
@@ -185,4 +165,33 @@ public class OrderListItemController implements Initializable {
         listDataItem = orderListItemSubsystem.getListOrderItemById(orderListItemId, status);
     }
 
+    public void handleOrder() {
+        Scene scene = null;
+        AnchorPane orderListInActiveElement = null;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/application/fxml/" + "OrderListInActive" + ".fxml"));
+
+//            OrderListInActiveController ctl = fxmlLoader.getController();
+            OrderListInActiveController ctl = new OrderListInActiveController();
+
+            ctl.setOrderTypePage("OrderListItem");
+            ctl.setOrderListItemId(orderListItemId);
+            ctl.getListOrder(orderListItemId);
+
+            fxmlLoader.setController(ctl);
+
+            orderListInActiveElement = fxmlLoader.load();
+            scene = new Scene(orderListInActiveElement);
+
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(scene);
+        stage.show();
+
+    }
 }

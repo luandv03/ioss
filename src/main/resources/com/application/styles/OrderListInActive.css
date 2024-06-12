@@ -1,0 +1,62 @@
+.order__list__in_active__container {
+    -fx-min-width: 790;
+    -fx-height: 700;
+    -fx-background-color: #FFFF;
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+    -fx-border-color: #E8D9D9;
+    -fx-border-style: solid;
+    /*-fx-effect: dropshadow(three-pass-box, rgba(100, 100, 111, 0.2), 0, 7, 29, 0);*/
+    -fx-padding: 8;
+}
+
+.order__list__in_active__header {
+    -fx-min-width: 770;
+    -fx-padding: 10;
+    -fx-spacing: 290;
+}
+
+.order__list__in_active__header__left {
+    -fx-margin-right: auto;
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+
+.order__list__in_active__header__right {
+    -fx-margin-left: auto;
+    -fx-background-color: #2264E5;
+    -fx-text-fill: #FFFF;
+    -fx-cursor: hand;
+}
+
+.order__list__in_active__header__right:hover {
+    -fx-background-color: #547ed2;
+}
+
+
+.order__list__in_active__header__btn__close {
+    -fx-background-color: none;
+    -fx-border-width: none;
+    -fx-font-size: 24;
+    -fx-cursor: hand;
+}
+
+.order__list__in_active__header__btn__close FontAwesomeIcon {
+    -fx-font-size: 24;
+    -fx-font-weight: 200;
+}
+
+.order__list__in_active__header__box {
+    -fx-pref-height: 500;
+    -fx-width: 770;
+}
+
+.order__list__in_active__scroll__pane {
+    -fx-min-width: 770;
+}
+
+.order__list__in_active__box__list {
+    -fx-width: 732;
+    -fx-padding: 10;
+    -fx-spacing: 10;
+}

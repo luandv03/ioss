@@ -3,8 +3,10 @@ package com.application.controller;
 import com.application.entity.FindSiteItem;
 import com.application.entity.ItemSite;
 import com.application.entity.OrderItem;
+import com.application.entity.OrderLine;
 import com.application.model.Model;
 import com.application.subsystemsql.ItemSiteSubsystem;
+import com.application.subsystemsql.OrderSubsystem;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,8 +31,15 @@ import java.util.ResourceBundle;
 
 public class FindSiteController implements Initializable {
 
+
+    private String preView; // store previous of page;
+
+    private String orderParentId = null; // đối với đơn hàng bị hủy
+
     Notifications notificationBuilder;
     Node graphic;
+
+    private boolean flagErrorValidateInput = false;
 
     private static FindSiteController instance;
 
@@ -71,6 +80,9 @@ public class FindSiteController implements Initializable {
     public Button btnBackOrderListItemView;
 
     private List<FindSiteItem> findSiteItems = new ArrayList<>();
+//    private  List<FindSiteItem> selectedSiteItems = new ArrayList<>();
+
+    private List<OrderLine> listOrderLine = new ArrayList<>();
 
     public FindSiteController(String itemId) {
         this.itemId = itemId;
@@ -92,62 +104,25 @@ public class FindSiteController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        btnBackOrderListItemView.setOnAction(event -> backOrderListItemView());
+
+        btnBackOrderListItemView.setOnAction(event -> {
+            System.out.println("Pre page = " + this.preView);
+            if (this.preView.equals("OrderListItem")) {
+                backOrderListItemView();
+            } else if (this.preView.equals("OrderDetail")) {
+                backOrderCanceledView();
+            }
+        });
 
         btnSaveItemSite.setOnAction(event -> {
-            int val = getSelectedItems();
-            int quantityRequested = Integer.parseInt(quantityText.getText());
-
-            System.out.println(val);
-
-            if (val > quantityRequested) {
-                VBox newVbox = new VBox();
-                HBox newHbox = new HBox();
-                Label text = new Label("Số lượng chọn đã vượt quá số lượng cần đặt. Bạn có muốn tiếp tục không ?");
-                newVbox.getChildren().add(text);
-
-                Button btnOk = new Button("Ok");
-                Button btnCancel = new Button("Huy");
-
-                newHbox.getChildren().add(btnCancel);
-                newHbox.getChildren().add(btnOk);
-
-                newVbox.getChildren().add(newHbox);
-
-                graphic = newVbox;
-                notification(Pos.CENTER, graphic, "");
-                notificationBuilder.show();
-
-            } else  {
-                selectedQuantityText.setText(String.valueOf(val));
-                graphic = null;
-                notification(Pos.TOP_RIGHT, null, "Luu danh sach Site thanh cong !");
-                notificationBuilder.show();
+            try {
+                saveSelectedSites();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
-
         });
 
         btnCancelItemSite.setOnAction(event -> {
-//            graphic = null;
-//            notification(Pos.TOP_RIGHT, null, "Hello anh em");
-//            notificationBuilder.show();
-//
-//            VBox newVbox = new VBox();
-//            HBox newHbox = new HBox();
-//            Label text = new Label("Số lượng chọn đã vượt quá số lượng cần đặt. Bạn có muốn tiếp tục không ?");
-//            newVbox.getChildren().add(text);
-//
-//            Button btnOk = new Button("Ok");
-//            Button btnCancel = new Button("Huy");
-//
-//            newHbox.getChildren().add(btnCancel);
-//            newHbox.getChildren().add(btnOk);
-//
-//            newVbox.getChildren().add(newHbox);
-//
-//            graphic = newVbox;
-//            notification(Pos.CENTER, graphic, "");
-//            notificationBuilder.show();
 
         });
 
@@ -167,11 +142,25 @@ public class FindSiteController implements Initializable {
         Model.getInstance().getViewFactory().getSelectedMenuItem().set("OrderListItem");
     }
 
+    public void backOrderCanceledView() {
+        instance = null;
+        Model.getInstance().getViewFactory().resetFindSiteView();
+        Model.getInstance().getViewFactory().getSelectedMenuItem().set("OrderDetail");
+    }
+
     public void renderListSite() throws SQLException {
         // Thiết lập dữ liệu cho TableView
         listItem = FXCollections.observableArrayList(
                findSiteItems
         );
+
+        indexColumn.setSortable(false);
+        siteIdColumn.setSortable(false);
+        siteNameColumn.setSortable(false);
+        quantityColumn.setSortable(false);
+        desiredDeliveryByAirDateColumn.setSortable(false);
+        desiredDeliveryByShipDateColumn.setSortable(false);
+        deliveryTypeColumn.setSortable(false);
 
         indexColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(listItem.indexOf(param.getValue()) + 1));
         siteIdColumn.setCellValueFactory(new PropertyValueFactory<FindSiteItem, String>("siteId"));
@@ -194,6 +183,8 @@ public class FindSiteController implements Initializable {
                     selectedItem.getDeliveryType().setDisable(false);
                 } else {
                     System.out.println("UnCheck");
+                    // reset checkbox
+                    selectedItem.setSelectedSite(new CheckBox());
 
                     // reset input
                     selectedItem.getQuantityOrdered().setText("");
@@ -237,7 +228,7 @@ public class FindSiteController implements Initializable {
                             textField.setText(""); // Khoi tao gia tri cho input = ""
 
                             errorLabel = new Label();
-                            errorLabel.setVisible(false);
+                            errorLabel.setManaged(false);
                             errorLabel.setStyle("-fx-text-fill: red;");
 
                             // Thêm listener cho sự kiện focusedProperty
@@ -247,12 +238,12 @@ public class FindSiteController implements Initializable {
                                         int quantityInputCurrent = Integer.parseInt(textField.getText());
                                         if (quantityInputCurrent > quantity) {
                                             errorLabel.setText("Vượt quá số lượng của site " + siteId);
-                                            errorLabel.setVisible(true);
+                                            errorLabel.setManaged(true);
                                         } else {
                                             listItem.get(rowIndex).getQuantityOrdered().setText(String.valueOf(quantityInputCurrent));
                                             listItem.get(rowIndex).setQuantityOrdered(listItem.get(rowIndex).getQuantityOrdered());
                                             System.out.println(quantityInputCurrent);
-                                            errorLabel.setVisible(false);
+                                            errorLabel.setManaged(false);
                                         }
                                     } catch (NumberFormatException e) {
                                         System.out.println(e.getMessage());
@@ -262,7 +253,7 @@ public class FindSiteController implements Initializable {
                         } else {
                             textField.setText(String.valueOf(listItem.get(rowIndex).getQuantityOrdered()));
                             textField.setDisable(listItem.get(rowIndex).getQuantityOrdered().isDisabled());
-                            errorLabel.setVisible(false); // Reset errorLabel
+                            errorLabel.setManaged(false); // Reset errorLabel
                         }
 
                         // Tạo một VBox để chứa TextField và errorLabel
@@ -276,39 +267,133 @@ public class FindSiteController implements Initializable {
         });
 
         deliveryTypeColumn.setCellValueFactory(new PropertyValueFactory<FindSiteItem, MenuButton>("deliveryType"));
+
+
     }
 
     // Phương thức để lấy ra dữ liệu của các hàng được chọn
+    // Phương thức để lấy ra dữ liệu của các hàng được chọn
     public int getSelectedItems() {
         List<FindSiteItem> selectedItems = new ArrayList<>();
+        listOrderLine = new ArrayList<>();
+
         int selectedQuantityInMoment = 0; // số lượng vừa chọn;
 
         for (FindSiteItem item : listItem) {
             if (item.getSelectedSite().isSelected()) {
+                System.out.println("Site duoc chon: " + item.getSiteId());
                 selectedItems.add(item); // lấy dữ liệu để cập nhật db
+
+                String siteId = item.getSiteId();
+                String deliveryType = item.getDeliveryType().getValue();
+
+                // validate input is empty
+                if (item.getQuantityOrdered().getText().isEmpty()) {
+                    graphic = null;
+                    notification(Pos.TOP_RIGHT, null, "Số lượng của site " + siteId + "không được để trống !");
+                    notificationBuilder.show();
+                    // đánh dấu lỗi ở site này
+                    flagErrorValidateInput = true;
+
+                    // bỏ qua site này
+                    continue;
+                }
 
                 int quantityOrdered = Integer.parseInt(item.getQuantityOrdered().getText());
                 selectedQuantityInMoment += quantityOrdered;
 
-                System.out.println(item.getSiteId());
-                System.out.println(item.getSiteName());
-                System.out.println(item.getQuantityOrdered().getText());
-                System.out.println(item.getDeliveryType().getValue());
+                String desiredDeliveryDate;
+                if (deliveryType.equals("ship")) {
+                    desiredDeliveryDate = item.getDesiredDeliveryByShipDate();
+                } else {
+                    desiredDeliveryDate = item.getDesiredDeliveryByAirDate();
+                }
 
-                item.getSelectedSite().setSelected(false);
+                OrderLine orderLine = new OrderLine(siteId, quantityOrdered, desiredDeliveryDate, deliveryType);
+                listOrderLine.add(orderLine);
             }
 
-
         }
-
-        // Cập nhật lại giao diện của TableView
-        tableView.refresh();
 
         return selectedQuantityInMoment;
     }
 
+    public void resetTableView() {
+        for (FindSiteItem item : listItem) {
+            if (item.getSelectedSite().isSelected()) {
+                item.getSelectedSite().setSelected(false);
+            }
+        }
+
+        // Cập nhật lại giao diện của TableView
+        tableView.refresh();
+    }
+
+
+    public void saveSelectedSites() throws SQLException {
+        // reset cờ đánh dấu lỗi trước khi get
+        flagErrorValidateInput = false;
+
+        int val = getSelectedItems();
+
+        // Nếu không có lỗi thì mới thực hiện các logic khác nhé!
+        if (flagErrorValidateInput) return;
+
+        int quantityRequested = Integer.parseInt(quantityText.getText());
+        int selectedQuantity = Integer.parseInt(selectedQuantityText.getText());
+
+        if (val > (quantityRequested - selectedQuantity)) {
+            VBox newVbox = new VBox();
+            HBox newHbox = new HBox();
+            Label text = new Label("Số lượng chọn đã vượt quá số lượng cần đặt. Bạn có muốn tiếp tục không ?");
+            newVbox.getChildren().add(text);
+
+            Button btnOk = new Button("Ok");
+            Button btnCancel = new Button("Huy");
+
+            newHbox.getChildren().add(btnCancel);
+            newHbox.getChildren().add(btnOk);
+
+            newVbox.getChildren().add(newHbox);
+
+            graphic = newVbox;
+            notification(Pos.CENTER, graphic, "");
+            notificationBuilder.show();
+
+        } else {
+            resetTableView();
+            // sql to save into db
+            createOrder(listOrderLine, orderListItemId, itemId);
+
+            selectedQuantity += val;
+            selectedQuantityText.setText(String.valueOf(selectedQuantity));
+            graphic = null;
+            notification(Pos.TOP_RIGHT, null, "Lưu danh sách Site thành công!");
+            notificationBuilder.show();
+
+        }
+
+
+    }
+
+    public void createOrder(List<OrderLine> newListOrderLine, String orderListItemId, String itemId) throws SQLException {
+        OrderSubsystem orderSubsystem = new OrderSubsystem();
+
+        for (OrderLine orderLine: newListOrderLine) {
+            orderSubsystem.saveSelectedSite(orderListItemId, itemId, orderLine, this.orderParentId);
+        }
+    }
+
     public String getItemId() {
         return itemId;
+    }
+
+    public void setPreView(String preView) {
+        this.preView = preView;
+    }
+
+    public void setOrderParentId(String orderParentId) {
+        this.orderParentId = orderParentId;
     }
 
     public void findItemSiteByItemId(String orderListItemId, OrderItem orderItem, int selectedQuantity) throws SQLException {
@@ -320,12 +405,12 @@ public class FindSiteController implements Initializable {
         findSiteItems = new ArrayList<>();
 
         ItemSiteSubsystem itemSiteSubsystem = new ItemSiteSubsystem();
-           List<ItemSite> listItemSite = itemSiteSubsystem.findItemSiteByItemId(orderItem.getItemId());
 
-           for (ItemSite item : listItemSite) {
-               findSiteItems.add(new FindSiteItem(item.getSiteId(), item.getSiteName(), item.getQuantity(), item.getDesiredDeliveryByShipDate(), item.getDesiredDeliveryByAirDate()));
-           }
+        List<ItemSite> listItemSite = itemSiteSubsystem.findItemSiteByItemId(orderItem.getItemId());
 
+        for (ItemSite item : listItemSite) {
+            findSiteItems.add(new FindSiteItem(item.getSiteId(), item.getSiteName(), item.getQuantity(), item.getDesiredDeliveryByShipDate(), item.getDesiredDeliveryByAirDate()));
+        }
     }
 
     private void notification(Pos pos, Node graphic, String text) {

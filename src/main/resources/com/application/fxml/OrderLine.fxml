@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--        fx:controller="com.application.controller.OrderLineController"-->
+
+<AnchorPane prefHeight="292.0" prefWidth="761.0" styleClass="order__detail__container" stylesheets="@../styles/OrderLine.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+   <children>
+      <VBox layoutX="14.0" layoutY="14.0" prefHeight="80.0" prefWidth="167.0" styleClass="order__detail__title__list">
+         <children>
+            <HBox prefHeight="25.0" prefWidth="200.0" styleClass="order__detail__title__item">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã site:" />
+                  <Text fx:id="siteIdElement" strokeType="OUTSIDE" strokeWidth="0.0" text="S0001" />
+               </children>
+            </HBox>
+            <HBox prefHeight="25.0" prefWidth="200.0" styleClass="order__detail__title__item">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tên site:" />
+                  <Text fx:id="siteNameElement" strokeType="OUTSIDE" strokeWidth="0.0" text="taobao" />
+               </children>
+            </HBox>
+            <HBox prefHeight="25.0" prefWidth="200.0" styleClass="order__detail__title__item">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã đơn hàng:" />
+                  <Text fx:id="orderIdElement" strokeType="OUTSIDE" strokeWidth="0.0" text="OD001" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <TableView styleClass="order__detail__table" fx:id="tableView" layoutX="14.0" layoutY="94.0" prefHeight="186.0" prefWidth="642.0">
+        <columns>
+<!--          <TableColumn prefWidth="42.0" text="-" />-->
+          <TableColumn fx:id="indexColumn" prefWidth="62.0" text="STT" />
+            <TableColumn fx:id="itemIdColumn" prefWidth="121.0" text="Mã mặt hàng" />
+            <TableColumn fx:id="itemNameColumn" prefWidth="152.0" text="Tên mặt hàng" />
+            <TableColumn fx:id="unitColumn" prefWidth="89.0" text="Đơn vị" />
+            <TableColumn fx:id="quantityOrderedColumn" prefWidth="95.0" text="Số lượng" />
+            <TableColumn fx:id="desiredDeliveryDateColumn" minWidth="7.0" prefWidth="175.0" text="Ngày giao dự kiến" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</AnchorPane>

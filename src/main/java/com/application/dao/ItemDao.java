@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ItemDao {
     public List<Item> getListItem() throws SQLException;
+    public List<Item> getItemByName(String value) throws SQLException;
 }
