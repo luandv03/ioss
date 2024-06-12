@@ -91,6 +91,10 @@ public class OrderDetailController implements Initializable  {
 
         backToPrevPageBtn.setOnAction((event) -> backToPrevPage());
 
+        renderTable();
+    }
+
+    public void renderTable() {
         // Thiết lập dữ liệu cho TableView
         orderItemDetail = FXCollections.observableArrayList(listOrderItem);
         idColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(orderItemDetail.indexOf(param.getValue()) + 1));
@@ -147,8 +151,13 @@ public class OrderDetailController implements Initializable  {
                 }
             };
         });
+    }
 
-
+    public void renderContent() {
+        orderIdElement.setText(orderId);
+        orderStatusElement.setText(orderStatus);
+        siteIdElement.setText(siteId);
+        siteNameElement.setText(siteName);
     }
 
     public void setOrderId(String orderId) {
@@ -183,7 +192,7 @@ public class OrderDetailController implements Initializable  {
 
     public void findSite(OrderItem orderItem, int selectedQuantity) throws SQLException {
         FindSiteController findSiteController =  FindSiteController.getInstance(orderItem.getItemId());
-        findSiteController.findItemSiteByItemId("OL002", orderItem, selectedQuantity);
+        findSiteController.findItemSiteByItemId("OL001", orderItem, selectedQuantity);
         findSiteController.setPreView("OrderDetail");
         findSiteController.setOrderParentId(orderId);
         Model.getInstance().getViewFactory().getSelectedMenuItem().set("FindSite"); // thực hiện load FXML của file FindSite.FXML
@@ -199,7 +208,7 @@ public class OrderDetailController implements Initializable  {
             OrderListInActiveController ctl = new OrderListInActiveController();
 
             ctl.setOrderTypePage("OrderCanceled");
-            ctl.setOrderListItemId("OL002");
+            ctl.setOrderListItemId("OL001");
             ctl.setOrderParentId(this.orderId);
             ctl.getListOrder(this.orderListItemId, this.orderId);
 

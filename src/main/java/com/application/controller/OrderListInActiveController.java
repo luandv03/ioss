@@ -87,7 +87,7 @@ public class OrderListInActiveController implements Initializable {
     }
 
     public void displayListOrder() throws IOException, SQLException {
-        getListOrder(orderListItemId);
+//        getListOrder(orderListItemId);
 
         if (listOrderDetail.isEmpty()) {
             Label t = new Label("Hiện chưa có đơn hàng nào được tạo !");
@@ -117,7 +117,9 @@ public class OrderListInActiveController implements Initializable {
     }
 
     public void getListOrder(String orderListItemId, String orderParentId) throws SQLException {
-        listOrderDetail = orderSubsystem.getListOrderByOrderListItemIdAndStatus(orderListItemId, "inActive", orderParentId);
+        System.out.println(orderListItemId + " " + orderParentId);
+        listOrderDetail = orderSubsystem.getListOrderByOrderListItemIdAndStatus(this.orderListItemId, "inActive", orderParentId);
+        System.out.println(listOrderDetail.size());
     }
 
     public void requestOrderForOrderListItem() throws SQLException, IOException {
