@@ -1,3 +1,10 @@
+プロジェクトのプレゼンテーションと機能:
+- ユースケース：注文する商品のリストを見る: https://drive.google.com/file/d/15NTdAXfP9Sz_RLZLR2YrdY81a6hifqUW/view?usp=sharing
+- ユースケース：注文する商品のリストを処理する: https://drive.google.com/file/d/1eFTKDdEuookNMgbB7nH5kZTn19izK6Ds/view?usp=drive_link/
+- ユースケース：キャンセルされた注文を処理する: https://drive.google.com/file/d/1FHP8K8Nvah8vioqleaUsVtgIdDtJFDFa/view?usp=drive_link/
+- ユースケース：注文する商品のリストを作成する: https://drive.google.com/file/d/1Bx5uEzOmlTR79eAoKgKeG_mL-NPYJy1I/view?usp=sharing/
+
+
 # Quy tắc 
 - Các thành viên khi clone về hãy tạo 1 branch mới từ nhánh main
 > VD: git checkout -b feature/order_list_item
